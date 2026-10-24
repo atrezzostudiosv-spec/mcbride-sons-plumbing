@@ -31,8 +31,11 @@ Updated: 2026-10-24
 5. Approve Home visual presentation; THEN use its design system on other three pages without changing closed decisions.
 
 ## New action — 2026-10-24: Separate Gemini v2 website into real pages
-- Four independent static routes, shared CSS and JS: BUILT LOCALLY, READY FOR INITIAL GITHUB UPLOAD.
+- Four independent static routes, shared CSS and JS: BUILT LOCALLY, UPLOADED TO GITHUB main; VERIFIED by repository file fetch.
 - Home visual redesign: IN VALIDATION; no change to approved style until user review.
+- Four standalone pages, shared CSS/JS and demo notices committed to main (commit 23b81cd69e92ffce8283cabd473fdaae01e592eb). GitHub file reads verified 4/4 pages.
+- Staging meta robots `noindex, nofollow` added to all four pages. This is a crawler directive, not a guarantee against indexing.
+- Real FormSubmit receipt, GitHub Pages publishing, and live responsive tests: PENDING.
 - Fake callback confirmation: REMOVED; forms now submit to FormSubmit staging, provider delivery UNVERIFIED.
 - Navigation from Gemini one-file app changed to ordinary internal links.
 - Public repo staging: APPROVED (demo, not official client site). GitHub Pages publication and responsive browser test: PENDING.
