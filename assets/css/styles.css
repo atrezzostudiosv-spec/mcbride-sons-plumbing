@@ -49,3 +49,9 @@ button:disabled { cursor: not-allowed; }
   html {scroll-behavior: auto !important;}
   *, *::before, *::after {animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important;}
 }
+
+/* Authentic brand and family photography — approved user assets */
+.mcbride-logo-link { display: inline-flex; align-items: center; flex-shrink: 0; min-width: 0; }
+.mcbride-brand-logo { display:block; width: clamp(134px, 15vw, 182px); height: 72px; max-width: 100%; object-fit: contain; object-position: left center; }
+.mcbride-family-portrait { display:block; width:100%; height:100%; object-fit:cover; object-position:center top; }
+@media (max-width: 430px) { .mcbride-brand-logo { width: 142px; height: 67px; } }
