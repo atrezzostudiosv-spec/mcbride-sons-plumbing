@@ -8,7 +8,7 @@ Updated: 2026-10-24
 - Phase 4 — Art direction: CLOSED, approved by user. Brand green, Manrope, authentic family assets, minimal editorial style.
 - Phase 5 — Gemini master prompt: CLOSED, approved; user supplied generated iterations.
 - Phase 6 — Gemini prototype audit (versions 1 and 2): CLOSED with FAIL findings. Version 2 has simulated form success, unsupported commercial detail, no actual portrait/logo images, SPA navigation without per-page metadata.
-- Phase 7 — Home design validation: IN VALIDATION. Preview file MCBRIDE_HOME_FASE7_PREVIEW.html created; no production change. Desktop/tablet/mobile widths 375/768/1024/1440 checked for horizontal overflow; menu open/Escape tested.
+- Phase 7 — Home design validation: IN VALIDATION. Home V2 editorial conversion redesign committed to GitHub demo main (HTML commit 331254709e2be7babf31eefb9e7ca734889a913b; CSS commit c8581deed126212b9b1c6f63ab5fea74d185fde5). Local Chromium inlined-assets testing: 375/768/1024/1440 widths, no horizontal overflow, 8/8 images loaded, menu open/Escape passed, no JS errors. Form POST success MOCK ONLY; Gmail delivery still unverified. User visual approval pending.
 - Phase 8 — Internal pages and technical completion: PENDING.
 - Phase 9 — Production QA: PENDING.
 - Phase 10 — Final delivery: PENDING.
@@ -55,3 +55,10 @@ Updated: 2026-10-24
 - Asset files under `assets/images/`; dimensions documented in README.
 - No family titles, biographies or new claims introduced.
 - Static source integration verified; published responsive visual inspection remains pending.
+
+## 2026-10-24 — Home V2 implementation (ONLY Home)
+- Replaced `index.html` and added `assets/css/home.css` scoped to Home; did not alter Services, About or Contact or shared JS.
+- Direct-call CTA, 24/7 availability, FormSubmit staging form, real logo and family portraits, 4.9/5 and 200+ Google reviews (prior verified reference, publication revalidation pending), six correct service anchors, published 24/7 and payment options retained.
+- No 20–30 minute arrival claim or live-presence badge; mobile CTA remains persistent.
+- Local Chromium inline-assets tests: 375/768/1024/1440, 0 horizontal overflow and 0 JS errors; keyboard Escape menu; accepted form response simulated, not an actual email.
+- Open/unfinished: public Pages deployment smoke test, live screenshots, real Gmail receiving tests, final approval from user. Maintain Phase 7 EN VALIDACIÓN until approved.
