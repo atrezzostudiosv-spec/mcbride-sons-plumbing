@@ -41,3 +41,9 @@ Before client delivery replace endpoint with a client-approved recipient, review
 Static pages are GitHub Pages compatible as directory-based `index.html` files. Maintain `noindex, nofollow` and visible Atrezzo demonstration notice. Do not portray this staging site as official, and do not remove these protections without authorization.
 
 Tailwind runtime CDN/Font Awesome CDN remain in legacy interior pages; compile production assets and optimize delivery before final launch. Use the project phase log in `ATREZZO-PROJECT-STATUS.md` before touching closed phases.
+
+## Home hero photographic background (2026-10-26)
+- Approved redesign applies only to the Home hero background. Keep the editorial copy and right-hand callback form unchanged.
+- Photography: [AR Abnoy / Pexels](https://www.pexels.com/photo/close-up-of-man-using-a-spanner-16509869/), listed under the **free Pexels license**. This is an **illustrative image**, not a McBride job, customer, or employee.
+- The responsive CDN background is referenced within `assets/css/home.css`, with a dark green fallback and overlaid gradients for text legibility. Image CDN host preconnected in `index.html`.
+- Deployment of the updated commit reported GitHub Pages workflow **success**. Actual photo delivery and layout screenshots across viewport sizes are still **not visually verified**; inspect before marking the Home design closed.
