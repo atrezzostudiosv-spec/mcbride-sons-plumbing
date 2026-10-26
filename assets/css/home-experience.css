@@ -571,7 +571,7 @@
   .services .service-scene,
   .services .service-scene-photo,
   .services .service-scene-action{transition:none!important;transform:none!important}
-  @media(max-width:640px){
-    .services .service-scene{position:relative;top:auto;margin-bottom:16px}
-  }
+}
+@media (prefers-reduced-motion:reduce) and (max-width:640px){
+  .services .service-scene{position:relative;top:auto;margin-bottom:16px}
 }
