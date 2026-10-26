@@ -320,6 +320,8 @@
     '.family .family-person',
     '.approach .approach-left',
     '.approach .value-line',
+    '.reviews-section .reviews-heading > div',
+    '.reviews-section .review-quote',
     '.end-cta .end-grid > div'
   ];
   const targets = [...document.querySelectorAll(selectors.join(','))];
@@ -336,9 +338,9 @@
   targets.forEach((el, index) => {
     el.classList.add('atrezzo-reveal');
     // Tiny stagger for adjacent authentic family portraits, never long delays.
-    if (el.classList.contains('family-person')) {
-      const galleryIndex = [...el.parentNode.children].indexOf(el);
-      el.style.setProperty('--reveal-delay', (galleryIndex * 85) + 'ms');
+    if (el.classList.contains('family-person') || el.classList.contains('review-quote')) {
+      const groupIndex = [...el.parentNode.children].indexOf(el);
+      el.style.setProperty('--reveal-delay', (groupIndex * 80) + 'ms');
     }
     observer.observe(el);
   });
