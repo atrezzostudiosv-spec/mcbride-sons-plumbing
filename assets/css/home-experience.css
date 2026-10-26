@@ -425,41 +425,6 @@
 .services .services-footer{position:relative;margin-top:8px}
 .services .services-footer span{color:#697a6d}
 
-@media(min-width:1024px){
-  .services .service-scene:nth-child(n+2) .service-scene-top{inset:16px 17px auto;font-size:9px}
-  .services .service-scene:nth-child(n+2) .service-scene-body{padding:20px}
-  .services .service-scene:nth-child(n+2) .service-scene-title{font-size:clamp(21px,2.1vw,31px)}
-  .services .service-scene:nth-child(n+2) .service-scene-description{
-    font-size:11px;
-    line-height:1.5;
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:2;
-    line-clamp:2;
-    overflow:hidden;
-  }
-  .services .service-scene:nth-child(n+2) .service-scene-action{
-    margin-top:2px;
-    font-size:9px;
-    padding:10px 12px;
-  }
-}
-@media(min-width:641px) and (max-width:1023px){
-  .services .services-story{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    grid-auto-rows:310px;
-    gap:12px;
-  }
-  .services .service-scene,
-  .services .service-scene:nth-child(2),
-  .services .service-scene:nth-child(3){grid-column:span 1}
-  .services .service-scene:nth-child(1){grid-column:span 2;grid-row:span 1;min-height:345px}
-  .services .service-scene:nth-child(6){grid-column:span 2}
-  .services .service-scene-body{padding:22px}
-  .services .service-scene-title{font-size:clamp(24px,3vw,34px)}
-  .services .service-scene-feature .service-scene-title{font-size:clamp(36px,4.2vw,50px)}
-  .services .service-scene-top{font-size:9px}
-}
 @media(max-width:640px){
   .services.section{
     padding-top:clamp(76px,13svh,116px);
@@ -590,6 +555,7 @@
   .services.section{
     position:relative;
     overflow:visible;
+    scroll-margin-top:104px;
     padding-top:clamp(75px,7.6vw,118px);
     padding-bottom:clamp(75px,8vw,110px);
     background:#f5f6f1;
@@ -774,6 +740,7 @@
   }
 }
 @media(min-width:641px) and (max-width:1023px){
+  .services.section{scroll-margin-top:88px}
   .services .service-scene,
   .services .service-scene:nth-child(1),
   .services .service-scene:nth-child(2),
