@@ -446,33 +446,88 @@
   mobile.addEventListener?.('change', prepare);
 })();
 
-// Four approach values: visual emphasis only; portraits use their own dedicated sequence.
+// ATREZZO OUR APPROACH CINEMA 3.0 — scroll-linked horizontal chapters.
+// No scroll locking: regular vertical page scrolling controls four scenes.
+// Desktop/tablet >=768px: three scenes enter over the previous from right.
+// Mobile: a gentle independent one-time right-to-left reveal per scene.
+// Reduced motion or unsupported APIs: all four scenes remain normal blocks.
 (() => {
-  if (!('IntersectionObserver' in window)) return;
-  const values = [...document.querySelectorAll('.approach-values .value-line[data-approach-step]')];
-  if (!values.length) return;
+  const story = document.querySelector('.approach-cinema .approach-story');
+  if (!story) return;
+  const stage = story.querySelector('.approach-stage');
+  const scenes = [...story.querySelectorAll('[data-approach-scene]')];
+  if (!stage || scenes.length !== 4 || !window.matchMedia) return;
 
-  const observeChapter = (elements, className, attrName) => {
-    if (!elements.length) return;
-    const activate = (current) => {
-      elements.forEach(el => {
-        if (className) el.classList.toggle(className, el === current);
-        if (attrName) {
-          if (el === current) el.setAttribute(attrName,'true');
-          else el.removeAttribute(attrName);
-        }
-      });
-    };
-    const observer = new IntersectionObserver(entries => {
-      const visible = entries.filter(e => e.isIntersecting);
-      if (!visible.length) return;
-      visible.sort((a,b) => b.intersectionRatio-a.intersectionRatio);
-      activate(visible[0].target);
-    }, {rootMargin:'-23% 0px -42% 0px',threshold:[0,.2,.5]});
-    elements.forEach(el => observer.observe(el));
+  const wide = window.matchMedia('(min-width: 768px)');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let queued = false;
+  let mobileObserver = null;
+
+  scenes.forEach(scene => {
+    const image = scene.querySelector('.approach-scene-photo');
+    if (image) image.addEventListener('error', () => {
+      image.style.opacity = '0';
+      scene.classList.add('approach-photo-unavailable');
+    });
+  });
+
+  const clamp = (value, lower, upper) => Math.min(upper, Math.max(lower, value));
+  const sync = () => {
+    queued = false;
+    if (!wide.matches || reduced.matches || !story.classList.contains('is-cinema-ready')) return;
+    const region = story.getBoundingClientRect();
+    if (region.bottom < -10 || region.top > window.innerHeight + 10) return;
+    const travel = Math.max(1, story.offsetHeight - stage.offsetHeight);
+    const progress = clamp(-region.top / travel, 0, 1);
+    const phase = progress * 3;
+
+    scenes.forEach((scene, i) => {
+      const local = i === 0 ? 1 : clamp((phase - (i - 1) - 0.28) / 0.72, 0, 1);
+      scene.style.setProperty('--approach-x', ((1 - local) * 100).toFixed(2) + '%');
+      const zoom = i === 0 ? 1.08 - .055 * clamp(phase, 0, 1) : 1.11 - .08 * local;
+      scene.style.setProperty('--approach-scale', zoom.toFixed(3));
+    });
+  };
+  const requestSync = () => {
+    if (!wide.matches || reduced.matches || queued) return;
+    queued = true;
+    window.requestAnimationFrame(sync);
   };
 
-  observeChapter(values,null,'data-active');
+  const configure = () => {
+    if (mobileObserver) {mobileObserver.disconnect();mobileObserver = null;}
+    scenes.forEach(scene => scene.classList.remove('is-mobile-reveal-ready', 'is-approach-visible'));
+
+    if (wide.matches && !reduced.matches && typeof window.requestAnimationFrame === 'function') {
+      story.classList.add('is-cinema-ready');
+      requestSync();
+    } else {
+      story.classList.remove('is-cinema-ready');
+      scenes.forEach(scene => {
+        scene.style.removeProperty('--approach-x');
+        scene.style.removeProperty('--approach-scale');
+      });
+      if (!reduced.matches && 'IntersectionObserver' in window) {
+        mobileObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-approach-visible');
+            mobileObserver.unobserve(entry.target);
+          });
+        }, {threshold:0.09, rootMargin:'0px 0px -7% 0px'});
+        scenes.forEach(scene => {
+          scene.classList.add('is-mobile-reveal-ready');
+          mobileObserver.observe(scene);
+        });
+      }
+    }
+  };
+
+  document.addEventListener('scroll', requestSync, {passive:true});
+  window.addEventListener('resize', requestSync, {passive:true});
+  wide.addEventListener?.('change', configure);
+  reduced.addEventListener?.('change', configure);
+  configure();
 })();
 
 
