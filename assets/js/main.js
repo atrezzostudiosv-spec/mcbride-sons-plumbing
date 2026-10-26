@@ -70,9 +70,9 @@
 })();
 
 
-// ATREZZO HOME — mobile callback dialog (2026-10-26)
-// Use ONE existing callback form. It remains inline on desktop/tablet.
-// On mobile with working JavaScript, move that same form panel into a native
+// ATREZZO HOME — mobile and tablet callback dialog (2026-10-26)
+// Use ONE existing callback form. It remains inline on desktop (>=1024px).
+// On tablet/mobile with working JavaScript, move that same form panel into a native
 // <dialog> (focus containment, Escape, backdrop); without JS it stays inline.
 (() => {
   const wrap = document.getElementById('callback-form');
@@ -103,7 +103,7 @@
   document.body.appendChild(modal);
 
   // Match the layout breakpoint, not the handset hardware.
-  const mobile = window.matchMedia('(max-width: 767px)');
+  const mobile = window.matchMedia('(max-width: 1023px)');
   let openTrigger = null;
 
   const close = () => { if (modal.open) modal.close(); };
