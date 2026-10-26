@@ -431,3 +431,103 @@
   observeChapter(portraits,'is-family-current',null);
   observeChapter(values,null,'data-active');
 })();
+
+
+// ATREZZO SERVICES CAROUSEL 3.0 — manual desktop/tablet experience.
+// On <=640px this code is inert, leaving the approved sticky mobile scenes.
+// No autoplay, scroll locking, wheel interception, timers, or extra dependencies.
+(() => {
+  const track = document.querySelector('.services .services-story');
+  const section = document.querySelector('.services');
+  const previous = section?.querySelector('[data-services-prev]');
+  const next = section?.querySelector('[data-services-next]');
+  const count = section?.querySelector('[data-services-current]');
+  if (!track || !previous || !next || !count) return;
+
+  const cards = [...track.querySelectorAll('.service-scene')];
+  if (cards.length !== 6) return;
+  const desktop = window.matchMedia('(min-width: 641px)');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let index = 0;
+  let scheduled = false;
+
+  const render = (i) => {
+    if (!desktop.matches) return;
+    const nextIndex = Math.max(0, Math.min(cards.length - 1, i));
+    if (index !== nextIndex) index = nextIndex;
+    count.textContent = String(index + 1).padStart(2, '0');
+    previous.disabled = index === 0;
+    next.disabled = index === cards.length - 1;
+    cards.forEach((card, n) => card.classList.toggle('is-scene-current', n === index));
+  };
+
+  const sync = () => {
+    scheduled = false;
+    if (!desktop.matches) return;
+    const max = Math.max(0, track.scrollWidth - track.clientWidth);
+    if (track.scrollLeft >= max - 3) {
+      render(cards.length - 1);
+      return;
+    }
+    const first = cards[0].offsetLeft;
+    const x = track.scrollLeft;
+    let nearest = 0;
+    let distance = Infinity;
+    cards.forEach((card, n) => {
+      const delta = Math.abs((card.offsetLeft - first) - x);
+      if (delta < distance) {distance = delta;nearest = n;}
+    });
+    render(nearest);
+  };
+
+  const requestSync = () => {
+    if (!desktop.matches || scheduled) return;
+    scheduled = true;
+    window.requestAnimationFrame(sync);
+  };
+
+  const goTo = (target) => {
+    if (!desktop.matches) return;
+    const i = Math.max(0, Math.min(cards.length - 1, target));
+    const offset = cards[i].offsetLeft - cards[0].offsetLeft;
+    const max = Math.max(0,track.scrollWidth-track.clientWidth);
+    render(i);
+    track.scrollTo({
+      left: Math.max(0,Math.min(offset,max)),
+      behavior: reduced.matches ? 'auto' : 'smooth'
+    });
+  };
+
+  previous.addEventListener('click', () => goTo(index - 1));
+  next.addEventListener('click', () => goTo(index + 1));
+  track.addEventListener('scroll', requestSync, {passive: true});
+  track.addEventListener('focusin', e => {
+    if (!desktop.matches) return;
+    const item = e.target.closest('.service-scene');
+    if (item && track.contains(item)) render(cards.indexOf(item));
+  });
+  // Normal keyboard browsing through six linked cards remains available.
+  // Arrow navigation is provided only when the carousel itself has focus.
+  track.addEventListener('keydown', e => {
+    if (!desktop.matches || e.target !== track) return;
+    if (e.key === 'ArrowRight') {e.preventDefault();goTo(index+1);}
+    if (e.key === 'ArrowLeft') {e.preventDefault();goTo(index-1);}
+  });
+  const syncMode = () => {
+    if (desktop.matches) {
+      track.setAttribute('role','region');
+      track.setAttribute('aria-roledescription','carousel');
+      track.setAttribute('aria-label','Six plumbing services. Swipe or use Previous and Next to explore.');
+      track.tabIndex = 0;
+      requestSync();
+    } else {
+      track.setAttribute('role','group');
+      track.removeAttribute('aria-roledescription');
+      track.setAttribute('aria-label','Six plumbing services to explore.');
+      track.removeAttribute('tabindex');
+    }
+  };
+  desktop.addEventListener?.('change',syncMode);
+  window.addEventListener('resize',requestSync,{passive:true});
+  syncMode();
+})();
