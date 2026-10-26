@@ -433,101 +433,50 @@
 })();
 
 
-// ATREZZO SERVICES CAROUSEL 3.0 — manual desktop/tablet experience.
-// On <=640px this code is inert, leaving the approved sticky mobile scenes.
-// No autoplay, scroll locking, wheel interception, timers, or extra dependencies.
+// ATREZZO SERVICES JOURNEY 4.0 — read-only desktop/tablet scene state.
+// CSS sticky chapters naturally advance/retreat as visitors scroll. No scroll
+// interception, snapping, timed changes or wheel event listeners.
+// The already-approved mobile experience stays untouched.
 (() => {
-  const track = document.querySelector('.services .services-story');
-  const section = document.querySelector('.services');
-  const previous = section?.querySelector('[data-services-prev]');
-  const next = section?.querySelector('[data-services-next]');
-  const count = section?.querySelector('[data-services-current]');
-  if (!track || !previous || !next || !count) return;
+  const story = document.querySelector('.services-story');
+  if (!story) return;
+  const scenes = [...story.querySelectorAll('.service-scene')];
+  if (scenes.length !== 6) return;
 
-  const cards = [...track.querySelectorAll('.service-scene')];
-  if (cards.length !== 6) return;
   const desktop = window.matchMedia('(min-width: 641px)');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let index = 0;
   let scheduled = false;
 
-  const render = (i) => {
-    if (!desktop.matches) return;
-    const nextIndex = Math.max(0, Math.min(cards.length - 1, i));
-    if (index !== nextIndex) index = nextIndex;
-    count.textContent = String(index + 1).padStart(2, '0');
-    previous.disabled = index === 0;
-    next.disabled = index === cards.length - 1;
-    cards.forEach((card, n) => card.classList.toggle('is-scene-current', n === index));
-  };
-
-  const sync = () => {
+  const update = () => {
     scheduled = false;
-    if (!desktop.matches) return;
-    const max = Math.max(0, track.scrollWidth - track.clientWidth);
-    if (track.scrollLeft >= max - 3) {
-      render(cards.length - 1);
-      return;
-    }
-    const first = cards[0].offsetLeft;
-    const x = track.scrollLeft;
-    let nearest = 0;
-    let distance = Infinity;
-    cards.forEach((card, n) => {
-      const delta = Math.abs((card.offsetLeft - first) - x);
-      if (delta < distance) {distance = delta;nearest = n;}
-    });
-    render(nearest);
-  };
+    if (!desktop.matches || reduced.matches) return;
+    const bounds = story.getBoundingClientRect();
+    if (bounds.bottom < 0 || bounds.top > window.innerHeight) return;
 
-  const requestSync = () => {
-    if (!desktop.matches || scheduled) return;
+    const stickyTop = window.innerWidth < 1024 ? 88 : 104;
+    let active = scenes[0];
+    scenes.forEach(scene => {
+      const rect = scene.getBoundingClientRect();
+      // Later scenes are layered above earlier scenes when reaching the top.
+      if (rect.top <= stickyTop + 32 && rect.bottom > stickyTop + 3) active = scene;
+    });
+    scenes.forEach(scene => scene.classList.toggle('is-scene-current', scene === active));
+  };
+  const requestUpdate = () => {
+    if (!desktop.matches || reduced.matches || scheduled) return;
     scheduled = true;
-    window.requestAnimationFrame(sync);
+    window.requestAnimationFrame(update);
   };
 
-  const goTo = (target) => {
-    if (!desktop.matches) return;
-    const i = Math.max(0, Math.min(cards.length - 1, target));
-    const offset = cards[i].offsetLeft - cards[0].offsetLeft;
-    const max = Math.max(0,track.scrollWidth-track.clientWidth);
-    render(i);
-    track.scrollTo({
-      left: Math.max(0,Math.min(offset,max)),
-      behavior: reduced.matches ? 'auto' : 'smooth'
-    });
-  };
-
-  previous.addEventListener('click', () => goTo(index - 1));
-  next.addEventListener('click', () => goTo(index + 1));
-  track.addEventListener('scroll', requestSync, {passive: true});
-  track.addEventListener('focusin', e => {
-    if (!desktop.matches) return;
-    const item = e.target.closest('.service-scene');
-    if (item && track.contains(item)) render(cards.indexOf(item));
-  });
-  // Normal keyboard browsing through six linked cards remains available.
-  // Arrow navigation is provided only when the carousel itself has focus.
-  track.addEventListener('keydown', e => {
-    if (!desktop.matches || e.target !== track) return;
-    if (e.key === 'ArrowRight') {e.preventDefault();goTo(index+1);}
-    if (e.key === 'ArrowLeft') {e.preventDefault();goTo(index-1);}
-  });
-  const syncMode = () => {
-    if (desktop.matches) {
-      track.setAttribute('role','region');
-      track.setAttribute('aria-roledescription','carousel');
-      track.setAttribute('aria-label','Six plumbing services. Swipe or use Previous and Next to explore.');
-      track.tabIndex = 0;
-      requestSync();
-    } else {
-      track.setAttribute('role','group');
-      track.removeAttribute('aria-roledescription');
-      track.setAttribute('aria-label','Six plumbing services to explore.');
-      track.removeAttribute('tabindex');
+  window.addEventListener('scroll', requestUpdate, { passive:true });
+  window.addEventListener('resize', requestUpdate, { passive:true });
+  desktop.addEventListener?.('change', requestUpdate);
+  reduced.addEventListener?.('change', requestUpdate);
+  story.addEventListener('focusin', event => {
+    const card = event.target.closest('.service-scene');
+    if (desktop.matches && card && story.contains(card)) {
+      scenes.forEach(scene => scene.classList.toggle('is-scene-current', scene === card));
     }
-  };
-  desktop.addEventListener?.('change',syncMode);
-  window.addEventListener('resize',requestSync,{passive:true});
-  syncMode();
+  });
+  requestUpdate();
 })();
