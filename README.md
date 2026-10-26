@@ -64,3 +64,10 @@ Playback is a performance-conscious progressive enhancement: JavaScript requests
 Home-only scroll reveals use IntersectionObserver with CSS transitions and are skipped for reduced-motion users or mobiles under 768px. No animation should hide content when JavaScript is unavailable.
 
 **Outstanding QA**: live external MP4 variant URLs are not verified in this environment; Pexels delivery, video framing, accessibility, responsiveness at 375/768/1024/1440, page weight and real form email delivery need actual browser/provider testing before final signoff. Continue treating GitHub Pages as an Atrezzo demo and keep `noindex`.
+
+## Current HOME cinematic v2 — supersedes desktop-only media notes
+The user's newer direction (2026-10-26) replaces the original under-sink footage with **Stepan SK / Pexels #7584858**, a short free-use stock video showing faucet repair in a modern kitchen: https://www.pexels.com/video/man-fixing-the-faucet-on-the-kitchen-sink-7584858/ . It is illustrative footage and must never be presented as McBride's own work or staff.
+
+The hero background video is now requested on **desktop, tablet, and mobile** using responsive sources (360p mobile; 720p tablet/desktop, 1080p last-resort), with muted autoplay/loop/playsinline. The CSS gradient is lighter and tuned by breakpoint. The playback policy honors motion-reduction and data-saving preferences, pauses offscreen/hidden and behind the contact popup, and provides a pause/play button. The existing licensed fallback photograph #6419128 remains.
+
+**Still pending**: verify that the exact new Pexels MP4 variants load and play on a real mobile browser and measure live speed/layout/contrast. Neither video delivery nor production form email receipt has been verified from this code-only pass. GitHub Pages remains a non-official Atrezzo demo with noindex and visible disclaimer.
