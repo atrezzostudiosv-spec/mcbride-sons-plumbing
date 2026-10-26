@@ -83,3 +83,11 @@ Updated: 2026-10-24
 - Added and refined responsive form CSS in `assets/css/service-detail.css`. The Home hero form was not modified.
 - **VERIFIED STATICALLY:** 8/8 pages (Home + overview + six service pages) have one form, one H1, no duplicate element IDs, every `label[for]` resolves locally, staging consent and `data-form-status` are present, and the seven added pages load the form CSS.
 - **NOT COMPROBADO:** deployment/browser screenshots at actual widths, form relay activation and real Gmail receipt. Keep staging `noindex` and demo notice until approved production migration.
+
+## 2026-10-26 — Home photographic background approved and implemented
+- User approved changing the HOME hero only, taking cinematic background inspiration from a supplied 308 Construction video reference. Scope intentionally limited to `index.html` and `assets/css/home.css`.
+- Added full-bleed stock photography of hands working on plumbing fittings, with responsive `background-size: cover`, layered green/black gradients and adjusted text contrast. Removed the giant decorative `McB` hero watermark. Preserved original home hero H1, CTA actions, heritage row, genuine family photographs and callback form.
+- Photo source: AR Abnoy, `https://www.pexels.com/photo/close-up-of-man-using-a-spanner-16509869/`; listed Free on Pexels. Photo is expressly **ILLUSTRATIVE STOCK** — not a real job or staff member of McBride. CDN asset: `images.pexels.com/photos/16509869/pexels-photo-16509869.jpeg`, with responsive image-size query parameters. External dependency must be reviewed and optionally self-hosted in a production build.
+- Photo-host preconnect added on Home. Hero maintains solid dark green fallback if photo cannot load. No service contents or other page design touched.
+- **STATIC VERIFIED:** background CSS and tablet/mobile breakpoint overlays committed to GitHub main, watermark removed, original Home form still present, source/license traceability recorded. **NOT COMPROBADO:** live visual screenshots at 375/768/1024/1440, actual external-image network delivery in browser, Lighthouse performance, accessibility contrast measured from rendered image.
+- Home photographic design: IN VALIDATION; staging maintains `noindex` and Atrezzo demonstration label.
