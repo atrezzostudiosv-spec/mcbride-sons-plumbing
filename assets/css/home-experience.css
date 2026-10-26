@@ -576,3 +576,199 @@
 @media (prefers-reduced-motion:reduce) and (max-width:640px){
   .services .service-scene{position:relative;top:auto;margin-bottom:16px}
 }
+
+
+
+/* ATREZZO SERVICES CAROUSEL 3.0 — DESKTOP/TABLET ONLY.
+   The approved <=640px stacked-scroll scene layout above stays untouched.
+   A single cinematic image is the visual focus; a partial next scene invites exploration. */
+.services .services-carousel-nav{display:none}
+@media(min-width:641px){
+  .services .services-story{
+    --service-card-width:80%;
+    display:flex;
+    flex-flow:row nowrap;
+    align-items:stretch;
+    gap:clamp(15px,2vw,26px);
+    grid-template-columns:none;
+    grid-auto-rows:auto;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    scroll-padding-inline:1px;
+    overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding:3px 2px 13px;
+    border-radius:0;
+  }
+  .services .services-story::-webkit-scrollbar{display:none}
+  .services .service-scene,
+  .services .service-scene:nth-child(1),
+  .services .service-scene:nth-child(2),
+  .services .service-scene:nth-child(3),
+  .services .service-scene:nth-child(6){
+    display:block;
+    grid-column:auto;
+    grid-row:auto;
+    flex:0 0 var(--service-card-width);
+    width:var(--service-card-width);
+    min-width:0;
+    height:clamp(400px,37vw,530px);
+    min-height:0;
+    max-height:none;
+    border-radius:9px;
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
+    box-shadow:none;
+    margin:0;
+  }
+  .services .service-scene:hover{box-shadow:none}
+  .services .service-scene-photo{
+    transform:scale(1.035);
+    filter:saturate(.78);
+  }
+  .services .service-scene:hover .service-scene-photo,
+  .services .service-scene.is-scene-current .service-scene-photo{
+    transform:scale(1);
+    filter:saturate(.95);
+  }
+  .services .service-scene-shade{
+    background:linear-gradient(90deg,rgba(5,23,17,.33),transparent 72%),
+      linear-gradient(180deg,rgba(4,21,16,.28),rgba(8,27,21,.04) 40%,rgba(5,25,19,.87) 100%);
+  }
+  .services .service-scene-top,
+  .services .service-scene:nth-child(n+2) .service-scene-top{
+    inset:25px 30px auto;
+    font-size:11px;
+    letter-spacing:.13em;
+  }
+  .services .service-scene-body,
+  .services .service-scene:nth-child(n+2) .service-scene-body{
+    inset:auto 0 0;
+    max-width:720px;
+    padding:35px clamp(32px,3.5vw,58px) 37px;
+    gap:10px;
+  }
+  .services .service-scene-title,
+  .services .service-scene-feature .service-scene-title,
+  .services .service-scene:nth-child(n+2) .service-scene-title{
+    font-size:clamp(35px,4vw,54px);
+    line-height:1.08;
+    letter-spacing:-.058em;
+    max-width:660px;
+    margin:0;
+  }
+  .services .service-scene-description,
+  .services .service-scene:nth-child(n+2) .service-scene-description{
+    display:block;
+    -webkit-line-clamp:unset;
+    line-clamp:unset;
+    overflow:visible;
+    max-width:530px;
+    font-size:clamp(13px,1.18vw,15px);
+    line-height:1.65;
+    color:#e6eee8;
+  }
+  .services .service-scene-action,
+  .services .service-scene:nth-child(n+2) .service-scene-action{
+    margin-top:10px;
+    padding:13px 18px;
+    font-size:11px;
+    letter-spacing:.04em;
+    background:#eef2e9;
+  }
+  .services .services-carousel-nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    padding:21px 1px 0;
+    border-top:1px solid #d5dfd3;
+    margin-top:12px;
+  }
+  .services .services-carousel-info{
+    display:flex;
+    align-items:baseline;
+    gap:clamp(19px,3vw,45px);
+    min-width:0;
+  }
+  .services .services-carousel-caption{
+    color:#668271;
+    font-size:10px;
+    letter-spacing:.15em;
+    font-weight:800;
+    white-space:nowrap;
+  }
+  .services .services-carousel-counter{
+    display:inline-flex;
+    gap:5px;
+    align-items:baseline;
+    font-variant-numeric:tabular-nums;
+    color:#718577;
+    font-size:13px;
+    white-space:nowrap;
+  }
+  .services .services-carousel-counter strong{
+    font-size:24px;
+    color:#173e31;
+    letter-spacing:-.05em;
+    font-weight:800;
+  }
+  .services .services-carousel-actions{display:flex;gap:8px;align-items:center}
+  .services .services-carousel-button{
+    display:grid;
+    place-items:center;
+    width:50px;
+    height:50px;
+    padding:0;
+    background:#174537;
+    border:1px solid #174537;
+    border-radius:50%;
+    color:#fff;
+    cursor:pointer;
+    transition:background .2s ease,transform .2s ease;
+  }
+  .services .services-carousel-button svg{display:block;width:21px;height:21px}
+  .services .services-carousel-button:not(:disabled):hover{
+    background:#27654e;transform:translateY(-2px);
+  }
+  .services .services-carousel-button:focus-visible{outline:3px solid #ba9d62;outline-offset:3px}
+  .services .services-carousel-button:disabled{
+    background:#edf2eb;
+    color:#869c8e;
+    border-color:#d4ded3;
+    cursor:not-allowed;
+    transform:none;
+  }
+  .services .services-illustration-note{
+    font-size:11px;
+    margin-top:14px;
+    line-height:1.6;
+  }
+  .services .services-footer{margin-top:13px}
+}
+@media(min-width:641px) and (max-width:1023px){
+  .services .services-story{--service-card-width:87%;gap:15px}
+  .services .service-scene,
+  .services .service-scene:nth-child(1),
+  .services .service-scene:nth-child(2),
+  .services .service-scene:nth-child(3),
+  .services .service-scene:nth-child(6){
+    height:clamp(390px,54vw,475px);
+  }
+  .services .service-scene-body,
+  .services .service-scene:nth-child(n+2) .service-scene-body{padding:29px 32px 33px;max-width:620px}
+  .services .service-scene-title,
+  .services .service-scene-feature .service-scene-title,
+  .services .service-scene:nth-child(n+2) .service-scene-title{font-size:clamp(33px,4.8vw,43px)}
+  .services .service-scene-description,
+  .services .service-scene:nth-child(n+2) .service-scene-description{font-size:13px}
+  .services .services-carousel-button{width:46px;height:46px}
+}
+@media (min-width:641px) and (prefers-reduced-motion:reduce){
+  .services .services-story{scroll-behavior:auto}
+  .services .services-carousel-button,
+  .services .service-scene-photo,
+  .services .service-scene-action{transition:none}
+}
