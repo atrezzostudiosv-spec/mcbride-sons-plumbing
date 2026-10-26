@@ -345,3 +345,97 @@
     observer.observe(el);
   });
 })();
+
+
+// ATREZZO HOME EXPERIENCE 1.0 — purposeful scroll navigation.
+// Works progressively: all six services remain normal links without JavaScript.
+// Motion is only a small CSS refinement; reduced-motion keeps content static.
+(() => {
+  const stage = document.querySelector('.services-experience');
+  if (!stage) return;
+  const services = [...stage.querySelectorAll('.service-line[data-service-index]')];
+  const photo = stage.querySelector('.services-visual');
+  const image = stage.querySelector('.services-visual-photo');
+  const counter = stage.querySelector('[data-service-current]');
+  const name = stage.querySelector('[data-service-name]');
+  if (!services.length || !photo || !counter || !name) return;
+
+  const activateService = (item) => {
+    if (!item) return;
+    services.forEach(el => {
+      if (el === item) el.setAttribute('data-active', 'true');
+      else el.removeAttribute('data-active');
+    });
+    const num = Number(item.getAttribute('data-service-index'));
+    counter.textContent = String(num).padStart(2, '0');
+    name.textContent = item.querySelector('.service-title')?.textContent.trim() || '';
+  };
+
+  // The image is illustrative; if the external CDN is unavailable, retain a
+  // neutral background and hide the broken-image icon.
+  if (image) image.addEventListener('error', () => {
+    if (!image.dataset.fallbackTried) {
+      image.dataset.fallbackTried = 'true';
+      image.src = 'https://images.pexels.com/photos/6419128/pexels-photo-6419128.jpeg?auto=compress&cs=tinysrgb&w=1100';
+    } else {
+      image.style.visibility = 'hidden';
+    }
+  });
+
+  services.forEach(item => {
+    item.addEventListener('mouseenter', () => activateService(item));
+    item.addEventListener('focus', () => activateService(item));
+  });
+
+  if (!('IntersectionObserver' in window)) return;
+  const stageObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        photo.classList.add('is-visible');
+        stageObserver.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.1});
+  stageObserver.observe(photo);
+
+  // Active chapter follows the link entering the middle of the viewport.
+  const serviceObserver = new IntersectionObserver(entries => {
+    const visible = entries.filter(entry => entry.isIntersecting);
+    if (!visible.length) return;
+    visible.sort((a,b) => b.intersectionRatio - a.intersectionRatio);
+    activateService(visible[0].target);
+  }, {rootMargin:'-25% 0px -45% 0px', threshold:[0,.25,.5,.75]});
+  services.forEach(el => serviceObserver.observe(el));
+})();
+
+// Family narrative and four approach values: visual emphasis only.
+// The existing labels, text, photos, and anchors remain the full experience.
+(() => {
+  if (!('IntersectionObserver' in window)) return;
+  const portraits = [...document.querySelectorAll('.family-gallery .family-person')];
+  const values = [...document.querySelectorAll('.approach-values .value-line[data-approach-step]')];
+  if (!portraits.length && !values.length) return;
+
+  const observeChapter = (elements, className, attrName) => {
+    if (!elements.length) return;
+    const activate = (current) => {
+      elements.forEach(el => {
+        if (className) el.classList.toggle(className, el === current);
+        if (attrName) {
+          if (el === current) el.setAttribute(attrName,'true');
+          else el.removeAttribute(attrName);
+        }
+      });
+    };
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries.filter(e => e.isIntersecting);
+      if (!visible.length) return;
+      visible.sort((a,b) => b.intersectionRatio-a.intersectionRatio);
+      activate(visible[0].target);
+    }, {rootMargin:'-23% 0px -42% 0px',threshold:[0,.2,.5]});
+    elements.forEach(el => observer.observe(el));
+  };
+
+  observeChapter(portraits,'is-family-current',null);
+  observeChapter(values,null,'data-active');
+})();
