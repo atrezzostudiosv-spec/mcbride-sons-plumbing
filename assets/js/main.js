@@ -128,6 +128,7 @@
     openTrigger = trigger;
     modal.showModal();
     document.body.classList.add('hero-dialog-open');
+    document.dispatchEvent(new Event('atrezzocallbackchange'));
     closeButton.focus();
   });
 
@@ -137,6 +138,7 @@
   });
   modal.addEventListener('close', () => {
     document.body.classList.remove('hero-dialog-open');
+    document.dispatchEvent(new Event('atrezzocallbackchange'));
     if (mobile.matches && openTrigger && openTrigger.isConnected) {
       openTrigger.focus();
     }
@@ -153,42 +155,51 @@
 })();
 
 
-// ATREZZO HOME — cinematic background and editorial motion (2026-10-26).
-// Source: Stepan SK / Pexels #7584762, illustrative licensed footage.
-// Keep the CSS photo as a static fallback and do not download MP4 on
-// mobile/tablet, reduced-motion, data-saving or very slow connections.
+// ATREZZO HOME — licensed residential plumbing cinematic, all sizes.
+// New illustrated footage: Stepan SK / Pexels #7584858 (kitchen faucet repair).
+// The existing CSS photo is the fallback. Video only loads with movement
+// allowed and adequate network settings. Reduced-motion and Save-Data win.
 (() => {
   const hero = document.querySelector('.hero');
   const video = hero && hero.querySelector('video.hero-video');
   const toggle = hero && hero.querySelector('.hero-video-toggle');
   if (!hero || !video || !toggle || !window.matchMedia) return;
 
-  const desktop = window.matchMedia('(min-width: 1024px)');
+  const small = window.matchMedia('(max-width: 767px)');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-  const urls = [
-    // The 720p copy is preferred over heavier 1080p to reduce transfer.
-    'https://videos.pexels.com/video-files/7584762/7584762-hd_1280_720_25fps.mp4',
-    'https://videos.pexels.com/video-files/7584762/7584762-hd_1920_1080_25fps.mp4'
+  const base = 'https://videos.pexels.com/video-files/7584858/';
+  const mobileFiles = [
+    base + '7584858-sd_640_360_25fps.mp4',
+    base + '7584858-hd_1280_720_25fps.mp4'
+  ];
+  const largeFiles = [
+    base + '7584858-hd_1280_720_25fps.mp4',
+    base + '7584858-hd_1920_1080_25fps.mp4'
   ];
 
   let nextSource = 0;
+  let currentFiles = [];
+  let activeProfile = null;
   let mediaActive = false;
   let inView = true;
   let hasFrame = false;
   let userPaused = false;
 
-  const mediaAllowed = () => desktop.matches && !reduced.matches &&
-    !(connection && (connection.saveData ||
-      /^(slow-2g|2g)$/.test(connection.effectiveType || '')));
-
-  const visibleToUser = () => !document.hidden && inView;
+  const profile = () => small.matches ? 'mobile' : 'large';
+  const mediaAllowed = () => !reduced.matches &&
+    !(connection && (
+      connection.saveData ||
+      /^(slow-2g|2g)$/.test(connection.effectiveType || '') ||
+      (small.matches && connection.effectiveType === '3g')
+    ));
+  const visibleToUser = () => !document.hidden && inView &&
+    !document.body.classList.contains('hero-dialog-open');
 
   const syncButton = () => {
     toggle.hidden = !(mediaAllowed() && mediaActive && hasFrame && inView);
     toggle.textContent = userPaused ? 'Play video' : 'Pause video';
-    toggle.setAttribute('aria-label',
-      userPaused ? 'Play background video' : 'Pause background video');
+    toggle.setAttribute('aria-label', userPaused ? 'Play background video' : 'Pause background video');
   };
 
   const stop = () => {
@@ -203,6 +214,8 @@
     video.load();
     mediaActive = false;
     hasFrame = false;
+    currentFiles = [];
+    activeProfile = null;
     nextSource = 0;
     userPaused = false;
     toggle.hidden = true;
@@ -220,8 +233,8 @@
   };
 
   const loadSource = () => {
-    if (!mediaAllowed() || nextSource >= urls.length) return;
-    video.src = urls[nextSource++];
+    if (!mediaAllowed() || nextSource >= currentFiles.length) return;
+    video.src = currentFiles[nextSource++];
     video.load();
     attemptPlay();
   };
@@ -237,8 +250,8 @@
     hero.classList.remove('hero-video-playing');
     hasFrame = false;
     toggle.hidden = true;
-    if (mediaAllowed() && nextSource < urls.length) loadSource();
-    // With neither hosted file available, the static photo remains.
+    if (mediaAllowed() && nextSource < currentFiles.length) loadSource();
+    // If all remote formats fail, leave the static CSS image visible.
   });
 
   toggle.addEventListener('click', () => {
@@ -254,12 +267,16 @@
       if (mediaActive) reset();
       return;
     }
+    const wantedProfile = profile();
+    if (mediaActive && activeProfile !== wantedProfile) reset();
     if (!visibleToUser()) {
       stop();
       return;
     }
     if (!mediaActive) {
       mediaActive = true;
+      activeProfile = wantedProfile;
+      currentFiles = wantedProfile === 'mobile' ? mobileFiles : largeFiles;
       nextSource = 0;
       loadSource();
     } else if (!userPaused) {
@@ -270,12 +287,13 @@
     syncButton();
   };
 
-  if (typeof desktop.addEventListener === 'function') desktop.addEventListener('change', sync);
-  else if (typeof desktop.addListener === 'function') desktop.addListener(sync);
+  if (typeof small.addEventListener === 'function') small.addEventListener('change', sync);
+  else if (typeof small.addListener === 'function') small.addListener(sync);
   if (typeof reduced.addEventListener === 'function') reduced.addEventListener('change', sync);
   else if (typeof reduced.addListener === 'function') reduced.addListener(sync);
   if (connection && typeof connection.addEventListener === 'function') connection.addEventListener('change', sync);
   document.addEventListener('visibilitychange', sync);
+  document.addEventListener('atrezzocallbackchange', sync);
 
   if (window.IntersectionObserver) {
     const visibilityObserver = new IntersectionObserver(entries => {
