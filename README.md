@@ -54,3 +54,13 @@ The current Home hero uses free Pexels photograph [Plumber Installs Pipe Fitting
 Visual treatment: charcoal overlay concentrated behind the text, photograph visible toward center/right, a more compact ivory form, and a restrained Manrope headline. Stacked mobile form and simplified mobile backdrop rules are included.
 
 **Compliance:** illustrative stock photograph, not an authentic McBride employee, job site or completed project. Pexels lists this image as free to use (Pexels License, including commercial use). Live rendered screenshots at 375, 768, 1024 and 1440px are still **not verified**.
+
+
+## Technical Modern Cinematic Home (2026-10-26)
+The Home hero now contains an optional decorative background video layer. The licensed illustrative stock source is [Stepan SK / Pexels #7584762](https://www.pexels.com/video/a-person-doing-plumbing-7584762/), showing hands adjusting under-sink pipe connections. This is **not** authentic McBride personnel or client work. Pexels permits free commercial use.
+
+Playback is a performance-conscious progressive enhancement: JavaScript requests a CDN video **only on desktop >=1024px**, when reduced-motion and save-data preferences permit and the hero is onscreen. On mobile/tablet, slow connections or errors, the existing Pexels still photograph #6419128 remains visible; there is no video requirement for conversion. A compact keyboard-operable control pauses/restarts the desktop loop. The underlying source form, CTA and service content have not changed.
+
+Home-only scroll reveals use IntersectionObserver with CSS transitions and are skipped for reduced-motion users or mobiles under 768px. No animation should hide content when JavaScript is unavailable.
+
+**Outstanding QA**: live external MP4 variant URLs are not verified in this environment; Pexels delivery, video framing, accessibility, responsiveness at 375/768/1024/1440, page weight and real form email delivery need actual browser/provider testing before final signoff. Continue treating GitHub Pages as an Atrezzo demo and keep `noindex`.
