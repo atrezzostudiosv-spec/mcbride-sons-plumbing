@@ -18,8 +18,8 @@
 
 
 /* ATREZZO / HOME HERO V3 — Industrial Editorial Premium, 2026-10-26
-   Source: Sergei Starostin / Pexels, photograph #29226620.
-   https://www.pexels.com/photo/professional-plumber-installing-a-radiator-pipe-29226620/
+   Source: Anıl Karakaya / Pexels, photograph #6419128.
+   https://www.pexels.com/photo/plumber-installs-pipe-fittings-6419128/
    License: Free Pexels photo (commercial use). This is illustrative stock photography;
    NOT a McBride & Sons Plumbing employee, project or customer.
    This is a scoped visual refinement: preserve Home copy, CTA actions and form behavior. */
@@ -35,7 +35,7 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-image: url("https://images.pexels.com/photos/29226620/pexels-photo-29226620.jpeg?auto=compress&cs=tinysrgb&w=2000");
+  background-image: url("https://images.pexels.com/photos/6419128/pexels-photo-6419128.jpeg?auto=compress&cs=tinysrgb&w=2000");
   background-size: cover;
   background-position: 57% center;
   background-repeat: no-repeat;
@@ -161,7 +161,7 @@
   .hero::before {
     height: 550px;
     max-height: 58%;
-    background-image: url("https://images.pexels.com/photos/29226620/pexels-photo-29226620.jpeg?auto=compress&cs=tinysrgb&w=1000");
+    background-image: url("https://images.pexels.com/photos/6419128/pexels-photo-6419128.jpeg?auto=compress&cs=tinysrgb&w=1000");
     background-position: 58% 34%;
   }
   .hero::after {
