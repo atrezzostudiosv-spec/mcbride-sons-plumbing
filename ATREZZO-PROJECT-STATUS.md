@@ -91,3 +91,14 @@ Updated: 2026-10-24
 - Photo-host preconnect added on Home. Hero maintains solid dark green fallback if photo cannot load. No service contents or other page design touched.
 - **STATIC VERIFIED:** background CSS and tablet/mobile breakpoint overlays committed to GitHub main, watermark removed, original Home form still present, source/license traceability recorded. **NOT COMPROBADO:** live visual screenshots at 375/768/1024/1440, actual external-image network delivery in browser, Lighthouse performance, accessibility contrast measured from rendered image.
 - Home photographic design: IN VALIDATION; staging maintains `noindex` and Atrezzo demonstration label.
+
+## 2026-10-26 — HOME hero V3: user-approved industrial editorial correction
+- User rejected V2's nearly invisible background photo, excessive green veil, oversized white form and overbearing headline, and authorized execution of a focused Home-hero correction.
+- CHANGED ONLY `assets/css/home.css`. No HTML, form handler, site navigation or non-Home page content was modified.
+- Replaced previous image #16509869 with landscape (6000×4000) free Pexels photo #6419128 by **Anıl Karakaya**: https://www.pexels.com/photo/plumber-installs-pipe-fittings-6419128/ . The image depicts hands installing steel pipes and is an illustrative licensed photograph, **NOT company staff or a real McBride project**.
+- Hero treatment now uses a neutral charcoal (#141b19) backing with localized black/carbon gradient (rather than an opaque green screen); the photo has mild contrast/luminance balancing without desaturating the scene heavily.
+- Rebalanced desktop columns, reduced H1 scale to 60px maximum, constrained the form to 444px, softened the form surface to warm ivory, tightened field spacing, improved checkbox/status legibility.
+- Added explicit tablet (≤1023px), mobile (≤640px), and narrow mobile (≤375px) layout/photography rules, with the form stacked below the copy when appropriate and the lower hero returning to charcoal.
+- **VERIFICADO (source code)**: photo reference replaced, old Pexels URLs absent, desktop/tablet/mobile CSS rules present, original one H1 and existing callback form intact, service dropdown and consent intact, direct call CTA present, live form handler untouched, demo notice and `noindex` unchanged.
+- **NO COMPROBADO**: screenshot-driven layout and image focal point at 375/768/1024/1440px, external photo host rendering and latency, measured WCAG contrast, actual form delivery. This remains public Atrezzo **staging**, NOT client production.
+- Phase 7: HOME V3 visual approval **EN VALIDACIÓN**. Do not reopen already-approved informational/architectural phases.
