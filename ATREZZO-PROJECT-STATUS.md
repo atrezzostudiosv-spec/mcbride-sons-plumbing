@@ -62,3 +62,15 @@ Updated: 2026-10-24
 - No 20–30 minute arrival claim or live-presence badge; mobile CTA remains persistent.
 - Local Chromium inline-assets tests: 375/768/1024/1440, 0 horizontal overflow and 0 JS errors; keyboard Escape menu; accepted form response simulated, not an actual email.
 - Open/unfinished: public Pages deployment smoke test, live screenshots, real Gmail receiving tests, final approval from user. Maintain Phase 7 EN VALIDACIÓN until approved.
+
+## 2026-10-26 — User-approved architecture expansion: 10 pages
+- User explicitly approved a new 10-page architecture and requested continuation. This supersedes the previous four-page architecture while preserving its existing approved work.
+- Original four pages and their established Manrope/dark-green design system are preserved. The Home visual composition was NOT redesigned in this change; only its six service destination links were updated.
+- **Six standalone service pages ADDED:** `services/drain-cleaning/index.html`, `services/leak-repair/index.html`, `services/hydro-jetting/index.html`, `services/water-heaters/index.html`, `services/drain-sewer-repair/index.html`, `services/bathroom-remodeling/index.html`.
+- **Scoped CSS ADDED:** `assets/css/service-detail.css`. Reuses existing shared styles, Manrope, brand greens, authentic logo and overall editorial styling.
+- **Navigation links UPDATED:** all six Home service tiles point to their new detail page; six Services overview CTAs point to pages; About, Services and Contact footer lists link to detail pages. The existing top-level Services menu takes visitors to the Services overview; a direct dropdown of six services is not yet implemented.
+- Published source fidelity: water-heater offering kept general because original descriptive paragraph incorrectly belongs to Drain & Sewer Repair; bathroom remodeling is confined to plumbing support. No new service types, guarantees or technician biographies.
+- **STATIC REPOSITORY CHECK VERIFIED:** ten HTML files fetched from main, one H1 per page (10/10), `noindex` present on all (10/10), business telephone CTA present on all, zero broken local HTML asset/page references based on the tracked resource set.
+- **NOT COMPROBADO:** live GitHub Pages rendered screenshots at 375/768/1024/1440; interactive browser operation for new routes; real email receipt and consent flow; Lighthouse; WCAG conformance; server-side form delivery; canonical and public production SEO.
+- Public staging remains a **design demonstration, not the official business site**. Maintain `noindex, nofollow` and demo disclosure. Do not hand off to client until genuine contact handling and live QA are verified.
+- Current phase: **Phase 8 — IN VALIDACIÓN** (six service pages and link integration); **Phase 9 — PENDIENTE**; **Phase 10 — PENDIENTE**. Home legacy Phase 7 visual signoff not independently evidenced by this GitHub edit.
