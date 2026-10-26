@@ -111,10 +111,14 @@
     if (mobile.matches) {
       if (panel.parentNode !== mount) mount.appendChild(panel);
       document.documentElement.classList.add('hero-popup-ready');
+      trigger.setAttribute('aria-haspopup', 'dialog');
+      trigger.setAttribute('aria-controls', modal.id);
     } else {
       close();
       if (panel.parentNode !== wrap) wrap.appendChild(panel);
       document.documentElement.classList.remove('hero-popup-ready');
+      trigger.removeAttribute('aria-haspopup');
+      trigger.removeAttribute('aria-controls');
     }
   };
 
