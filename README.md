@@ -71,3 +71,14 @@ The user's newer direction (2026-10-26) replaces the original under-sink footage
 The hero background video is now requested on **desktop, tablet, and mobile** using responsive sources (360p mobile; 720p tablet/desktop, 1080p last-resort), with muted autoplay/loop/playsinline. The CSS gradient is lighter and tuned by breakpoint. The playback policy honors motion-reduction and data-saving preferences, pauses offscreen/hidden and behind the contact popup, and provides a pause/play button. The existing licensed fallback photograph #6419128 remains.
 
 **Still pending**: verify that the exact new Pexels MP4 variants load and play on a real mobile browser and measure live speed/layout/contrast. Neither video delivery nor production form email receipt has been verified from this code-only pass. GitHub Pages remains a non-official Atrezzo demo with noindex and visible disclaimer.
+
+## Home editorial experience (2026-10-26)
+New isolated stylesheet `assets/css/home-experience.css` and event-light additions to `assets/js/main.js` enhance only existing Home content:
+- image-led, numbered six-service index with sticky desktop visual and normal mobile vertical scrolling;
+- three-generation family portrait timeline using existing genuine images;
+- four-value active reading rail in Our Approach;
+- small editorial improvements in the introduction.
+
+The interactive visual updates are progressive enhancements; existing service links, About Us and direct phone CTAs work without JavaScript. No business claims, services or client projects were fabricated. Illustrative service photograph: Bulat843 / Pexels [#32588548](https://www.pexels.com/photo/plumber-repairing-pipe-with-wrench-indoors-32588548/), with existing Anıl Karakaya / Pexels [#6419128](https://www.pexels.com/photo/plumber-installs-pipe-fittings-6419128/) on tablet/mobile.
+
+**Pending QA:** actual responsive browser screenshots, third-party image URL load, measured performance/contrast, and form email receipt. GitHub Pages is still a non-official Atrezzo demonstration with `noindex`. The original `home.css` was intentionally not reorganized in this change to avoid regressions; technical consolidation may be a separate task once the visual design is approved.
