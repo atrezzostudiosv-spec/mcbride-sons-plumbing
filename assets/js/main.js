@@ -154,32 +154,47 @@
 
 
 // ATREZZO HOME — cinematic background and editorial motion (2026-10-26).
-// The video is decorative; never infer footage shows McBride employees/projects.
-// The fallback image is always present in CSS. Do not download MP4 on tablet,
-// mobile, reduced-motion or save-data connections.
+// Source: Stepan SK / Pexels #7584762, illustrative licensed footage.
+// Keep the CSS photo as a static fallback and do not download MP4 on
+// mobile/tablet, reduced-motion, data-saving or very slow connections.
 (() => {
   const hero = document.querySelector('.hero');
   const video = hero && hero.querySelector('video.hero-video');
-  if (!hero || !video || !window.matchMedia) return;
+  const toggle = hero && hero.querySelector('.hero-video-toggle');
+  if (!hero || !video || !toggle || !window.matchMedia) return;
 
   const desktop = window.matchMedia('(min-width: 1024px)');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-
   const urls = [
-    // Stepan SK, Pexels video 7584762; 720p first to limit transfer.
+    // The 720p copy is preferred over heavier 1080p to reduce transfer.
     'https://videos.pexels.com/video-files/7584762/7584762-hd_1280_720_25fps.mp4',
     'https://videos.pexels.com/video-files/7584762/7584762-hd_1920_1080_25fps.mp4'
   ];
+
   let nextSource = 0;
   let mediaActive = false;
+  let inView = true;
+  let hasFrame = false;
+  let userPaused = false;
 
-  const allowed = () => desktop.matches && !reduced.matches &&
-    !(connection && connection.saveData) && !document.hidden;
+  const mediaAllowed = () => desktop.matches && !reduced.matches &&
+    !(connection && (connection.saveData ||
+      /^(slow-2g|2g)$/.test(connection.effectiveType || '')));
+
+  const visibleToUser = () => !document.hidden && inView;
+
+  const syncButton = () => {
+    toggle.hidden = !(mediaAllowed() && mediaActive && hasFrame && inView);
+    toggle.textContent = userPaused ? 'Play video' : 'Pause video';
+    toggle.setAttribute('aria-label',
+      userPaused ? 'Play background video' : 'Pause background video');
+  };
 
   const stop = () => {
     video.pause();
     hero.classList.remove('hero-video-playing');
+    syncButton();
   };
 
   const reset = () => {
@@ -187,47 +202,72 @@
     video.removeAttribute('src');
     video.load();
     mediaActive = false;
+    hasFrame = false;
     nextSource = 0;
+    userPaused = false;
+    toggle.hidden = true;
   };
 
-  const loadSource = () => {
-    if (!allowed() || !mediaActive || nextSource >= urls.length) return;
-    video.src = urls[nextSource++];
-    video.load();
-    const attempt = video.play();
-    if (attempt && typeof attempt.catch === 'function') {
-      attempt.catch(() => { hero.classList.remove('hero-video-playing'); });
+  const attemptPlay = () => {
+    if (!mediaAllowed() || !visibleToUser() || userPaused) return;
+    const result = video.play();
+    if (result && typeof result.catch === 'function') {
+      result.catch(() => {
+        if (!hasFrame) hero.classList.remove('hero-video-playing');
+        syncButton();
+      });
     }
   };
 
+  const loadSource = () => {
+    if (!mediaAllowed() || nextSource >= urls.length) return;
+    video.src = urls[nextSource++];
+    video.load();
+    attemptPlay();
+  };
+
   video.addEventListener('playing', () => {
-    if (allowed()) hero.classList.add('hero-video-playing');
-    else stop();
+    if (!mediaAllowed() || !visibleToUser()) { stop(); return; }
+    hasFrame = true;
+    hero.classList.add('hero-video-playing');
+    syncButton();
   });
 
   video.addEventListener('error', () => {
     hero.classList.remove('hero-video-playing');
-    if (allowed() && nextSource < urls.length) loadSource();
-    // If both CDN formats fail, the existing CSS photograph remains visible.
+    hasFrame = false;
+    toggle.hidden = true;
+    if (mediaAllowed() && nextSource < urls.length) loadSource();
+    // With neither hosted file available, the static photo remains.
+  });
+
+  toggle.addEventListener('click', () => {
+    if (!mediaAllowed() || !hasFrame) return;
+    userPaused = !userPaused;
+    if (userPaused) video.pause();
+    else attemptPlay();
+    syncButton();
   });
 
   const sync = () => {
-    if (!desktop.matches || reduced.matches || (connection && connection.saveData)) {
+    if (!mediaAllowed()) {
       if (mediaActive) reset();
       return;
     }
-    if (!document.hidden) {
-      if (!mediaActive) {
-        mediaActive = true;
-        nextSource = 0;
-        loadSource();
-      } else if (video.paused) {
-        const attempt = video.play();
-        if (attempt && typeof attempt.catch === 'function') {
-          attempt.catch(() => {});
-        }
-      }
-    } else stop();
+    if (!visibleToUser()) {
+      stop();
+      return;
+    }
+    if (!mediaActive) {
+      mediaActive = true;
+      nextSource = 0;
+      loadSource();
+    } else if (!userPaused) {
+      attemptPlay();
+    } else if (hasFrame) {
+      hero.classList.add('hero-video-playing');
+    }
+    syncButton();
   };
 
   if (typeof desktop.addEventListener === 'function') desktop.addEventListener('change', sync);
@@ -236,6 +276,15 @@
   else if (typeof reduced.addListener === 'function') reduced.addListener(sync);
   if (connection && typeof connection.addEventListener === 'function') connection.addEventListener('change', sync);
   document.addEventListener('visibilitychange', sync);
+
+  if (window.IntersectionObserver) {
+    const visibilityObserver = new IntersectionObserver(entries => {
+      if (!entries.length) return;
+      inView = entries[0].isIntersecting;
+      sync();
+    }, {threshold: 0.06});
+    visibilityObserver.observe(hero);
+  }
   sync();
 })();
 
