@@ -240,16 +240,16 @@
     opacity:0;
     transform:translate3d(0,28px,0);
     transition:
-      opacity .75s cubic-bezier(.22,.7,.2,1) var(--family-delay,0ms),
-      transform .75s cubic-bezier(.22,.7,.2,1) var(--family-delay,0ms);
+      opacity 1.25s cubic-bezier(.22,.7,.2,1) var(--family-delay,0ms),
+      transform 1.25s cubic-bezier(.22,.7,.2,1) var(--family-delay,0ms);
   }
   .family .family-gallery.family-reveal-ready.is-family-revealed .family-person{
     opacity:1;
     transform:translate3d(0,0,0);
   }
   .family .family-person:nth-child(1){--family-delay:0ms}
-  .family .family-person:nth-child(2){--family-delay:210ms}
-  .family .family-person:nth-child(3){--family-delay:420ms}
+  .family .family-person:nth-child(2){--family-delay:440ms}
+  .family .family-person:nth-child(3){--family-delay:880ms}
 }
 @media(max-width:640px){
   .family .family-gallery{grid-template-columns:1fr;gap:28px}
@@ -262,7 +262,7 @@
   .family .family-gallery.family-reveal-ready .family-person{
     opacity:0;
     transform:translate3d(0,24px,0);
-    transition:opacity .7s cubic-bezier(.22,.7,.2,1),transform .7s cubic-bezier(.22,.7,.2,1);
+    transition:opacity 1.15s cubic-bezier(.22,.7,.2,1),transform 1.15s cubic-bezier(.22,.7,.2,1);
   }
   .family .family-gallery.family-reveal-ready .family-person.is-family-revealed{
     opacity:1;
