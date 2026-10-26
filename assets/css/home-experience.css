@@ -286,7 +286,7 @@
 .approach.approach-cinema{
   padding:0;
   position:relative;
-  overflow:clip;
+  overflow:visible;
   color:#fff;
   background:#0e2e24;
 }
@@ -323,6 +323,7 @@
 .approach-cinema .approach-cinema-cue>span:last-child{font-size:16px;font-weight:500}
 .approach-cinema .approach-story,
 .approach-cinema .approach-stage{position:relative;min-width:0}
+.approach-cinema .approach-stage{overflow:hidden}
 .approach-cinema .approach-scene{
   display:block;
   position:relative;
