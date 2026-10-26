@@ -15,3 +15,63 @@
 .approach-benefits strong{display:block;color:#d7eadc;font-size:12px}
 .approach-benefits p{font-size:11px;color:#bcd0c1;line-height:1.7;margin:8px 0 0}
 @media(max-width:640px){.approach-benefits{grid-template-columns:1fr}.approach-benefits>div{max-width:none}}
+
+/* ATREZZO 2026-10-26 — cinematic, illustrative plumbing photo in HOME hero.
+   Source (free Pexels photo by AR Abnoy): https://www.pexels.com/photo/close-up-of-man-using-a-spanner-16509869/
+   Illustrative stock image; NOT work carried out by McBride & Sons Plumbing.
+   Preserve existing hero copy, CTA and callback form. */
+.hero{
+  isolation:isolate;
+  background-color:#102a23; /* graceful fallback before/without image */
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background-image:url("https://images.pexels.com/photos/16509869/pexels-photo-16509869.jpeg?auto=compress&cs=tinysrgb&w=1800");
+  background-size:cover;
+  background-position:center 44%;
+  background-repeat:no-repeat;
+  filter:saturate(.75) contrast(1.12);
+  transform:scale(1.01);
+  pointer-events:none;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:
+    linear-gradient(0deg,rgba(8,24,20,.91) 0%,rgba(9,28,24,.20) 31%,rgba(8,25,21,.47) 100%),
+    linear-gradient(90deg,rgba(11,35,29,.91) 0%,rgba(12,35,29,.81) 35%,rgba(12,35,29,.70) 64%,rgba(9,26,22,.80) 100%);
+  pointer-events:none;
+}
+.hero .hero-grid{
+  position:relative;
+  z-index:1;
+}
+.hero .hero-description{
+  color:#ecf3ed;
+}
+.hero .hero-heritage{
+  border-top-color:rgba(255,255,255,.29);
+}
+.hero .hero-heritage span{color:#e0e9e1}
+@media(max-width:1023px){
+  .hero::before{background-position:55% 45%}
+  .hero::after{
+    background:
+      linear-gradient(180deg,rgba(8,27,22,.76) 0%,rgba(8,27,22,.78) 42%,rgba(8,27,22,.95) 100%),
+      linear-gradient(90deg,rgba(10,32,26,.68),rgba(10,32,26,.42));
+  }
+}
+@media(max-width:640px){
+  .hero::before{
+    background-image:url("https://images.pexels.com/photos/16509869/pexels-photo-16509869.jpeg?auto=compress&cs=tinysrgb&w=900");
+    background-position:61% 40%;
+  }
+  .hero::after{
+    background:linear-gradient(180deg,rgba(7,24,20,.84) 0%,rgba(8,28,23,.86) 43%,rgba(9,30,24,.98) 100%);
+  }
+}
