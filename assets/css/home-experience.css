@@ -435,6 +435,8 @@
     display:block;
     position:relative;
     isolation:isolate;
+    width:min(calc(100% - 36px),1250px);
+    margin-inline:auto;
     padding-bottom:2px;
     overflow:visible;
   }
@@ -544,7 +546,7 @@
 
 
 
-/* ATREZZO SERVICES JOURNEY 4.0
+/* ATREZZO SERVICES JOURNEY 4.1 — full-bleed desktop/tablet
    DESKTOP/TABLET >=641px ONLY. Mobile <=640px retains the approved
    stacked-photo service experience in the preceding media rules.
    Each large chapter sticks naturally; the next rises over it.
@@ -613,14 +615,14 @@
     grid-row:auto;
     width:100%;
     min-width:0;
-    height:clamp(420px,calc(100svh - 155px),750px);
+    height:clamp(420px,calc(100svh - 104px),900px);
     min-height:0;
     max-height:none;
     margin:0 0 clamp(190px,35svh,345px);
-    border-radius:6px;
+    border-radius:0;
     overflow:hidden;
     background:#143b31;
-    box-shadow:0 12px 36px rgba(10,40,27,.12);
+    box-shadow:none;
     scroll-snap-align:none;
     scroll-snap-stop:normal;
     outline-offset:4px;
@@ -649,7 +651,7 @@
   }
   .services .service-scene-top,
   .services .service-scene:nth-child(n+2) .service-scene-top{
-    inset:clamp(23px,2.7vw,37px) clamp(27px,4vw,57px) auto;
+    inset:clamp(23px,2.7vw,37px) max(40px,calc((100vw - 1250px)/2)) auto;
     font-size:clamp(10px,.85vw,12px);
     letter-spacing:.16em;
     z-index:3;
@@ -663,8 +665,8 @@
     flex-direction:column;
     align-items:flex-start;
     gap:clamp(9px,1.3vw,14px);
-    padding:38px clamp(28px,4.5vw,65px) clamp(35px,4.5vw,58px);
-    max-width:min(760px,90%);
+    padding:38px max(40px,calc((100vw - 1250px)/2)) clamp(35px,4.5vw,58px);
+    max-width:min(890px,92%);
     color:#fff;
   }
   .services .service-scene-index{
@@ -741,13 +743,15 @@
 }
 @media(min-width:641px) and (max-width:1023px){
   .services.section{scroll-margin-top:88px}
+  .services .service-scene-top,
+  .services .service-scene:nth-child(n+2) .service-scene-top{inset-inline:28px}
   .services .service-scene,
   .services .service-scene:nth-child(1),
   .services .service-scene:nth-child(2),
   .services .service-scene:nth-child(3),
   .services .service-scene:nth-child(6){
     top:88px;
-    height:clamp(420px,calc(100svh - 145px),650px);
+    height:clamp(420px,calc(100svh - 88px),820px);
     margin-bottom:clamp(155px,30svh,270px);
   }
   .services .service-scene:nth-child(6){margin-bottom:12px}
@@ -758,8 +762,8 @@
   }
   .services .service-scene-body,
   .services .service-scene:nth-child(n+2) .service-scene-body{
-    padding:34px clamp(28px,4.5vw,46px) 38px;
-    max-width:min(650px,96%);
+    padding:34px 28px 38px;
+    max-width:min(700px,96%);
   }
   .services .service-scene-description,
   .services .service-scene:nth-child(n+2) .service-scene-description{font-size:13px;line-height:1.65}
