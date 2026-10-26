@@ -1,0 +1,292 @@
+/* ATREZZO | McBride & Sons — HOME EXPERIENCE 1.0
+   Scope: Introduction, Services, Family Legacy, Approach only.
+   Existing Hero, trust rail, reviews, contact modal and footer are preserved.
+   No animation is required to reach an actual service or call the business. */
+
+:root{
+  --experience-dark:#173f35;
+  --experience-cream:#f3f5ef;
+  --experience-accent:#9abc9f;
+}
+
+/* 01 — Smooth typographic handoff from the proof rail */
+.intro.section{
+  padding-block:clamp(74px,9vw,130px);
+}
+.intro .intro-grid{align-items:start}
+.intro .intro-copy{border-left:1px solid #dbe4dc;padding-left:clamp(20px,3vw,42px)}
+.intro .intro-copy .text-link{margin-top:11px}
+
+/* 02 — One authentic purpose: explore six real linked services.
+   An illustrative stock photograph is present but never described as McBride work. */
+.services.section{padding-block:clamp(76px,8vw,126px);background:#f6f7f2}
+.services .section-heading{margin-bottom:clamp(32px,4vw,56px)}
+.services-experience{
+  display:grid;
+  grid-template-columns:minmax(280px,.77fr) minmax(0,1.23fr);
+  gap:clamp(28px,4.5vw,76px);
+  align-items:start;
+}
+.services-visual{
+  position:sticky;
+  top:105px;
+  display:block;
+  min-width:0;
+  margin:0;
+}
+.services-visual-frame{
+  position:relative;
+  overflow:hidden;
+  min-height:430px;
+  height:min(62vh,590px);
+  isolation:isolate;
+  background:#203d33;
+  border-radius:3px;
+}
+.services-visual-frame::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,transparent 45%,rgba(7,26,21,.78) 100%);
+  z-index:1;
+}
+.services-visual-photo{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 45%;
+  transform:scale(1.045);
+  transition:transform 1.25s cubic-bezier(.2,.7,.2,1);
+}
+.services-visual.is-visible .services-visual-photo{transform:scale(1)}
+.services-visual-copy{
+  position:absolute;
+  inset:auto 0 0;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:8px;
+  padding:clamp(22px,3vw,40px);
+  color:#fff;
+  pointer-events:none;
+}
+.services-visual-counter{
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.18em;
+  color:#cce1cf;
+  font-variant-numeric:tabular-nums;
+}
+.services-visual-copy strong{
+  font-size:clamp(26px,2.75vw,39px);
+  letter-spacing:-.055em;
+  line-height:1.16;
+  text-wrap:balance;
+}
+.services-visual-instruction{
+  margin-top:6px;
+  font-size:10px;
+  letter-spacing:.14em;
+  font-weight:800;
+  color:#ecf1e9;
+}
+.services-visual figcaption{
+  margin-top:11px;
+  max-width:420px;
+  font-size:11px;
+  line-height:1.5;
+  color:#61746b;
+}
+.services-experience .services-list{border-top:1px solid #b9cbbd;min-width:0}
+.services-experience .service-line{
+  position:relative;
+  grid-template-columns:27px minmax(0,1fr) 30px;
+  gap:clamp(12px,1.75vw,22px);
+  min-height:103px;
+  padding:17px 13px 17px 0;
+  background:transparent;
+  border-bottom:1px solid #c8d5c8;
+  transition:background .28s ease,padding .28s ease;
+}
+.services-experience .service-line .service-num{align-self:start;padding-top:9px}
+.services-experience .service-title{
+  display:block;
+  grid-column:2;
+  grid-row:1;
+  align-self:start;
+  font-size:clamp(20px,2vw,27px);
+  line-height:1.24;
+  letter-spacing:-.045em;
+}
+.services-experience .service-desc{
+  grid-column:2;
+  grid-row:2;
+  max-width:460px;
+  font-size:12px;
+  line-height:1.6;
+  margin-top:-9px;
+  padding-right:3px;
+}
+.services-experience .service-arrow{grid-column:3;grid-row:1;align-self:start;margin-top:3px}
+.services-experience .service-line[data-active="true"]{background:rgba(218,229,217,.52);padding-left:13px}
+.services-experience .service-line:hover{background:rgba(218,229,217,.78);padding-left:13px}
+.services-experience .service-line:focus-visible{outline:3px solid #8cad98;outline-offset:-3px}
+.services-experience .services-list .service-line .service-arrow{transition:transform .2s ease,background .2s ease}
+.services-experience .service-line:hover .service-arrow,
+.services-experience .service-line:focus-visible .service-arrow{transform:translate(2px,-2px);background:#ccdfcf}
+.services .services-footer{margin-top:30px}
+.services .services-footer span{color:#68796e}
+
+/* 03 — The three authentic family portraits tell one uninterrupted story.
+   Connector is an editorial ornament, not an implied additional fact. */
+.family.section{padding-block:clamp(80px,9vw,136px);background:linear-gradient(180deg,#fff 0%,#f5f7f2 100%)}
+.family .family-heading-row{align-items:end}
+.family .family-heading-copy{max-width:475px}
+.family-journey-label{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:17px;
+  width:100%;
+  margin:47px 0 27px;
+  color:#4f775e;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.11em;
+}
+.family-journey-line{
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,#adc7ae,#d3e1d4);
+}
+.family .family-person{
+  position:relative;
+  transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);
+}
+.family .family-image{position:relative;border-radius:2px;box-shadow:0 16px 34px rgba(19,46,29,.075)}
+.family .family-image::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border:1px solid rgba(255,255,255,.25);
+  pointer-events:none;
+}
+.family .family-person figcaption{
+  justify-content:flex-start;
+  gap:14px;
+  padding-top:7px;
+}
+.family .family-person figcaption span{
+  display:inline-grid;
+  place-items:center;
+  width:30px;
+  height:30px;
+  border:1px solid #a9c4ae;
+  border-radius:50%;
+  color:#2b6147;
+  font-size:11px;
+  font-variant-numeric:tabular-nums;
+}
+.family .family-person.is-family-current figcaption span{background:#234c39;color:white;border-color:#234c39}
+.family .family-person.is-family-current .family-image{box-shadow:0 25px 42px rgba(19,46,29,.11)}
+.family .family-end{border-top:1px solid #cbd9ce;padding-top:25px}
+
+/* 04 — Value lines use the chapter rhythm without trapping user scrolling. */
+.approach.section{position:relative;overflow:hidden}
+.approach .approach-grid{align-items:start;gap:clamp(40px,6vw,100px)}
+.approach .approach-left{position:sticky;top:105px}
+.approach .approach-values{
+  position:relative;
+  border-top:1px solid rgba(175,207,182,.35);
+  counter-reset:step;
+}
+.approach .approach-values::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  width:2px;
+  background:rgba(177,211,181,.25);
+}
+.approach .value-line{
+  position:relative;
+  grid-template-columns:40px minmax(0,1fr);
+  gap:15px;
+  padding:clamp(23px,2.7vw,32px) 17px;
+  border-bottom:1px solid rgba(175,207,182,.25);
+  background:transparent;
+  transition:background .45s ease;
+}
+.approach .value-line::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  height:100%;
+  width:2px;
+  background:#acd5b5;
+  transform:scaleY(0);
+  transform-origin:top;
+  transition:transform .6s ease;
+}
+.approach .value-line[data-active="true"]{
+  background:rgba(194,227,197,.08);
+}
+.approach .value-line[data-active="true"]::before{transform:scaleY(1)}
+.approach .value-line h3{font-size:clamp(18px,1.7vw,23px);line-height:1.3}
+.approach .value-line p{font-size:13px;line-height:1.75}
+.approach .value-line[data-active="true"]>span{color:#ccedcf}
+
+/* Layout first, effects second: tablet/mobile must remain vertical. */
+@media(max-width:1100px){
+  .services-experience{grid-template-columns:minmax(250px,.78fr) minmax(0,1.22fr);gap:30px}
+  .services-experience .service-title{font-size:20px}
+}
+@media(max-width:1023px){
+  .services-experience{grid-template-columns:1fr;gap:30px}
+  .services-visual{position:relative;top:auto}
+  .services-visual-frame{min-height:0;height:auto;aspect-ratio:16/9;max-height:410px}
+  .services-visual-photo{object-position:center 48%}
+  .services-experience .service-line{grid-template-columns:34px minmax(0,1fr) 33px}
+  .approach .approach-left{position:static}
+}
+@media(max-width:900px){
+  .intro .intro-copy{padding-left:25px}
+  .family-journey-label{margin-top:36px}
+}
+@media(max-width:640px){
+  .intro.section{padding-block:70px}
+  .intro .intro-copy{border-left:none;border-top:1px solid #dbe4dc;padding:20px 0 0}
+  .services.section{padding-block:76px}
+  .services-visual-frame{aspect-ratio:4/3;max-height:320px}
+  .services-visual-copy{padding:22px}
+  .services-visual-copy strong{font-size:25px}
+  .services-visual-instruction{font-size:9px}
+  .services-experience{gap:24px}
+  .services-experience .service-line{
+    grid-template-columns:25px minmax(0,1fr) 30px;
+    gap:8px;
+    padding:19px 4px 18px 0;
+    min-height:0;
+  }
+  .services-experience .service-line[data-active="true"],
+  .services-experience .service-line:hover{padding-left:5px}
+  .services-experience .service-title{font-size:20px}
+  .services-experience .service-desc{margin-top:-3px;font-size:12px}
+  .services-experience .service-arrow{margin-top:1px}
+  .family.section{padding-block:75px}
+  .family-journey-label{margin:28px 0 21px}
+  .family .family-person figcaption span{width:28px;height:28px}
+  .approach .value-line{padding:23px 13px;grid-template-columns:29px minmax(0,1fr);gap:10px}
+  .approach .value-line h3{font-size:18px}
+  .approach .value-line p{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  .services-visual-photo,.services-experience .service-line,.services-experience .service-arrow,
+  .family .family-person,.family .family-image img,.approach .value-line,
+  .approach .value-line::before{transform:none!important;transition:none!important}
+}
