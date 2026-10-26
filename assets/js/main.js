@@ -336,8 +336,8 @@
 
   targets.forEach((el, index) => {
     el.classList.add('atrezzo-reveal');
-    // Tiny stagger for adjacent authentic family portraits, never long delays.
-    if (el.classList.contains('family-person') || el.classList.contains('review-quote')) {
+    // Subtle delay on review excerpts; family portraits have a dedicated sequence.
+    if (el.classList.contains('review-quote')) {
       const groupIndex = [...el.parentNode.children].indexOf(el);
       el.style.setProperty('--reveal-delay', (groupIndex * 80) + 'ms');
     }
