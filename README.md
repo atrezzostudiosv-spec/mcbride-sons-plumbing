@@ -47,3 +47,10 @@ Tailwind runtime CDN/Font Awesome CDN remain in legacy interior pages; compile p
 - Photography: [AR Abnoy / Pexels](https://www.pexels.com/photo/close-up-of-man-using-a-spanner-16509869/), listed under the **free Pexels license**. This is an **illustrative image**, not a McBride job, customer, or employee.
 - The responsive CDN background is referenced within `assets/css/home.css`, with a dark green fallback and overlaid gradients for text legibility. Image CDN host preconnected in `index.html`.
 - Deployment of the updated commit reported GitHub Pages workflow **success**. Actual photo delivery and layout screenshots across viewport sizes are still **not visually verified**; inspect before marking the Home design closed.
+
+## Current hero photograph — supersedes the former 2026-10-26 entry
+The current Home hero uses free Pexels photograph [Plumber Installs Pipe Fittings — Anıl Karakaya, #6419128](https://www.pexels.com/photo/plumber-installs-pipe-fittings-6419128/), 6000×4000 source orientation, displayed through the optimized Pexels CDN using background image URLs in `assets/css/home.css`. The prior #16509869 asset is no longer referenced and its earlier notes are historical.
+
+Visual treatment: charcoal overlay concentrated behind the text, photograph visible toward center/right, a more compact ivory form, and a restrained Manrope headline. Stacked mobile form and simplified mobile backdrop rules are included.
+
+**Compliance:** illustrative stock photograph, not an authentic McBride employee, job site or completed project. Pexels lists this image as free to use (Pexels License, including commercial use). Live rendered screenshots at 375, 768, 1024 and 1440px are still **not verified**.
