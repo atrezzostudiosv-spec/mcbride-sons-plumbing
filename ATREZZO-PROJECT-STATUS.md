@@ -120,3 +120,11 @@ Updated: 2026-10-24
 - Isolated local Chromium fixture checks **passed** at widths 375, 768, 900, 1023, 1024, and 1440: popup opens and closes with Escape at <=1023, is not rendered as a button at >=1024, viewport resize 768→1440 closes popup and restores the same form to the hero, only one form exists, and no fixture horizontal overflow was seen.
 - Repository static checks passed for matching CSS and JS breakpoints, unchanged company Call Now link, `noindex`, demo consent, and existing staging submit handler.
 - **Pending:** real published site browser screenshots, visual breakpoint/layout approval, and end-to-end Gmail delivery. Do not label isolated fixture coverage as production QA.
+
+## 2026-10-26 — Desktop CTA visibility corrective fix
+- User reported `Request a Callback` still visible in the desktop hero despite the earlier desktop-only CSS hide rule.
+- Verified that the CTA remained as a valid HTML anchor, and its visibility depended on a late stylesheet media query. Actual user-facing cause could include stale browser CSS or viewport width and was not proven from live browser telemetry.
+- Added **critical inline responsive CSS** in `index.html`: CTA hidden by default with `!important`, shown only when viewport <=1023 px. The desktop hero still presents the existing callback form beside the H1.
+- Applied matching desktop-first visibility rule to `assets/css/home.css`, and versioned CSS/JS resource URLs to avoid stale cached files. At tablet/mobile sizes the same CTA still opens the existing native dialog; `Call Now` preserved.
+- **VERIFICADO EN CÓDIGO:** 1 callback CTA, 1 original form, inline desktop hide and tablet/mobile show, matching stylesheet rules, one popup reused in JavaScript, source cache versioning, `noindex` retained.
+- **NO COMPROBADO:** a browser screenshot from the latest public Pages URL and Gmail delivery. Pending real-world user validation of the desktop disappearance.
