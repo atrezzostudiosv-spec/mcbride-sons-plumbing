@@ -350,8 +350,10 @@ dialog.hero-callback-dialog::backdrop {
 .hero::after{z-index:0} /* dark text-protection veil overlays photo AND video */
 .hero .hero-grid{z-index:1}
 @media(max-width:1023px){
-  .hero-video{display:none!important}
-  .hero.hero-video-playing .hero-video{opacity:0}
+  .hero-video{display:block;object-position:56% 47%}
+}
+@media(max-width:640px){
+  .hero-video{object-position:60% center;transform:none}
 }
 @media(prefers-reduced-motion:reduce){
   .hero-video{display:none!important;transition:none}
@@ -425,8 +427,59 @@ dialog.hero-callback-dialog::backdrop {
   .hero-video-toggle{left:26px}
 }
 @media(max-width:1023px){
-  .hero-video-toggle{display:none!important}
+  .hero-video-toggle{
+    left:auto;
+    right:20px;
+    bottom:12px;
+    min-height:36px;
+    padding:8px 12px;
+    font-size:10px;
+  }
 }
 @media(prefers-reduced-motion:reduce){
   .hero-video-toggle{display:none!important}
+}
+
+/* ATREZZO / HOME CINEMATIC v2 (2026-10-26)
+   Less opaque charcoal, keeping the headline readable. The mobile hero now
+   shows actual licensed motion when network and user preferences permit.
+   Source: Stepan SK / Pexels #7584858 (residential faucet repair), free use.
+   Still photograph remains as fallback if video fails or is not requested. */
+.hero::after{
+  background:
+    linear-gradient(90deg,
+      rgba(13,18,17,.76) 0%,
+      rgba(13,18,17,.62) 34%,
+      rgba(13,18,17,.22) 69%,
+      rgba(13,18,17,.08) 100%),
+    linear-gradient(0deg,
+      rgba(13,18,17,.17) 0%,
+      rgba(13,18,17,0) 32%,
+      rgba(13,18,17,.08) 100%);
+}
+.hero .hero-description{text-shadow:0 1px 9px rgba(0,0,0,.31)}
+.hero h1{text-shadow:0 1px 12px rgba(0,0,0,.19)}
+@media(max-width:1023px){
+  .hero::after{
+    background:linear-gradient(180deg,
+      rgba(12,18,16,.60) 0%,
+      rgba(12,18,16,.61) 42%,
+      rgba(12,18,16,.72) 72%,
+      rgba(12,18,16,.78) 100%);
+  }
+  .hero-video{object-position:58% center}
+}
+@media(max-width:640px){
+  .hero::after{
+    background:linear-gradient(180deg,
+      rgba(12,18,16,.68) 0%,
+      rgba(12,18,16,.62) 38%,
+      rgba(12,18,16,.72) 75%,
+      rgba(12,18,16,.78) 100%);
+  }
+  .hero-video{object-position:60% center}
+  .hero-video-toggle{right:18px;bottom:11px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-video,.hero-video-toggle{display:none!important}
 }
