@@ -151,3 +151,128 @@
 
   syncLayout();
 })();
+
+
+// ATREZZO HOME — cinematic background and editorial motion (2026-10-26).
+// The video is decorative; never infer footage shows McBride employees/projects.
+// The fallback image is always present in CSS. Do not download MP4 on tablet,
+// mobile, reduced-motion or save-data connections.
+(() => {
+  const hero = document.querySelector('.hero');
+  const video = hero && hero.querySelector('video.hero-video');
+  if (!hero || !video || !window.matchMedia) return;
+
+  const desktop = window.matchMedia('(min-width: 1024px)');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+
+  const urls = [
+    // Stepan SK, Pexels video 7584762; 720p first to limit transfer.
+    'https://videos.pexels.com/video-files/7584762/7584762-hd_1280_720_25fps.mp4',
+    'https://videos.pexels.com/video-files/7584762/7584762-hd_1920_1080_25fps.mp4'
+  ];
+  let nextSource = 0;
+  let mediaActive = false;
+
+  const allowed = () => desktop.matches && !reduced.matches &&
+    !(connection && connection.saveData) && !document.hidden;
+
+  const stop = () => {
+    video.pause();
+    hero.classList.remove('hero-video-playing');
+  };
+
+  const reset = () => {
+    stop();
+    video.removeAttribute('src');
+    video.load();
+    mediaActive = false;
+    nextSource = 0;
+  };
+
+  const loadSource = () => {
+    if (!allowed() || !mediaActive || nextSource >= urls.length) return;
+    video.src = urls[nextSource++];
+    video.load();
+    const attempt = video.play();
+    if (attempt && typeof attempt.catch === 'function') {
+      attempt.catch(() => { hero.classList.remove('hero-video-playing'); });
+    }
+  };
+
+  video.addEventListener('playing', () => {
+    if (allowed()) hero.classList.add('hero-video-playing');
+    else stop();
+  });
+
+  video.addEventListener('error', () => {
+    hero.classList.remove('hero-video-playing');
+    if (allowed() && nextSource < urls.length) loadSource();
+    // If both CDN formats fail, the existing CSS photograph remains visible.
+  });
+
+  const sync = () => {
+    if (!desktop.matches || reduced.matches || (connection && connection.saveData)) {
+      if (mediaActive) reset();
+      return;
+    }
+    if (!document.hidden) {
+      if (!mediaActive) {
+        mediaActive = true;
+        nextSource = 0;
+        loadSource();
+      } else if (video.paused) {
+        const attempt = video.play();
+        if (attempt && typeof attempt.catch === 'function') {
+          attempt.catch(() => {});
+        }
+      }
+    } else stop();
+  };
+
+  if (typeof desktop.addEventListener === 'function') desktop.addEventListener('change', sync);
+  else if (typeof desktop.addListener === 'function') desktop.addListener(sync);
+  if (typeof reduced.addEventListener === 'function') reduced.addEventListener('change', sync);
+  else if (typeof reduced.addListener === 'function') reduced.addListener(sync);
+  if (connection && typeof connection.addEventListener === 'function') connection.addEventListener('change', sync);
+  document.addEventListener('visibilitychange', sync);
+  sync();
+})();
+
+// Restrained scroll reveals, inspired by editorial timing, not copied effects.
+// Progressive enhancement: content is always visible without IntersectionObserver.
+(() => {
+  if (!window.IntersectionObserver || !window.matchMedia ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      window.matchMedia('(max-width: 767px)').matches) return;
+  const selectors = [
+    '.intro .intro-grid > div',
+    '.services .section-heading > div',
+    '.services .section-heading > p',
+    '.family .family-heading',
+    '.family .family-person',
+    '.approach .approach-left',
+    '.approach .value-line',
+    '.end-cta .end-grid > div'
+  ];
+  const targets = [...document.querySelectorAll(selectors.join(','))];
+  if (!targets.length) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  }, {threshold:0.08, rootMargin:'0px 0px -7% 0px'});
+
+  targets.forEach((el, index) => {
+    el.classList.add('atrezzo-reveal');
+    // Tiny stagger for adjacent authentic family portraits, never long delays.
+    if (el.classList.contains('family-person')) {
+      const galleryIndex = [...el.parentNode.children].indexOf(el);
+      el.style.setProperty('--reveal-delay', (galleryIndex * 85) + 'ms');
+    }
+    observer.observe(el);
+  });
+})();
