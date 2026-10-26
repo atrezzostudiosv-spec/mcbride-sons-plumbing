@@ -279,52 +279,261 @@
   }
 }
 
-/* 04 — Value lines use the chapter rhythm without trapping user scrolling. */
-.approach.section{position:relative;overflow:clip}
-.approach .approach-grid{align-items:start;gap:clamp(40px,6vw,100px)}
-.approach .approach-left{position:sticky;top:105px}
-.approach .approach-values{
+/* ATREZZO OUR APPROACH 3.0 — independent cinematographic scroll sequence.
+   Responsive ordinary blocks are the no-JS and reduced-motion fallback.
+   JS enables a pinned stage only >=768px with motion permitted.
+   Scrolling remains vertical, native, and interruptible. */
+.approach.approach-cinema{
+  padding:0;
   position:relative;
-  border-top:1px solid rgba(175,207,182,.35);
-  counter-reset:step;
+  overflow:clip;
+  color:#fff;
+  background:#0e2e24;
 }
-.approach .approach-values::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  bottom:0;
-  width:2px;
-  background:rgba(177,211,181,.25);
+.approach-cinema .approach-cinema-intro{
+  padding-top:clamp(78px,9vw,132px);
+  padding-bottom:clamp(42px,5.2vw,76px);
 }
-.approach .value-line{
+.approach-cinema .approach-cinema-intro h2{
+  max-width:920px;
+  font-size:clamp(43px,5.5vw,78px);
+  letter-spacing:-.062em;
+  line-height:1.09;
+  margin-top:23px;
+  color:#fff;
+}
+.approach-cinema .approach-cinema-intro h2 em{color:#a7ceb0;font-style:normal}
+.approach-cinema .approach-cinema-intro>p{
+  color:#b7cdbf;
+  font-size:clamp(13px,1.15vw,16px);
+  margin:24px 0 0;
+}
+.approach-cinema .approach-cinema-cue{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:40px;
+  color:#c1dcc5;
+  font-size:10px;
+  font-weight:800;
+  line-height:1.5;
+  letter-spacing:.16em;
+}
+.approach-cinema .approach-cinema-rule{width:34px;height:1px;background:#a8ceb0;flex:none}
+.approach-cinema .approach-cinema-cue>span:last-child{font-size:16px;font-weight:500}
+.approach-cinema .approach-story,
+.approach-cinema .approach-stage{position:relative;min-width:0}
+.approach-cinema .approach-scene{
+  display:block;
   position:relative;
-  grid-template-columns:40px minmax(0,1fr);
-  gap:15px;
-  padding:clamp(23px,2.7vw,32px) 17px;
-  border-bottom:1px solid rgba(175,207,182,.25);
-  background:transparent;
-  transition:background .45s ease;
+  isolation:isolate;
+  width:100%;
+  min-width:0;
+  height:clamp(440px,74svh,780px);
+  overflow:hidden;
+  background:#102b24;
+  color:#fff;
+  border:0;
 }
-.approach .value-line::before{
-  content:"";
+.approach-cinema .approach-scene+.approach-scene{border-top:2px solid #0f332a}
+.approach-cinema .approach-scene-photo{
+  display:block;
   position:absolute;
-  left:0;
-  top:0;
+  inset:0;
+  width:100%;
   height:100%;
-  width:2px;
-  background:#acd5b5;
-  transform:scaleY(0);
-  transform-origin:top;
-  transition:transform .6s ease;
+  max-width:none;
+  object-fit:cover;
+  object-position:var(--approach-image-position,center);
+  filter:saturate(.76);
+  transform:scale(var(--approach-scale,1.075));
+  transform-origin:center center;
+  transition:transform .18s linear,filter .5s ease;
 }
-.approach .value-line[data-active="true"]{
-  background:rgba(194,227,197,.08);
+.approach-cinema .approach-scene-shade{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(90deg,rgba(6,27,19,.9) 0%,rgba(8,30,21,.70) 34%,rgba(11,37,26,.22) 76%,rgba(6,25,18,.2) 100%),
+    linear-gradient(180deg,rgba(2,18,14,.3) 0%,transparent 27%,rgba(5,25,17,.65) 100%);
 }
-.approach .value-line[data-active="true"]::before{transform:scaleY(1)}
-.approach .value-line h3{font-size:clamp(18px,1.7vw,23px);line-height:1.3}
-.approach .value-line p{font-size:13px;line-height:1.75}
-.approach .value-line[data-active="true"]>span{color:#ccedcf}
+.approach-cinema .approach-scene-index{
+  position:absolute;
+  z-index:2;
+  top:clamp(24px,3.5vw,55px);
+  left:max(26px,calc((100vw - 1250px)/2));
+  right:max(26px,calc((100vw - 1250px)/2));
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.17em;
+  color:#d9e9d9;
+}
+.approach-cinema .approach-scene-content{
+  position:absolute;
+  left:max(26px,calc((100vw - 1250px)/2));
+  bottom:clamp(41px,7vw,112px);
+  width:min(750px,calc(100vw - 52px));
+  z-index:2;
+}
+.approach-cinema .approach-scene-eyebrow{
+  display:block;
+  margin-bottom:18px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.16em;
+  color:#c1dbc2;
+}
+.approach-cinema .approach-scene h3{
+  margin:0 0 21px;
+  max-width:730px;
+  color:white;
+  font-size:clamp(37px,5.7vw,78px);
+  font-weight:800;
+  letter-spacing:-.063em;
+  line-height:1.06;
+  text-wrap:balance;
+}
+.approach-cinema .approach-scene-content p{
+  color:#e5f0e7;
+  font-size:clamp(13px,1.15vw,16px);
+  line-height:1.7;
+  max-width:570px;
+  margin:0;
+}
+.approach-cinema .approach-scene-progress{
+  height:2px;
+  width:min(330px,65%);
+  background:rgba(255,255,255,.32);
+  margin-top:30px;
+}
+.approach-cinema .approach-scene-progress span{
+  display:block;
+  height:100%;
+  background:#bfd6b6;
+}
+.approach-cinema .approach-cinema-end{
+  padding-top:clamp(35px,4.5vw,62px);
+  padding-bottom:clamp(74px,8vw,112px);
+}
+.approach-cinema .approach-illustration-note{
+  color:#a8c4af;
+  font-size:11px;
+  line-height:1.7;
+  margin:0 0 30px;
+  max-width:710px;
+}
+.approach-cinema .approach-cinema-benefits{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(26px,4vw,62px);
+  padding-top:29px;
+  border-top:1px solid rgba(167,203,176,.3);
+}
+.approach-cinema .approach-cinema-benefits>div{max-width:500px}
+.approach-cinema .approach-cinema-benefits strong{
+  color:#e9f3eb;
+  font-size:clamp(15px,1.3vw,18px);
+}
+.approach-cinema .approach-cinema-benefits p{
+  margin:11px 0 0;
+  color:#b9cfc0;
+  font-size:13px;
+  line-height:1.75;
+}
+/* Pinned, layered scene. Each new chapter slides from right to left,
+   with scroll progress controlling translation and a subtle photo zoom. */
+@media(min-width:768px){
+  .approach-cinema .approach-story.is-cinema-ready{
+    height:calc(400svh - 416px);
+    min-height:1700px;
+  }
+  .approach-cinema .approach-story.is-cinema-ready .approach-stage{
+    position:sticky;
+    top:104px;
+    height:max(420px,calc(100svh - 104px));
+    overflow:hidden;
+    isolation:isolate;
+    background:#0e2e24;
+  }
+  .approach-cinema .approach-story.is-cinema-ready .approach-scene{
+    position:absolute;
+    inset:0;
+    height:100%;
+    border:0;
+    transform:translate3d(var(--approach-x,100%),0,0);
+    transition:none;
+    will-change:transform;
+  }
+  .approach-cinema .approach-story.is-cinema-ready .approach-scene:first-child{
+    --approach-x:0%;
+  }
+  .approach-cinema .approach-story.is-cinema-ready .approach-scene:nth-child(1){z-index:1}
+  .approach-cinema .approach-story.is-cinema-ready .approach-scene:nth-child(2){z-index:2}
+  .approach-cinema .approach-story.is-cinema-ready .approach-scene:nth-child(3){z-index:3}
+  .approach-cinema .approach-story.is-cinema-ready .approach-scene:nth-child(4){z-index:4}
+}
+@media(min-width:768px) and (max-width:1023px){
+  .approach-cinema .approach-story.is-cinema-ready{height:calc(400svh - 352px)}
+  .approach-cinema .approach-story.is-cinema-ready .approach-stage{
+    top:88px;height:max(420px,calc(100svh - 88px))
+  }
+  .approach-cinema .approach-scene h3{font-size:clamp(40px,6.4vw,68px)}
+  .approach-cinema .approach-scene-content{bottom:clamp(36px,5vw,76px)}
+}
+/* Narrow screens preserve natural vertical reading, with a modest entrance
+   from the right on each photo, not four full-viewport scroll traps. */
+@media(max-width:767px){
+  .approach-cinema .approach-cinema-intro{
+    padding-top:72px;
+    padding-bottom:36px;
+  }
+  .approach-cinema .approach-cinema-intro h2{font-size:clamp(34px,7vw,52px)}
+  .approach-cinema .approach-cinema-cue{display:none}
+  .approach-cinema .approach-scene{
+    height:clamp(430px,77svh,630px);
+  }
+  .approach-cinema .approach-scene-index{left:22px;right:22px;top:26px;font-size:9px}
+  .approach-cinema .approach-scene-content{
+    bottom:38px;left:22px;
+    width:calc(100% - 44px);
+  }
+  .approach-cinema .approach-scene h3{
+    font-size:clamp(35px,7.4vw,56px);
+    line-height:1.1;
+    margin-bottom:16px;
+  }
+  .approach-cinema .approach-scene-content p{font-size:13px;line-height:1.7}
+  .approach-cinema .approach-scene-progress{margin-top:25px}
+  .approach-cinema .approach-cinema-benefits{grid-template-columns:1fr;gap:30px}
+  .approach-cinema .approach-scene.is-mobile-reveal-ready{
+    opacity:0;
+    transform:translate3d(33px,0,0);
+    transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);
+  }
+  .approach-cinema .approach-scene.is-mobile-reveal-ready.is-approach-visible{
+    opacity:1;
+    transform:translate3d(0,0,0);
+  }
+}
+@media(max-width:390px){
+  .approach-cinema .approach-scene{height:max(440px,76svh)}
+  .approach-cinema .approach-scene h3{font-size:clamp(32px,8.6vw,39px)}
+  .approach-cinema .approach-scene-content{bottom:28px}
+  .approach-cinema .approach-scene-progress{margin-top:18px}
+}
+@media(prefers-reduced-motion:reduce){
+  .approach-cinema .approach-story.is-cinema-ready{height:auto;min-height:0}
+  .approach-cinema .approach-story.is-cinema-ready .approach-stage{position:relative;top:auto;height:auto;overflow:visible}
+  .approach-cinema .approach-story.is-cinema-ready .approach-scene{position:relative;inset:auto;height:clamp(440px,72svh,760px);transform:none;will-change:auto}
+  .approach-cinema .approach-scene,
+  .approach-cinema .approach-scene-photo,
+  .approach-cinema .approach-scene.is-mobile-reveal-ready{opacity:1;transform:none;transition:none;filter:none}
+}
 
 /* Layout first, effects second: tablet/mobile must remain vertical. */
 @media(max-width:1100px){
