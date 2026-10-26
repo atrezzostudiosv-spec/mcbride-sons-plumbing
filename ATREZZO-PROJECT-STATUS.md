@@ -216,3 +216,9 @@ Updated: 2026-10-24
 - `index.html` changes limited to cache keys for the updated JS/CSS. Preserved: original verified image URLs/alt text and family copy, the six service scenes and their full-bleed layout, Hero, About/Approach, CTA, Reviews, Footer, contact form, staging noindex and demo disclosure. Original CSS `home.css` remains untouched; change is isolated and reversible.
 - **VERIFIED IN SOURCE**: correct portrait sequence, equal geometry and reset offsets, no generic double reveal, reduced-motion treatment, valid JavaScript, CSS brace balance, no business-fact additions or changed photo attribution.
 - **NOT YET VERIFIED**: rendered browser screenshots and intersection timing at 375/768/1024/1440, crop of each face, contrast, performance and end-to-end form. Stage: **EN VALIDACIÓN** until actual visual QA. Work on WHAT WE DO stays untouched/approved.
+
+## 2026-10-26 — FAMILY LEGACY 2.1 — slower portrait reveals
+- User likes approved equal-height aligned portrait sequence but asked for noticeably slower arrival. Updated only Family Legacy animation durations and stagger spacing in `assets/css/home-experience.css` (no geometry/crop changes, no service-section changes), plus the Home CSS cache key.
+- Desktop/tablet: each portrait fade/translate now 1.25s (was 0.75s), with starts at 0ms / 440ms / 880ms (was 0ms / 210ms / 420ms) Jasper → Michael Sr. → Michael II. Mobile: individually triggered portraits now animate over 1.15s (was 0.7s). Motion-reduction exceptions remain unchanged.
+- **VERIFIED SOURCE:** exact edits confined to family CSS animation timing and stylesheet cache; source syntax braces balanced, authentic portrait paths intact.
+- **NO VISUAL QA yet:** actual perceived timing on devices and varied scroll speeds. Status: EN VALIDACIÓN.
