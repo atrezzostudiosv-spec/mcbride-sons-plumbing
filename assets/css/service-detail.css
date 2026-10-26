@@ -1,0 +1,16 @@
+/* ATREZZO | service detail pages, scoped and non-invasive */
+.detail-hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#102d26 0%,#173f35 72%,#235d4e 100%);color:#fff}
+.detail-hero::after{content:"";position:absolute;right:-8%;top:-22%;width:42vw;height:42vw;border:1px solid rgba(255,255,255,.14);border-radius:50%;pointer-events:none}
+.detail-hero::before{content:"";position:absolute;right:8%;bottom:-42%;width:22vw;height:22vw;border:1px solid rgba(255,255,255,.12);border-radius:50%;pointer-events:none}
+.detail-tag{color:#b5dcc6;letter-spacing:.17em;text-transform:uppercase;font-size:.7rem;font-weight:800}
+.detail-kicker{font-size:clamp(4rem,12vw,10rem);line-height:.85;font-weight:800;letter-spacing:-.09em;color:rgba(255,255,255,.10)}
+.detail-title{font-size:clamp(2.55rem,5.7vw,5.8rem);line-height:1.06;letter-spacing:-.065em;font-weight:800;max-width:900px}
+.detail-lead{font-size:clamp(1rem,1.7vw,1.24rem);line-height:1.7;color:#d7e7dc;max-width:690px}
+.detail-btn{display:inline-flex;align-items:center;justify-content:center;gap:.65rem;border-radius:.75rem;font-weight:800;padding:1rem 1.35rem;min-height:48px;transition:transform .2s,background .2s,border-color .2s}
+.detail-btn:hover{transform:translateY(-2px)}
+.detail-panel{border:1px solid #d9e4dc;background:#fff;border-radius:1.25rem}
+.detail-rule{height:1px;background:#d9e4dc}
+.detail-quote{border-left:4px solid #1e6a4b;padding-left:1.4rem}
+.detail-other a{display:flex;align-items:center;justify-content:space-between;padding:.75rem 0;border-bottom:1px solid #d9e4dc;font-size:.92rem;font-weight:700}
+.detail-other a:hover{color:#17744f}
+@media(prefers-reduced-motion:reduce){.detail-btn{transition:none}.detail-btn:hover{transform:none}}
