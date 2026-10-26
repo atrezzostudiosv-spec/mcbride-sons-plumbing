@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/home.css?v=20261026-reviews-v1">
-  <script src="./assets/js/main.js?v=20261026-scenes-1" defer></script>
+  <script src="./assets/js/main.js?v=20261026-carousel-1" defer></script>
 <link rel="preconnect" href="https://images.pexels.com">
   <!-- Critical responsive CTA visibility: the form is already visible in desktop hero. -->
   <style>
@@ -20,7 +20,7 @@
       .hero .hero-actions > .hero-form-link { display: inline-flex !important; }
     }
   </style>
-  <link rel="stylesheet" href="./assets/css/home-experience.css?v=20261026-scenes-1">
+  <link rel="stylesheet" href="./assets/css/home-experience.css?v=20261026-carousel-1">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -98,7 +98,7 @@
     </section>
     <section class="intro section" aria-labelledby="intro-title"><div class="wrap intro-grid"><div><span class="eyebrow dark"><span class="eyebrow-rule"></span> ABOUT MCBRIDE &amp; SONS</span><h2 id="intro-title">A family name.<br><span>A commitment to honest service.</span></h2></div><div class="intro-copy"><p>For McBride &amp; Sons Plumbing, plumbing is more than the work itself. Our name represents a family tradition built around experience, integrity, and a commitment to putting customers first.</p><p>Whether you're dealing with a plumbing problem or planning changes to your home's plumbing, we're here to discuss your needs and help you take the next step.</p><a class="text-link" href="./about-us/index.html">Our Story <span aria-hidden="true">↗</span></a></div></div></section>
     <section class="services section" id="services" aria-labelledby="services-title"><div class="wrap"><div class="section-heading"><div><span class="eyebrow dark"><span class="eyebrow-rule"></span> WHAT WE DO</span><h2 id="services-title">Plumbing services<br><span>for your home.</span></h2></div><p>From clogged drains and leaks to water heater concerns and plumbing work for bathroom remodeling, explore the services offered by McBride &amp; Sons Plumbing.</p></div>
-      <div class="services-story" role="group" aria-label="Six plumbing services. Scroll through the photographic scenes.">
+      <div class="services-story" role="group" aria-label="Six plumbing services to explore.">
         <a class="service-scene service-scene-feature" href="./services/drain-cleaning/index.html" data-scene="01" style="--scene-position:53% center">
           <img class="service-scene-photo" src="https://images.pexels.com/photos/6419128/pexels-photo-6419128.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1100" width="6000" height="4000" alt="" loading="lazy" decoding="async">
           <span class="service-scene-shade" aria-hidden="true"></span>
@@ -171,6 +171,13 @@
           </div>
           <span class="service-scene-progress" aria-hidden="true"><span style="width:100%"></span></span>
         </a>
+      </div>
+      <div class="services-carousel-nav" aria-label="Service carousel controls">
+        <div class="services-carousel-info"><span class="services-carousel-caption">EXPLORE OUR SERVICES</span><span class="services-carousel-counter" aria-live="polite" aria-atomic="true"><strong data-services-current>01</strong><span> / 06</span></span></div>
+        <div class="services-carousel-actions">
+          <button class="services-carousel-button" type="button" data-services-prev aria-label="Previous service" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+          <button class="services-carousel-button" type="button" data-services-next aria-label="Next service"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        </div>
       </div>
       <p class="services-illustration-note">Illustrative stock photography used to explain the service categories; these are not photographs of McBride staff or completed projects.</p>
       <div class="services-footer"><a href="./services/index.html" class="text-link">Explore All Services <span aria-hidden="true">↗</span></a><span>Six service categories</span></div>
