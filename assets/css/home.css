@@ -16,62 +16,170 @@
 .approach-benefits p{font-size:11px;color:#bcd0c1;line-height:1.7;margin:8px 0 0}
 @media(max-width:640px){.approach-benefits{grid-template-columns:1fr}.approach-benefits>div{max-width:none}}
 
-/* ATREZZO 2026-10-26 — cinematic, illustrative plumbing photo in HOME hero.
-   Source (free Pexels photo by AR Abnoy): https://www.pexels.com/photo/close-up-of-man-using-a-spanner-16509869/
-   Illustrative stock image; NOT work carried out by McBride & Sons Plumbing.
-   Preserve existing hero copy, CTA and callback form. */
-.hero{
-  isolation:isolate;
-  background-color:#102a23; /* graceful fallback before/without image */
+
+/* ATREZZO / HOME HERO V3 — Industrial Editorial Premium, 2026-10-26
+   Source: Sergei Starostin / Pexels, photograph #29226620.
+   https://www.pexels.com/photo/professional-plumber-installing-a-radiator-pipe-29226620/
+   License: Free Pexels photo (commercial use). This is illustrative stock photography;
+   NOT a McBride & Sons Plumbing employee, project or customer.
+   This is a scoped visual refinement: preserve Home copy, CTA actions and form behavior. */
+
+.hero {
+  isolation: isolate;
+  background: #141b19;
+  padding-block: clamp(74px, 7.5vw, 112px);
 }
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:0;
-  background-image:url("https://images.pexels.com/photos/16509869/pexels-photo-16509869.jpeg?auto=compress&cs=tinysrgb&w=1800");
-  background-size:cover;
-  background-position:center 44%;
-  background-repeat:no-repeat;
-  filter:saturate(.75) contrast(1.12);
-  transform:scale(1.01);
-  pointer-events:none;
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("https://images.pexels.com/photos/29226620/pexels-photo-29226620.jpeg?auto=compress&cs=tinysrgb&w=2000");
+  background-size: cover;
+  background-position: 57% center;
+  background-repeat: no-repeat;
+  filter: brightness(1.07) contrast(1.045) saturate(.92);
 }
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:0;
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
   background:
-    linear-gradient(0deg,rgba(8,24,20,.91) 0%,rgba(9,28,24,.20) 31%,rgba(8,25,21,.47) 100%),
-    linear-gradient(90deg,rgba(11,35,29,.91) 0%,rgba(12,35,29,.81) 35%,rgba(12,35,29,.70) 64%,rgba(9,26,22,.80) 100%);
-  pointer-events:none;
+    linear-gradient(90deg,
+      rgba(15,20,19,.85) 0%,
+      rgba(15,20,19,.76) 30%,
+      rgba(15,20,19,.31) 62%,
+      rgba(15,20,19,.10) 100%),
+    linear-gradient(0deg,
+      rgba(13,17,16,.35) 0%,
+      rgba(13,17,16,0) 27%,
+      rgba(13,17,16,.11) 100%);
 }
-.hero .hero-grid{
-  position:relative;
-  z-index:1;
+.hero .hero-grid {
+  z-index: 1;
+  position: relative;
+  width: 100%;
+  grid-template-columns: minmax(0, 1.18fr) minmax(355px, .82fr);
+  gap: clamp(40px, 5vw, 82px);
+  align-items: center;
 }
-.hero .hero-description{
-  color:#ecf3ed;
+.hero h1 {
+  font-size: clamp(43px, 4.15vw, 60px);
+  letter-spacing: -.061em;
+  line-height: 1.09;
+  max-width: 700px;
+  text-wrap: balance;
 }
-.hero .hero-heritage{
-  border-top-color:rgba(255,255,255,.29);
+.hero h1 em { color: #e1ebdf; }
+.hero .hero-description {
+  max-width: 540px;
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: #f0f2ed;
 }
-.hero .hero-heritage span{color:#e0e9e1}
-@media(max-width:1023px){
-  .hero::before{background-position:55% 45%}
-  .hero::after{
+.hero .hero-heritage { border-top-color: rgba(255,255,255,.31); }
+.hero .hero-heritage span { color: #e2e6df; }
+.hero .hero-form-wrap {
+  justify-self: end;
+  width: 100%;
+  max-width: 444px;
+}
+.hero .form-outer {
+  border-radius: 9px;
+  padding: 28px 28px 23px;
+  background: #faf9f6;
+  border: 1px solid rgba(255,255,255,.88);
+  box-shadow: 0 18px 42px rgba(0,0,0,.20);
+  color: #192b22;
+}
+.hero .form-head { margin: 10px 0 18px; }
+.hero .form-head h2 {
+  font-size: clamp(24px, 2.25vw, 28px);
+  letter-spacing: -.046em;
+}
+.hero .form-head p { line-height: 1.55; }
+.hero .form-field { margin-bottom: 10px; }
+.hero .form-field label {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+.hero .form-field input,
+.hero .form-field select {
+  min-height: 44px;
+  padding: 10px 12px;
+  font-size: 13px;
+  background: #fff;
+  border-color: #d4dad3;
+}
+.hero .form-consent {
+  font-size: 11px;
+  line-height: 1.5;
+  margin-top: 12px;
+}
+.hero .form-consent input { flex: 0 0 auto; width: 17px; height: 17px; }
+.hero .form-submit {
+  min-height: 48px;
+  margin-top: 14px;
+  border-radius: 5px;
+}
+.hero .form-status {
+  font-size: 11px !important;
+  line-height: 1.5 !important;
+}
+
+/* Tablet and mobile: protect content hierarchy while keeping the image discernible.
+   Background occupies the storytelling area; the lower form sits over charcoal. */
+@media (max-width: 1023px) {
+  .hero { padding-block: 60px 68px; }
+  .hero::before {
+    inset: 0 0 auto;
+    height: min(690px, 68%);
+    background-position: 60% 44%;
+  }
+  .hero::after {
     background:
-      linear-gradient(180deg,rgba(8,27,22,.76) 0%,rgba(8,27,22,.78) 42%,rgba(8,27,22,.95) 100%),
-      linear-gradient(90deg,rgba(10,32,26,.68),rgba(10,32,26,.42));
+      linear-gradient(180deg,
+        rgba(14,19,18,.67) 0%,
+        rgba(14,19,18,.73) 26%,
+        rgba(14,19,18,.90) 55%,
+        #141b19 88%);
   }
+  .hero .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    max-width: 700px;
+    margin-inline: auto;
+  }
+  .hero .hero-form-wrap { max-width: 600px; justify-self: start; }
+  .hero h1 { font-size: clamp(42px, 7vw, 61px); }
 }
-@media(max-width:640px){
-  .hero::before{
-    background-image:url("https://images.pexels.com/photos/16509869/pexels-photo-16509869.jpeg?auto=compress&cs=tinysrgb&w=900");
-    background-position:61% 40%;
+@media (max-width: 640px) {
+  .hero { padding-block: 55px 62px; }
+  .hero::before {
+    height: 550px;
+    max-height: 58%;
+    background-image: url("https://images.pexels.com/photos/29226620/pexels-photo-29226620.jpeg?auto=compress&cs=tinysrgb&w=1000");
+    background-position: 58% 34%;
   }
-  .hero::after{
-    background:linear-gradient(180deg,rgba(7,24,20,.84) 0%,rgba(8,28,23,.86) 43%,rgba(9,30,24,.98) 100%);
+  .hero::after {
+    background: linear-gradient(180deg,
+      rgba(15,20,19,.68) 0%,
+      rgba(15,20,19,.76) 27%,
+      rgba(15,20,19,.93) 48%,
+      #141b19 82%);
   }
+  .hero .hero-grid { gap: 29px; }
+  .hero h1 { font-size: clamp(37px, 9.5vw, 51px); }
+  .hero .hero-description { font-size: 13px; line-height: 1.8; }
+  .hero .form-outer { padding: 23px 19px 19px; }
+  .hero .form-head h2 { font-size: 25px; }
+  .hero .form-status { font-size: 11px !important; }
 }
+@media (max-width: 375px) {
+  .hero h1 { font-size: 36px; }
+  .hero .form-outer { padding-inline: 17px; }
+}
+
