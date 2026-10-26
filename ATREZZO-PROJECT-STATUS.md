@@ -74,3 +74,12 @@ Updated: 2026-10-24
 - **NOT COMPROBADO:** live GitHub Pages rendered screenshots at 375/768/1024/1440; interactive browser operation for new routes; real email receipt and consent flow; Lighthouse; WCAG conformance; server-side form delivery; canonical and public production SEO.
 - Public staging remains a **design demonstration, not the official business site**. Maintain `noindex, nofollow` and demo disclosure. Do not hand off to client until genuine contact handling and live QA are verified.
 - Current phase: **Phase 8 — IN VALIDACIÓN** (six service pages and link integration); **Phase 9 — PENDIENTE**; **Phase 10 — PENDIENTE**. Home legacy Phase 7 visual signoff not independently evidenced by this GitHub edit.
+
+## 2026-10-26 — Contact form added to Services hero and all six service-detail heroes
+- User identified the missing hero contact form. GitHub read confirmed Home V2 ALREADY had its callback form inside the hero, so Home was preserved unchanged.
+- Added the same visible, conversion-focused staging form panel to the Services overview hero and each of six service detail heroes (7 new hero forms). Desktop split hero presents copy/call CTA and form side by side; mobile CSS stacks them.
+- Fields: name, phone, service (read-only visual context + hidden service input for detail pages, selectable service for overview) and optional description, plus explicit demo-consent checkbox.
+- Reused the existing `assets/js/main.js` staging FormSubmit AJAX handler. Submissions are addressed to `atrezzostudiosv@gmail.com` with an Atrezzo demo notice; the business telephone CTA stays prominent. No fake success claim and no alleged appointment booking.
+- Added and refined responsive form CSS in `assets/css/service-detail.css`. The Home hero form was not modified.
+- **VERIFIED STATICALLY:** 8/8 pages (Home + overview + six service pages) have one form, one H1, no duplicate element IDs, every `label[for]` resolves locally, staging consent and `data-form-status` are present, and the seven added pages load the form CSS.
+- **NOT COMPROBADO:** deployment/browser screenshots at actual widths, form relay activation and real Gmail receipt. Keep staging `noindex` and demo notice until approved production migration.
