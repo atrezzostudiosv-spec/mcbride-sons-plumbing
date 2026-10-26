@@ -68,3 +68,82 @@
     });
   });
 })();
+
+
+// ATREZZO HOME — mobile callback dialog (2026-10-26)
+// Use ONE existing callback form. It remains inline on desktop/tablet.
+// On mobile with working JavaScript, move that same form panel into a native
+// <dialog> (focus containment, Escape, backdrop); without JS it stays inline.
+(() => {
+  const wrap = document.getElementById('callback-form');
+  const trigger = document.querySelector('.hero-form-link[href="#callback-form"]');
+  const panel = wrap && wrap.querySelector('.form-outer');
+  if (!wrap || !trigger || !panel || !window.matchMedia) return;
+
+  const modal = document.createElement('dialog');
+  if (typeof modal.showModal !== 'function') return;
+  modal.id = 'home-callback-dialog';
+  modal.className = 'hero-callback-dialog';
+  modal.setAttribute('aria-label', 'Request a Callback');
+
+  const toolbar = document.createElement('div');
+  toolbar.className = 'hero-dialog-toolbar';
+  const title = document.createElement('strong');
+  title.textContent = 'Request a Callback';
+  const closeButton = document.createElement('button');
+  closeButton.type = 'button';
+  closeButton.className = 'hero-dialog-close';
+  closeButton.setAttribute('aria-label', 'Close callback form');
+  closeButton.textContent = '×';
+  toolbar.append(title, closeButton);
+
+  const mount = document.createElement('div');
+  mount.className = 'hero-dialog-content';
+  modal.append(toolbar, mount);
+  document.body.appendChild(modal);
+
+  // Match the layout breakpoint, not the handset hardware.
+  const mobile = window.matchMedia('(max-width: 767px)');
+  let openTrigger = null;
+
+  const close = () => { if (modal.open) modal.close(); };
+  const syncLayout = () => {
+    if (mobile.matches) {
+      if (panel.parentNode !== mount) mount.appendChild(panel);
+      document.documentElement.classList.add('hero-popup-ready');
+    } else {
+      close();
+      if (panel.parentNode !== wrap) wrap.appendChild(panel);
+      document.documentElement.classList.remove('hero-popup-ready');
+    }
+  };
+
+  trigger.addEventListener('click', event => {
+    if (!mobile.matches || panel.parentNode !== mount) return;
+    event.preventDefault();
+    openTrigger = trigger;
+    modal.showModal();
+    document.body.classList.add('hero-dialog-open');
+    closeButton.focus();
+  });
+
+  closeButton.addEventListener('click', close);
+  modal.addEventListener('click', event => {
+    if (event.target === modal) close();
+  });
+  modal.addEventListener('close', () => {
+    document.body.classList.remove('hero-dialog-open');
+    if (mobile.matches && openTrigger && openTrigger.isConnected) {
+      openTrigger.focus();
+    }
+    openTrigger = null;
+  });
+
+  if (typeof mobile.addEventListener === 'function') {
+    mobile.addEventListener('change', syncLayout);
+  } else if (typeof mobile.addListener === 'function') {
+    mobile.addListener(syncLayout);
+  }
+
+  syncLayout();
+})();
