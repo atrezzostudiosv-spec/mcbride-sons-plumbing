@@ -10,9 +10,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./assets/css/home.css">
-  <script src="./assets/js/main.js" defer></script>
+  <link rel="stylesheet" href="./assets/css/home.css?v=20261026-callback-desktop-3">
+  <script src="./assets/js/main.js?v=20261026-callback-desktop-3" defer></script>
 <link rel="preconnect" href="https://images.pexels.com">
+  <!-- Critical responsive CTA visibility: the form is already visible in desktop hero. -->
+  <style>
+    .hero .hero-actions > .hero-form-link { display: none !important; }
+    @media (max-width: 1023px) {
+      .hero .hero-actions > .hero-form-link { display: inline-flex !important; }
+    }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
