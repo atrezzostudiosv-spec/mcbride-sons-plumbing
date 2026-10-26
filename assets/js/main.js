@@ -317,7 +317,6 @@
     '.services .section-heading > div',
     '.services .section-heading > p',
     '.family .family-heading',
-    '.family .family-person',
     '.approach .approach-left',
     '.approach .value-line',
     '.reviews-section .reviews-heading > div',
@@ -400,13 +399,58 @@
   requestSync();
 })();
 
-// Family narrative and four approach values: visual emphasis only.
-// The existing labels, text, photos, and anchors remain the full experience.
+// ATREZZO FAMILY LEGACY 2.0 — progressive photo sequence.
+// Wide screens: Jasper → Michael Sr. → Michael II reveal in one staggered
+// gallery entrance. Mobile: reveal each portrait as it enters the viewport.
+// If IntersectionObserver or motion permission is absent, photos stay visible.
+(() => {
+  const gallery = document.querySelector('.family-gallery[data-family-sequence]');
+  if (!gallery || !('IntersectionObserver' in window) ||
+      !window.matchMedia ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const portraits = [...gallery.querySelectorAll('.family-person')];
+  if (portraits.length !== 3) return;
+  const mobile = window.matchMedia('(max-width: 640px)');
+  let observer = null;
+
+  const prepare = () => {
+    if (observer) observer.disconnect();
+    gallery.classList.remove('is-family-revealed');
+    portraits.forEach(person => {
+      person.classList.remove('is-family-revealed', 'atrezzo-reveal', 'is-visible', 'is-family-current');
+      person.style.removeProperty('--reveal-delay');
+    });
+
+    if (mobile.matches) {
+      gallery.classList.add('family-reveal-ready');
+      observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-family-revealed');
+          observer.unobserve(entry.target);
+        });
+      }, {threshold:0.1, rootMargin:'0px 0px -7% 0px'});
+      portraits.forEach(person => observer.observe(person));
+    } else {
+      gallery.classList.add('family-reveal-ready');
+      observer = new IntersectionObserver(entries => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        gallery.classList.add('is-family-revealed');
+        observer.disconnect();
+      }, {threshold:0.08, rootMargin:'0px 0px -6% 0px'});
+      observer.observe(gallery);
+    }
+  };
+  prepare();
+  mobile.addEventListener?.('change', prepare);
+})();
+
+// Four approach values: visual emphasis only; portraits use their own dedicated sequence.
 (() => {
   if (!('IntersectionObserver' in window)) return;
-  const portraits = [...document.querySelectorAll('.family-gallery .family-person')];
   const values = [...document.querySelectorAll('.approach-values .value-line[data-approach-step]')];
-  if (!portraits.length && !values.length) return;
+  if (!values.length) return;
 
   const observeChapter = (elements, className, attrName) => {
     if (!elements.length) return;
@@ -428,7 +472,6 @@
     elements.forEach(el => observer.observe(el));
   };
 
-  observeChapter(portraits,'is-family-current',null);
   observeChapter(values,null,'data-active');
 })();
 
