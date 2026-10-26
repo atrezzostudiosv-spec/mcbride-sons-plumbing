@@ -347,65 +347,57 @@
 })();
 
 
-// ATREZZO HOME EXPERIENCE 1.0 — purposeful scroll navigation.
-// Works progressively: all six services remain normal links without JavaScript.
-// Motion is only a small CSS refinement; reduced-motion keeps content static.
+// ATREZZO SERVICE SCENES 2.0 — natural scroll chapter emphasis.
+// Every card is a normal link. JS never traps wheel/touch input or navigation.
 (() => {
-  const stage = document.querySelector('.services-experience');
-  if (!stage) return;
-  const services = [...stage.querySelectorAll('.service-line[data-service-index]')];
-  const photo = stage.querySelector('.services-visual');
-  const image = stage.querySelector('.services-visual-photo');
-  const counter = stage.querySelector('[data-service-current]');
-  const name = stage.querySelector('[data-service-name]');
-  if (!services.length || !photo || !counter || !name) return;
+  const story = document.querySelector('.services-story');
+  if (!story) return;
+  const scenes = [...story.querySelectorAll('.service-scene')];
+  if (scenes.length !== 6) return;
 
-  const activateService = (item) => {
-    if (!item) return;
-    services.forEach(el => {
-      if (el === item) el.setAttribute('data-active', 'true');
-      else el.removeAttribute('data-active');
-    });
-    const num = Number(item.getAttribute('data-service-index'));
-    counter.textContent = String(num).padStart(2, '0');
-    name.textContent = item.querySelector('.service-title')?.textContent.trim() || '';
-  };
-
-  // The image is illustrative; if the external CDN is unavailable, retain a
-  // neutral background and hide the broken-image icon.
-  if (image) image.addEventListener('error', () => {
-    if (!image.dataset.fallbackTried) {
-      image.dataset.fallbackTried = 'true';
-      image.src = 'https://images.pexels.com/photos/6419128/pexels-photo-6419128.jpeg?auto=compress&cs=tinysrgb&w=1100';
-    } else {
-      image.style.visibility = 'hidden';
-    }
-  });
-
-  services.forEach(item => {
-    item.addEventListener('mouseenter', () => activateService(item));
-    item.addEventListener('focus', () => activateService(item));
-  });
-
-  if (!('IntersectionObserver' in window)) return;
-  const stageObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        photo.classList.add('is-visible');
-        stageObserver.unobserve(e.target);
+  scenes.forEach(scene => {
+    scene.addEventListener('pointerenter', () => {
+      if (window.matchMedia('(hover:hover)').matches) {
+        scenes.forEach(s => s.classList.toggle('is-scene-current', s === scene));
       }
     });
-  }, {threshold:0.1});
-  stageObserver.observe(photo);
+    scene.addEventListener('focus', () => {
+      scenes.forEach(s => s.classList.toggle('is-scene-current', s === scene));
+    });
+    const image = scene.querySelector('.service-scene-photo');
+    if (image) image.addEventListener('error', () => {
+      image.style.opacity = '0';
+      scene.classList.add('is-scene-image-fallback');
+    });
+  });
 
-  // Active chapter follows the link entering the middle of the viewport.
-  const serviceObserver = new IntersectionObserver(entries => {
-    const visible = entries.filter(entry => entry.isIntersecting);
-    if (!visible.length) return;
-    visible.sort((a,b) => b.intersectionRatio - a.intersectionRatio);
-    activateService(visible[0].target);
-  }, {rootMargin:'-25% 0px -45% 0px', threshold:[0,.25,.5,.75]});
-  services.forEach(el => serviceObserver.observe(el));
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const isMobile = window.matchMedia('(max-width: 640px)');
+  let queued = false;
+  const syncMobileScene = () => {
+    queued = false;
+    if (!isMobile.matches || reduced.matches) return;
+    const stage = story.getBoundingClientRect();
+    if (stage.bottom < 0 || stage.top > window.innerHeight) return;
+    const focalTop = 85;
+    let active = scenes[0];
+    // The last sticky card to reach the upper scene edge is the visible one.
+    scenes.forEach(scene => {
+      const box = scene.getBoundingClientRect();
+      if (box.top <= focalTop + 65 && box.bottom > focalTop) active = scene;
+    });
+    scenes.forEach(scene => scene.classList.toggle('is-scene-current', scene === active));
+  };
+  const requestSync = () => {
+    if (queued || !isMobile.matches || reduced.matches) return;
+    queued = true;
+    window.requestAnimationFrame(syncMobileScene);
+  };
+  document.addEventListener('scroll', requestSync, {passive:true});
+  window.addEventListener('resize', requestSync, {passive:true});
+  isMobile.addEventListener?.('change', requestSync);
+  reduced.addEventListener?.('change', requestSync);
+  requestSync();
 })();
 
 // Family narrative and four approach values: visual emphasis only.
