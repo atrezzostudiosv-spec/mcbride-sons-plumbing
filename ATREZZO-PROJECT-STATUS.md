@@ -112,3 +112,11 @@ Updated: 2026-10-24
 - **STATIC SOURCE VALIDATION:** original Home still has one callback form; HTML anchor preserved; CSS and JS breakpoints match, no duplicate forms, `noindex` retained, staging handler preserved.
 - **LOCAL CHROMIUM ISOLATED FIXTURE (not a live site test):** 375px form moved out of hero, popup opens, close button/Escape close it, focus returns; 768px and 1440px keep form inline; viewport transition back to 375px does not clone form; zero horizontal overflow in fixture at all tested widths; sample desktop grid gutter was 95px at 1440 (1250px capped).
 - **NOT YET VERIFIED ON DEPLOYED SITE:** actual full-page screenshots at 375/768/1024/1440, real provider email receipt, production WCAG/contrast/performance. Keep Home in **EN VALIDACIÓN** until visual and functional checks on live preview are completed.
+
+## 2026-10-26 — Tablet callback modal and desktop CTA deduplication
+- User approved the mobile popup and requested the same behavior on tablet, with the redundant `Request a Callback` action removed from the desktop hero (the form is already visible beside the H1).
+- Updated only `assets/js/main.js` and `assets/css/home.css`: tablet/mobile viewport `<=1023px` now moves the **same existing form node** into the native accessible popup and exposes the callback CTA. Desktop `>=1024px` retains the inline form and hides only `.hero-form-link`; `Call Now` remains.
+- With JavaScript unsupported or disabled, the original form remains available inline and the link still scrolls to it on tablet/mobile. Desktop does not need a callback link because the form remains inline.
+- Isolated local Chromium fixture checks **passed** at widths 375, 768, 900, 1023, 1024, and 1440: popup opens and closes with Escape at <=1023, is not rendered as a button at >=1024, viewport resize 768→1440 closes popup and restores the same form to the hero, only one form exists, and no fixture horizontal overflow was seen.
+- Repository static checks passed for matching CSS and JS breakpoints, unchanged company Call Now link, `noindex`, demo consent, and existing staging submit handler.
+- **Pending:** real published site browser screenshots, visual breakpoint/layout approval, and end-to-end Gmail delivery. Do not label isolated fixture coverage as production QA.
