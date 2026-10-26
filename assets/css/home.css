@@ -203,9 +203,9 @@
   .hero .hero-grid { width: min(calc(100% - 36px), 1250px); }
 }
 
-/* Modal available on mobile only. If JS is absent, the inline form remains
-   available and the callback anchor scrolls to it instead. */
-@media (max-width: 767px) {
+/* Modal available on mobile and tablet, up to 1023px. With JS disabled,
+   the inline form remains available and the callback anchor scrolls to it. */
+@media (max-width: 1023px) {
   html.hero-popup-ready .hero .hero-form-wrap {
     display: none;
   }
@@ -234,6 +234,11 @@
   html.hero-popup-ready .hero .hero-form-link span { margin-left: 0; }
   html.hero-popup-ready .hero { padding-bottom: 58px; }
   html.hero-popup-ready .hero .hero-heritage { margin-top: 38px; }
+}
+/* Desktop: the form is already visible beside the headline, so a second
+   "Request a Callback" CTA would be redundant. Keep Call Now. */
+@media (min-width: 1024px) {
+  .hero .hero-form-link { display: none; }
 }
 body.hero-dialog-open { overflow: hidden; }
 
