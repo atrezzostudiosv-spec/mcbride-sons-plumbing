@@ -151,4 +151,25 @@
   .services .service-scene-shade{background:linear-gradient(180deg,rgba(10,12,13,.46),rgba(10,12,13,.06) 26%,rgba(10,12,13,.44) 52%,rgba(8,10,11,.94))}
   .approach-cinema .approach-scene-shade{background:linear-gradient(180deg,rgba(10,12,13,.50),rgba(10,12,13,.18) 28%,rgba(10,12,13,.55) 57%,rgba(8,10,11,.92))}
 }
+
+/* ATREZZO SMART STICKY HEADER 1.0 — HOME DESKTOP ONLY
+   Natural downward scroll hides nav; upward scroll reveals it.
+   Tablet/mobile unchanged. Menu focus/hover and reduced motion keep it visible. */
+@media(min-width:1024px) and (prefers-reduced-motion:no-preference){
+  .site-header{
+    transition:transform 320ms cubic-bezier(.22,.73,.24,1);
+  }
+  .site-header.is-scroll-hidden{
+    transform:translate3d(0,calc(-100% - 2px),0);
+    pointer-events:none;
+  }
+  .site-header.is-scroll-hidden:focus-within{
+    transform:none;
+    pointer-events:auto;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .site-header.is-scroll-hidden{transform:none!important;pointer-events:auto!important}
+}
+
 /* No layout/scroll changes and no modification to reduced-motion behavior. */
