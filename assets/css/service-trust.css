@@ -2,7 +2,7 @@
    No buttons, cards or external links. Used after Customer Feedback across 8 pages. */
 .at-five-star-strip{
   padding:clamp(68px,7.5vw,112px) 0 clamp(66px,7vw,106px);
-  background:#fff;color:#20302a;border-top:1px solid #e4eae5;
+  background:#F6F8F5;color:#20302a;border-top:1px solid #e4eae5;
   font-family:Manrope,system-ui,sans-serif;
 }
 .at-five-star-container{
