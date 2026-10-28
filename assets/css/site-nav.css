@@ -55,6 +55,12 @@
   content:"";position:absolute;left:0;right:0;bottom:22px;height:2px;background:#77C992;
 }
 .at-site-nav .desktop-nav .at-services-menu[data-active-section="services"]>.at-services-toggle{color:#A5E2B8}
+/* Repeat the approved brighter-green announcement ribbon on internal pages. */
+.at-internal-announcement{background:#307953!important;color:#FFF}
+.at-internal-announcement .text-gray-200,
+.at-internal-announcement .text-emerald-100\/80{color:#F3FBF4}
+.at-internal-announcement .text-emerald-300,
+.at-internal-announcement .text-emerald-400{color:#D5F5DF}
 /* Interior pages: same charcoal/nav/brand architecture, no Home CSS. */
 .at-site-nav.at-nav-internal{
   background:#1A1E1F;color:#FFF;border-bottom:1px solid rgba(255,255,255,.13);
