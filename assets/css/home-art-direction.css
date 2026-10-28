@@ -172,4 +172,35 @@
   .site-header.is-scroll-hidden{transform:none!important;pointer-events:auto!important}
 }
 
+/* ATREZZO CINEMA STICKY OFFSET 1.0 — desktop Home only.
+   Smart header hiding is a transform; it must also release the reserved 104px
+   sticky offset in BOTH scrolling scenes. Preserve ordinary vertical scrolling.
+   Keep scene height stable between hide/show to avoid layout shifts and
+   accumulated jumps across the six sticky Services chapters. */
+@media(min-width:1024px) and (prefers-reduced-motion:no-preference){
+  html{--at-cinema-sticky-top:104px}
+  html.at-cinema-header-hidden{--at-cinema-sticky-top:0px}
+  .services .service-scene,
+  .services .service-scene:nth-child(1),
+  .services .service-scene:nth-child(2),
+  .services .service-scene:nth-child(3),
+  .services .service-scene:nth-child(6){
+    top:var(--at-cinema-sticky-top);
+    transition:top 320ms cubic-bezier(.22,.73,.24,1);
+  }
+  .approach-cinema .approach-story.is-cinema-ready .approach-stage{
+    top:var(--at-cinema-sticky-top);
+    transition:top 320ms cubic-bezier(.22,.73,.24,1);
+  }
+}
+@media(min-width:1024px) and (min-height:601px) and (prefers-reduced-motion:no-preference){
+  /* Full viewport photo at either header state, without dynamic reflow. */
+  .services .service-scene,
+  .services .service-scene:nth-child(1),
+  .services .service-scene:nth-child(2),
+  .services .service-scene:nth-child(3),
+  .services .service-scene:nth-child(6){height:100svh}
+  .approach-cinema .approach-story.is-cinema-ready .approach-stage{height:100svh}
+}
+
 /* No layout/scroll changes and no modification to reduced-motion behavior. */
