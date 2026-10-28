@@ -35,7 +35,7 @@
 .at-review-item figcaption{display:flex;flex-direction:column;gap:5px;margin-top:26px}
 .at-review-item figcaption strong{font-size:13px;font-weight:800;color:#252e2a}
 .at-review-item figcaption span{font-size:12px;color:#74847a}
-.at-review-viewport:hover .at-review-track,.at-review-viewport:focus-within .at-review-track,.at-reviews[data-paused="true"] .at-review-track{animation-play-state:paused}
+.at-reviews[data-paused="true"] .at-review-track{animation-play-state:paused}
 @keyframes at-review-travel{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 .at-review-source{display:flex;justify-content:space-between;gap:24px;align-items:center;color:#718078;font-size:11px;line-height:1.7;margin-top:29px}
 .at-review-source>div{display:flex;flex-wrap:wrap;gap:18px}
