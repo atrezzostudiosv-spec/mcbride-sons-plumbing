@@ -1,0 +1,45 @@
+/* ATREZZO McBride — independently sourced review and license references.
+   Services overview only. Logo presentation does not imply endorsement. */
+html[data-page="services"] .at-service-trust{background:#fff;color:#202927;border-top:1px solid #e2e9e2;padding:clamp(78px,8vw,112px) 0;font-family:Manrope,system-ui,sans-serif}
+html[data-page="services"] .at-trust-shell{width:min(1250px,calc(100% - 80px));margin-inline:auto}
+html[data-page="services"] .at-trust-heading{display:grid;grid-template-columns:1.35fr .65fr;align-items:end;gap:clamp(24px,5vw,72px);margin-bottom:clamp(40px,5vw,68px)}
+html[data-page="services"] .at-trust-eyebrow{font-size:11px;line-height:1.6;letter-spacing:.14em;font-weight:800;color:#26734f}
+html[data-page="services"] .at-trust-heading h2{font-size:clamp(39px,4.6vw,67px);line-height:1.08;letter-spacing:-.065em;font-weight:800;color:#202927;margin:18px 0 0}
+html[data-page="services"] .at-trust-heading h2 em{font-style:normal;color:#26734f}
+html[data-page="services"] .at-trust-heading>p{font-size:clamp(14px,1.2vw,16px);line-height:1.85;color:#647369;margin:0 0 5px}
+html[data-page="services"] .at-trust-profiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid #dfe7df;border-bottom:1px solid #dfe7df}
+html[data-page="services"] .at-trust-profile{min-width:0;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:92px auto;align-items:end;gap:24px 8px;padding:33px clamp(20px,3vw,42px) 42px;color:#202927;text-decoration:none}
+html[data-page="services"] .at-trust-profile:first-child{padding-left:0;border-right:1px solid #dfe7df}
+html[data-page="services"] .at-trust-profile:last-child{padding-right:0}
+html[data-page="services"] .at-trust-profile:hover{background:#f7faf7}
+html[data-page="services"] .at-trust-profile:focus-visible,html[data-page="services"] .at-trust-license-action:focus-visible{outline:3px solid #26734f;outline-offset:3px}
+html[data-page="services"] .at-trust-logo{grid-column:1/-1;display:flex;align-items:center;width:100%;height:92px}
+html[data-page="services"] .at-trust-logo img{display:block;width:auto;height:auto;max-width:min(350px,100%);max-height:75px;object-fit:contain;object-position:left;mix-blend-mode:multiply}
+html[data-page="services"] .at-trust-profile-caption{display:flex;flex-direction:column;gap:8px;min-width:0}
+html[data-page="services"] .at-trust-profile-caption strong{font-size:clamp(18px,1.7vw,23px);letter-spacing:-.03em;font-weight:800;line-height:1.2}
+html[data-page="services"] .at-trust-profile-caption>span{font-size:13px;line-height:1.6;color:#607368}
+html[data-page="services"] .at-trust-linkicon{align-self:start;font-size:23px;color:#26734f}
+html[data-page="services"] .at-trust-license{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr) auto;align-items:center;gap:clamp(25px,4vw,54px);padding-top:clamp(40px,5vw,72px)}
+html[data-page="services"] .at-trust-license>img{width:min(100%,360px);height:auto;display:block;object-fit:contain}
+html[data-page="services"] .at-trust-license-body h3{font-size:clamp(21px,2vw,28px);font-weight:800;letter-spacing:-.04em;line-height:1.2;margin:11px 0;color:#202927}
+html[data-page="services"] .at-trust-license-body p{font-size:13px;color:#607368;line-height:1.75;margin:0}
+html[data-page="services"] .at-trust-license-action{display:inline-flex;align-items:center;justify-content:center;gap:15px;background:#26734f;color:#fff;text-decoration:none;font-size:12px;font-weight:800;padding:15px 19px;min-height:50px;white-space:nowrap;border-radius:4px}
+html[data-page="services"] .at-trust-license-action:hover{background:#348c61}
+@media(max-width:1023px){
+ html[data-page="services"] .at-trust-shell{width:calc(100% - 52px)}
+ html[data-page="services"] .at-trust-heading{grid-template-columns:1fr;gap:20px}
+ html[data-page="services"] .at-trust-license{grid-template-columns:1fr 1fr}
+ html[data-page="services"] .at-trust-license-action{grid-column:2;justify-self:start}
+}
+@media(max-width:767px){
+ html[data-page="services"] .at-service-trust{padding:70px 0 85px}
+ html[data-page="services"] .at-trust-shell{width:calc(100% - 36px)}
+ html[data-page="services"] .at-trust-heading h2{font-size:clamp(35px,8.5vw,52px)}
+ html[data-page="services"] .at-trust-profiles{grid-template-columns:1fr}
+ html[data-page="services"] .at-trust-profile{grid-template-rows:72px auto;padding:28px 8px!important}
+ html[data-page="services"] .at-trust-profile:first-child{border-right:0;border-bottom:1px solid #dfe7df}
+ html[data-page="services"] .at-trust-logo{height:72px}
+ html[data-page="services"] .at-trust-logo img{max-width:min(280px,100%);max-height:64px}
+ html[data-page="services"] .at-trust-license{grid-template-columns:1fr;gap:24px;padding-top:43px}
+ html[data-page="services"] .at-trust-license-action{grid-column:1;justify-self:start;white-space:normal}
+}

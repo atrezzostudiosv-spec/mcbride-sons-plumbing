@@ -382,3 +382,10 @@ Updated: 2026-10-24
 
 ### Services gallery follow-up — responsive motion mode
 - Improved only gallery JS activation so switching between desktop/tablet and mobile widths during the same session also activates/deactivates scroll-driven image zoom and right-to-left card entrances correctly; disabling motion resets inline zoom values. CSS remains unchanged; tablet/desktop are static until pointer-hover and use ordinary grid. Still no scroll trapping or forced slides.
+
+## 2026-10-28 — Trust and licensing resources (Services overview)
+- User provided Google, Facebook, HomeAdvisor "five star" logos and official TSBPE wordmark. They asked to use images in a new strip under Customer Feedback and above full-photo CTA. Only `services/index.html` modified, not Home/service-detail pages.
+- Four logos cropped/optimized into local WebP. Five-star star graphics intentionally excluded to avoid unverified five-star ratings. Google wordmark links existing Google Maps business profile (prior Home lists 4.9, no new perfect score). HomeAdvisor wordmark links the specific business listing, measured at 4.6/5 with 327 reviews on 2026-10-28: https://www.homeadvisor.com/rated.McBridePlumbing.132331234.html.
+- Official Texas State Board of Plumbing Examiners wordmark placed in separate licensing information row, linked to official public license lookup https://tsbpe.texas.gov/pls; explicitly *not* represented as proof of this business's license or state endorsement. Reference: https://tsbpe.texas.gov/consumer-information/.
+- Facebook wordmark stored only as pending asset, not displayed; official company Facebook page and claimed five-star score not verified. Company responsible plumber license number likewise pending verification.
+- Responsive editorial white section with two review sources and separate regulatory lookup, no animation. New stylesheet `assets/css/service-trust.css`. Hero, six-service gallery, informational copy, review carousel, CTA, forms and stage noindex unchanged. Requires 375/768/1024/1440 visual check and successful deploy before closing phase.
