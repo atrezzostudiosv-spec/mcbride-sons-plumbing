@@ -1,6 +1,6 @@
-/* ATREZZO — MOBILE SERVICE FORM DIALOG 1.0
-   Scoped to Services and six detail pages. Desktop/tablet retain hero form.
-   No JS or unsupported dialog: original form remains inline and accessible. */
+/* ATREZZO — SHARED SERVICE FORM DIALOG 2.0
+   Desktop, tablet and phone share the same dialog and Request Service trigger.
+   Progressive enhancement keeps the original inline form without JavaScript. */
 .at-service-popup-trigger[hidden]{display:none!important}
 .at-service-popup-trigger{
   display:inline-flex;align-items:center;justify-content:center;
@@ -45,15 +45,22 @@
   width:100%;max-width:none;margin:0;padding:clamp(20px,5vw,30px);
   border:0;border-radius:0;box-shadow:none;background:#fdfdfa;
 }
-@media(min-width:768px){
-  .at-service-popup-trigger{display:none!important}
+/* Once enhanced: the hero becomes a single, cinematic text column at any width.
+   The same existing form panel lives only in the native modal. */
+html.at-service-popup-ready .service-hero-copy .at-service-original-contact{display:none!important}
+html.at-service-popup-ready .service-hero-grid{
+  grid-template-columns:minmax(0,1fr)!important;gap:0!important;
 }
+html.at-service-popup-ready .service-hero-copy{
+  width:100%;max-width:980px;padding-block:clamp(18px,4vw,76px);
+}
+html.at-service-popup-ready .service-hero-copy .at-service-popup-trigger:not([hidden]){
+  display:inline-flex!important;
+}
+html.at-service-dialog-open,html.at-service-dialog-open body{overflow:hidden}
+.at-service-form-dialog .hero-contact-heading{font-size:clamp(23px,3vw,30px)}
 @media(max-width:767px){
-  html.at-service-popup-ready .service-hero-copy .at-service-original-contact{display:none!important}
-  .service-hero-copy .at-service-popup-trigger:not([hidden]){display:inline-flex}
-  html.at-service-dialog-open,html.at-service-dialog-open body{overflow:hidden}
-  .service-hero-grid{gap:0}
-  .at-service-form-dialog .hero-contact-heading{font-size:clamp(23px,6vw,29px)}
+  html.at-service-popup-ready .service-hero-copy{padding-block:0}
 }
 @media(max-width:400px){
   .at-service-popup-trigger{width:100%}
