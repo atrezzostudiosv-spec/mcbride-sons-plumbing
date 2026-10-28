@@ -147,3 +147,33 @@
 @media(prefers-reduced-motion:reduce){
   .at-site-nav .at-services-panel,.at-site-nav .at-services-toggle svg{transition:none}
 }
+
+
+/* 2026-10-28 — Service ribbon on phones/tablets.
+   Keep the desktop announcement and every other site's page untouched.
+   One centered emergency badge; hide repeated announcement, family label and
+   telephone only in this TOP ribbon (the sticky mobile call bar remains). */
+@media(max-width:1023px){
+  html:is([data-page="services"],[data-page="service-detail"]) .at-internal-announcement{
+    padding:8px 14px!important;
+  }
+  html:is([data-page="services"],[data-page="service-detail"]) .at-internal-announcement>div{
+    display:flex!important;flex-direction:row!important;justify-content:center!important;
+    align-items:center!important;gap:0!important;width:100%;max-width:none;
+    margin:0 auto;text-align:center!important;
+  }
+  html:is([data-page="services"],[data-page="service-detail"]) .at-internal-announcement>div>div:first-child{
+    display:flex!important;flex-direction:row!important;justify-content:center!important;
+    align-items:center!important;gap:0!important;max-width:100%;width:100%;
+  }
+  html:is([data-page="services"],[data-page="service-detail"]) .at-internal-announcement>div>div:first-child>span:nth-child(2),
+  html:is([data-page="services"],[data-page="service-detail"]) .at-internal-announcement>div>div:nth-child(2){
+    display:none!important;
+  }
+  html:is([data-page="services"],[data-page="service-detail"]) .at-internal-announcement>div>div:first-child>span:first-child{
+    display:inline-flex!important;align-items:center;justify-content:center;gap:8px;
+    padding:5px 13px!important;max-width:100%;white-space:nowrap;
+    border-radius:999px;font-size:11px;line-height:1.4;
+    text-align:center;letter-spacing:.055em;
+  }
+}
