@@ -242,3 +242,10 @@ Updated: 2026-10-24
 - **VERIFIED in source:** JS syntax valid, CSS balanced, mobile-specific rules, the same desktop phase math, family and services JS untouched, same four values, images and two business benefit blocks, staging noindex retained.
 - **TESTED IN LOCAL CHROMIUM SIMULATION** of the mobile transform algorithm: at widths 375, 640, 767px scene offset falls from hundreds of px to zero as viewport scrolls; reduced-motion mode yields `transform:none`. This tests the motion algorithm but **is not a real deployed-site viewport test**.
 - **NOT VERIFIED on real device:** iOS Safari/Android live animation, actual clipping/imagery or runtime loading on GitHub Pages, cross-viewport layout and Lighthouse. Status: **EN VALIDACIÓN** pending a real mobile visual check.
+
+## 2026-10-28 — OUR APPROACH mobile photographic zoom 3.2
+- User requested a slightly more perceptible zoom **only while OUR APPROACH mobile scenes enter**, following the approved right-to-left scroll motion. GitHub read/write verified and change directly committed.
+- Changed the mobile photo-only scroll transform from `scale(1.11 → 1.025)` to `scale(1.16 → 1.02)` by editing one expression in `assets/js/main.js`. The four scenes' text stays stationary within its own moving section, with no separate text scaling; the existing scene lateral offset, desktop/tablet timing, reduced-motion fallback, and all other Home sections remain unchanged.
+- Updated only the `main.js` cache key in `index.html` to ensure deployed browsers load the new animation.
+- **VERIFIED IN SOURCE:** single JS expression changed in the Approach module, JavaScript parses, desktop math and mobile translation unchanged, all four approach scenes/six services/three authentic family portraits/form/H1 and noindex still present.
+- **NO COMPROBADO:** perceived smoothness and crop on physical iOS/Android devices or Lighthouse. **EN VALIDACIÓN** pending real mobile visual confirmation.
