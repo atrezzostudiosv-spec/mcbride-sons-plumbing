@@ -1,5 +1,5 @@
-/* ATREZZO / MCBRIDE HOME ART DIRECTION 1.0 — 28 Oct 2026
-   Palette approved: black header, white menu, original green logo with
+/* ATREZZO / MCBRIDE HOME ART DIRECTION 1.1 — 28 Oct 2026
+   Palette approved: softer charcoal header, white menu, original green logo with
    boosted on-dark legibility, bright green announcement band, neutral light
    content surfaces, charcoal photographic overlays, green only as accent.
    Home-only style layer, placed after home.css and home-experience.css.
@@ -13,8 +13,12 @@
 .site-announcement{background:#307953;color:#FFFFFF}
 .site-announcement a{color:#FFFFFF}
 .site-announcement .announcement-dot{background:#E1F7E6;box-shadow:0 0 0 3px rgba(255,255,255,.16)}
-.site-header{background:#101414;border-bottom:1px solid rgba(255,255,255,.13);box-shadow:0 7px 25px rgba(0,0,0,.12)}
+.site-header{background:#1A1E1F;border-bottom:1px solid rgba(255,255,255,.13);box-shadow:0 7px 25px rgba(0,0,0,.12)}
 .site-header .brand img{
+  width:164px;
+  height:59px;
+  object-fit:contain;
+  object-position:left center;
   filter:brightness(0) saturate(100%) invert(71%) sepia(20%) saturate(778%) hue-rotate(88deg) brightness(90%) contrast(91%);
   opacity:1;
 }
@@ -26,7 +30,7 @@
 .site-header .nav-call-number{color:#ECF7EF}
 .site-header .mobile-menu-toggle{background:transparent;border-color:rgba(255,255,255,.36)}
 .site-header .menu-lines,.site-header .menu-lines::before,.site-header .menu-lines::after{background:#FFFFFF}
-.site-header .mobile-nav{background:#171B1C;color:#FFFFFF;box-shadow:0 18px 30px rgba(0,0,0,.22)}
+.site-header .mobile-nav{background:#1A1E1F;color:#FFFFFF;box-shadow:0 18px 30px rgba(0,0,0,.22)}
 .site-header .mobile-nav a{color:#F3F7F4;border-bottom-color:rgba(255,255,255,.16)}
 .site-header .mobile-nav a:hover,.site-header .mobile-nav a[aria-current]{color:#AFE8C0}
 /* Human cinematic hero: image retains its real hues. */
@@ -96,8 +100,8 @@
 .family .family-person figcaption span{color:#26734F}
 .family .family-person.is-family-current figcaption span{background:#26734F;border-color:#26734F;color:#FFFFFF}
 .family .family-end{border-top-color:#E0E7E1}
-/* Right-to-left OUR APPROACH: neutral carbon darkens photos without tint. */
-.approach.approach-cinema{background:#1A1E1F}
+/* Green editorial OUR APPROACH intro/outro; neutral carbon on moving photos (no green tint). */
+.approach.approach-cinema{background:#205B43}
 .approach-cinema .approach-cinema-intro h2 em{color:#ADE5BC}
 .approach-cinema .approach-cinema-intro>p{color:#DFEAE1}
 .approach-cinema .approach-cinema-cue{color:#C4E6CE}
@@ -116,7 +120,7 @@
 .approach-cinema .approach-cinema-benefits{border-top-color:rgba(255,255,255,.25)}
 .approach-cinema .approach-cinema-benefits strong{color:#FFFFFF}
 .approach-cinema .approach-cinema-benefits p{color:#DCE6DE}
-/* Reviews and CTA: bright interlude, accessible graphite footer. */
+/* Reviews and CTA: bright interlude, footer returns to the brand forest. */
 .reviews-section{background:#F8FAF8;border-top-color:#E2E8E3}
 .reviews-score{border-color:#D9E1DB}
 .reviews-score-number{color:#202727}
@@ -126,11 +130,18 @@
 .reviews-google-link,.end-cta .button-dark{background:#26734F;color:#FFFFFF}
 .reviews-google-link:hover,.end-cta .button-dark:hover{background:#348F63}
 .end-cta{background:#F3F7F4}
-.site-footer{background:#191D1E;color:#FFFFFF}
+.site-footer{background:#174532;color:#FFFFFF}
 .footer-grid strong{color:#C4E9CD}
 .footer-grid p,.footer-contact span{color:#D4DED6}
 .footer-grid a{color:#F5F8F5}
 .footer-bottom{border-top-color:rgba(255,255,255,.23);color:#C3D1C6}
+/* Slightly smaller header logo at tablet/mobile without changing header spacing. */
+@media(max-width:900px){
+  .site-header .brand img{width:145px;height:53px}
+}
+@media(max-width:640px){
+  .site-header .brand img{width:126px;height:48px}
+}
 /* Device-specific neutral overlays preserve text contrast in narrow scenes. */
 @media(max-width:1023px){
   .hero::after{background:linear-gradient(180deg,rgba(10,12,13,.66),rgba(10,12,13,.70) 40%,rgba(10,12,13,.80) 73%,rgba(10,12,13,.87))}
