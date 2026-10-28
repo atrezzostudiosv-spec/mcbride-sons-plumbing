@@ -213,3 +213,11 @@
 }
 
 /* No layout/scroll changes and no modification to reduced-motion behavior. */
+
+/* OUR APPROACH: four user-supplied horizontal WebP photos; mobile focal positions
+   preserve the subject without touching existing animation, shade or geometry. */
+@media(max-width:767px){
+  .approach-cinema .approach-scene-photo{
+    object-position:var(--approach-mobile-position,var(--approach-image-position,center));
+  }
+}
