@@ -446,11 +446,11 @@
   mobile.addEventListener?.('change', prepare);
 })();
 
-// ATREZZO OUR APPROACH CINEMA 3.0 — scroll-linked horizontal chapters.
-// No scroll locking: regular vertical page scrolling controls four scenes.
-// Desktop/tablet >=768px: three scenes enter over the previous from right.
-// Mobile: a gentle independent one-time right-to-left reveal per scene.
-// Reduced motion or unsupported APIs: all four scenes remain normal blocks.
+// ATREZZO OUR APPROACH CINEMA 3.1 — responsive scroll-linked chapters.
+// >=768px: existing four-stage horizontal pinned story (unchanged).
+// <=767px: each separate full-width image scene enters from the right as
+// vertical scrolling progresses; subtle photo zoom without pinning the page.
+// No wheel interception, no timers, and static content without JS/reduced motion.
 (() => {
   const story = document.querySelector('.approach-cinema .approach-story');
   if (!story) return;
@@ -460,8 +460,9 @@
 
   const wide = window.matchMedia('(min-width: 768px)');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const supportsFrame = typeof window.requestAnimationFrame === 'function';
+  const clamp = (value, lower, upper) => Math.min(upper, Math.max(lower, value));
   let queued = false;
-  let mobileObserver = null;
 
   scenes.forEach(scene => {
     const image = scene.querySelector('.approach-scene-photo');
@@ -471,10 +472,7 @@
     });
   });
 
-  const clamp = (value, lower, upper) => Math.min(upper, Math.max(lower, value));
-  const sync = () => {
-    queued = false;
-    if (!wide.matches || reduced.matches || !story.classList.contains('is-cinema-ready')) return;
+  const syncDesktop = () => {
     const region = story.getBoundingClientRect();
     if (region.bottom < -10 || region.top > window.innerHeight + 10) return;
     const travel = Math.max(1, story.offsetHeight - stage.offsetHeight);
@@ -488,39 +486,56 @@
       scene.style.setProperty('--approach-scale', zoom.toFixed(3));
     });
   };
+
+  // The full movement happens over roughly 38% of the mobile viewport:
+  // visible in a normal swipe, yet finished by the time the title is central.
+  const syncMobile = () => {
+    const viewportHeight = Math.max(1, window.innerHeight || document.documentElement.clientHeight);
+    const start = viewportHeight * 0.86;
+    const travel = Math.max(170, viewportHeight * 0.38);
+    const maxOffset = Math.min(window.innerWidth * 0.72, 360);
+
+    scenes.forEach(scene => {
+      const box = scene.getBoundingClientRect();
+      // Avoid unnecessary work for chapters far from the visible viewport.
+      if (box.bottom < -viewportHeight || box.top > viewportHeight * 1.4) return;
+      const progress = clamp((start - box.top) / travel, 0, 1);
+      const position = maxOffset * (1 - progress);
+      const zoom = 1.11 - (0.085 * progress);
+      scene.style.setProperty('--approach-mobile-x', position.toFixed(1) + 'px');
+      scene.style.setProperty('--approach-mobile-scale', zoom.toFixed(3));
+    });
+  };
+
+  const sync = () => {
+    queued = false;
+    if (reduced.matches) return;
+    if (wide.matches && story.classList.contains('is-cinema-ready')) syncDesktop();
+    else if (!wide.matches && supportsFrame) syncMobile();
+  };
   const requestSync = () => {
-    if (!wide.matches || reduced.matches || queued) return;
+    if (queued || reduced.matches || !supportsFrame) return;
     queued = true;
     window.requestAnimationFrame(sync);
   };
 
   const configure = () => {
-    if (mobileObserver) {mobileObserver.disconnect();mobileObserver = null;}
-    scenes.forEach(scene => scene.classList.remove('is-mobile-reveal-ready', 'is-approach-visible'));
+    const enableDesktop = wide.matches && !reduced.matches && supportsFrame;
+    const enableMobile = !wide.matches && !reduced.matches && supportsFrame;
+    story.classList.toggle('is-cinema-ready', enableDesktop);
 
-    if (wide.matches && !reduced.matches && typeof window.requestAnimationFrame === 'function') {
-      story.classList.add('is-cinema-ready');
-      requestSync();
-    } else {
-      story.classList.remove('is-cinema-ready');
-      scenes.forEach(scene => {
+    scenes.forEach(scene => {
+      scene.classList.toggle('is-mobile-scroll-ready', enableMobile);
+      if (!enableDesktop) {
         scene.style.removeProperty('--approach-x');
         scene.style.removeProperty('--approach-scale');
-      });
-      if (!reduced.matches && 'IntersectionObserver' in window) {
-        mobileObserver = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('is-approach-visible');
-            mobileObserver.unobserve(entry.target);
-          });
-        }, {threshold:0.09, rootMargin:'0px 0px -7% 0px'});
-        scenes.forEach(scene => {
-          scene.classList.add('is-mobile-reveal-ready');
-          mobileObserver.observe(scene);
-        });
       }
-    }
+      if (!enableMobile) {
+        scene.style.removeProperty('--approach-mobile-x');
+        scene.style.removeProperty('--approach-mobile-scale');
+      }
+    });
+    requestSync();
   };
 
   document.addEventListener('scroll', requestSync, {passive:true});
