@@ -44,8 +44,14 @@
   let directionDistance = 0;
   let queued = false;
 
-  const show = () => header.classList.remove('is-scroll-hidden');
-  const hide = () => header.classList.add('is-scroll-hidden');
+  const show = () => {
+    header.classList.remove('is-scroll-hidden');
+    document.documentElement.classList.remove('at-cinema-header-hidden');
+  };
+  const hide = () => {
+    header.classList.add('is-scroll-hidden');
+    document.documentElement.classList.add('at-cinema-header-hidden');
+  };
   const isUsingMenu = () => header.matches(':hover') || header.contains(document.activeElement);
 
   const check = () => {
