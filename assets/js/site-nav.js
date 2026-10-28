@@ -14,13 +14,32 @@
     group.classList.remove('is-open');
     toggle.setAttribute('aria-expanded','false');
   };
+  const showDesktop=()=>{
+    if(group.classList.contains('is-dismissed'))return;
+    group.classList.add('is-open');
+    toggle.setAttribute('aria-expanded','true');
+  };
+  group.addEventListener('pointerenter',showDesktop);
+  group.addEventListener('pointerleave',()=>{
+    group.classList.remove('is-dismissed');
+    if(!group.contains(document.activeElement))closeDesktop();
+  });
+  group.addEventListener('focusin',showDesktop);
+  group.addEventListener('focusout',event=>{
+    if(!group.contains(event.relatedTarget)){
+      group.classList.remove('is-dismissed');
+      closeDesktop();
+    }
+  });
   toggle.addEventListener('click',()=>{
-    const open=toggle.getAttribute('aria-expanded')!=='true';
+    const open=toggle.getAttribute('aria-expanded')!=='true' || group.classList.contains('is-dismissed');
+    group.classList.remove('is-dismissed');
     group.classList.toggle('is-open',open);
     toggle.setAttribute('aria-expanded',String(open));
   });
   group.addEventListener('keydown',e=>{
     if(e.key==='Escape'){
+      group.classList.add('is-dismissed');
       closeDesktop();
       toggle.focus();
     }
