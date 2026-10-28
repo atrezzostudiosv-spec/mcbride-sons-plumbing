@@ -8,8 +8,8 @@
   if(cards.length!==6)return;
   const mobile=window.matchMedia('(max-width: 767px)');
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
-  if(reduced.matches || !mobile.matches) return;
   if(typeof IntersectionObserver!=='function'||typeof requestAnimationFrame!=='function') return;
+  const motionAllowed=()=>mobile.matches&&!reduced.matches;
   const visible=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
       if(!entry.isIntersecting)return;
@@ -17,12 +17,6 @@
       visible.unobserve(entry.target);
     });
   },{threshold:0.06,rootMargin:'0px 0px 65px 0px'});
-  cards.forEach(card=>{
-    const bounds=card.getBoundingClientRect();
-    if(bounds.top < innerHeight - 30) card.classList.add('is-visible');
-    else visible.observe(card);
-  });
-  gallery.classList.add('at-gallery-motion-ready');
   const photos=cards.map(card=>({frame:card.querySelector('.at-gallery-media'),photo:card.querySelector('.at-gallery-media img')}));
   let framePending=false;
   const refreshZoom=()=>{
@@ -43,7 +37,24 @@
     framePending=true;
     requestAnimationFrame(refreshZoom);
   };
+  const syncMode=()=>{
+    const enabled=motionAllowed();
+    gallery.classList.toggle('at-gallery-motion-ready',enabled);
+    if(enabled){
+      cards.forEach(card=>{
+        if(card.classList.contains('is-visible'))return;
+        const bounds=card.getBoundingClientRect();
+        if(bounds.top < innerHeight - 30)card.classList.add('is-visible');
+        else visible.observe(card);
+      });
+      schedule();
+    }else{
+      photos.forEach(({photo})=>photo?.style.removeProperty('--at-gallery-scroll-zoom'));
+    }
+  };
   window.addEventListener('scroll',schedule,{passive:true});
   window.addEventListener('resize',schedule,{passive:true});
-  schedule();
+  mobile.addEventListener?.('change',syncMode);
+  reduced.addEventListener?.('change',syncMode);
+  syncMode();
 })();
