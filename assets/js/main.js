@@ -29,6 +29,76 @@
 })();
 
 
+// ATREZZO SMART STICKY HEADER 1.0 — Home desktop only (>=1024px).
+// Hide on sustained downward scroll and return promptly when scrolling up.
+// Keep nav visible at the page top, while hovered/focused or on reduced motion.
+// No scroll interception, no change to mobile/tablet or cinematic chapters.
+(() => {
+  const header = document.getElementById('site-header');
+  if (!header || !document.querySelector('.approach-cinema') || !window.matchMedia ||
+      typeof window.requestAnimationFrame !== 'function') return;
+
+  const desktop = window.matchMedia('(min-width: 1024px)');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let previousY = Math.max(0, window.scrollY || 0);
+  let directionDistance = 0;
+  let queued = false;
+
+  const show = () => header.classList.remove('is-scroll-hidden');
+  const hide = () => header.classList.add('is-scroll-hidden');
+  const isUsingMenu = () => header.matches(':hover') || header.contains(document.activeElement);
+
+  const check = () => {
+    queued = false;
+    const y = Math.max(0, window.scrollY || 0);
+    const delta = y - previousY;
+    previousY = y;
+
+    if (!desktop.matches || reduced.matches || y <= Math.max(140, header.offsetHeight + 35)) {
+      directionDistance = 0;
+      show();
+      return;
+    }
+    if (isUsingMenu()) {
+      directionDistance = 0;
+      show();
+      return;
+    }
+    if (Math.abs(delta) < 1) return;
+    if (directionDistance !== 0 && Math.sign(delta) !== Math.sign(directionDistance)) {
+      directionDistance = 0;
+    }
+    directionDistance = Math.max(-50, Math.min(50, directionDistance + delta));
+
+    if (directionDistance <= -7) {
+      show();
+      directionDistance = 0;
+    } else if (directionDistance >= 16) {
+      hide();
+      directionDistance = 0;
+    }
+  };
+  const schedule = () => {
+    if (queued) return;
+    queued = true;
+    window.requestAnimationFrame(check);
+  };
+  const reset = () => {
+    previousY = Math.max(0, window.scrollY || 0);
+    directionDistance = 0;
+    show();
+  };
+
+  window.addEventListener('scroll', schedule, {passive:true});
+  window.addEventListener('resize', reset, {passive:true});
+  header.addEventListener('focusin', reset);
+  header.addEventListener('mouseenter', reset);
+  desktop.addEventListener?.('change', reset);
+  reduced.addEventListener?.('change', reset);
+  reset();
+})();
+
+
 // Real staging form submit, with a third-party email relay (FormSubmit.co).
 // 200/OK means provider accepted the request, NOT proof of Gmail delivery.
 // Never pretend submission succeeded on failure.
