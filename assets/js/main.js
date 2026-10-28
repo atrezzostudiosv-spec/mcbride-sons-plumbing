@@ -501,7 +501,7 @@
       if (box.bottom < -viewportHeight || box.top > viewportHeight * 1.4) return;
       const progress = clamp((start - box.top) / travel, 0, 1);
       const position = maxOffset * (1 - progress);
-      const zoom = 1.11 - (0.085 * progress);
+      const zoom = 1.16 - (0.14 * progress);
       scene.style.setProperty('--approach-mobile-x', position.toFixed(1) + 'px');
       scene.style.setProperty('--approach-mobile-scale', zoom.toFixed(3));
     });
