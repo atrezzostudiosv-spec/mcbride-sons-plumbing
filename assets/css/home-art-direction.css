@@ -203,4 +203,13 @@
   .approach-cinema .approach-story.is-cinema-ready .approach-stage{height:100svh}
 }
 
+/* MCBRIDE SIX SCENES — MOBILE PHOTO FOCAL 1.0
+   Each uploaded panorama keeps the technician/action visible on portrait
+   devices. No changes to existing scroll, zoom, text or stage geometry. */
+@media(max-width:640px){
+  .services .service-scene-photo{
+    object-position:var(--scene-mobile-position,var(--scene-position,center));
+  }
+}
+
 /* No layout/scroll changes and no modification to reduced-motion behavior. */
