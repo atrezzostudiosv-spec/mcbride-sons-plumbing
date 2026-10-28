@@ -538,7 +538,7 @@
     requestSync();
   };
 
-  document.addEventListener('scroll', requestSync, {passive:true});
+  window.addEventListener('scroll', requestSync, {passive:true});
   window.addEventListener('resize', requestSync, {passive:true});
   wide.addEventListener?.('change', configure);
   reduced.addEventListener?.('change', configure);
