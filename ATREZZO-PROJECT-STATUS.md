@@ -337,3 +337,7 @@ Updated: 2026-10-24
 - Binary inspection of the six actual locally hosted service WebP assets revealed varied intrinsic dimensions, not generic 1875×845. Updated each of seven immersive CTA image tags to the matching factual native width/height (drain 1852×849; leak 1852×849; hydro 1876×838; water heater 1877×838; sewer 1864×844; bathroom 1853×849). Source image bytes and artwork unchanged.
 - Replaced the preexisting seven-page footer/announcement text **'Licensed & Insured'**, where current insurance status was not independently established, with sourced **'Family-Owned Plumbing'**. This does not affect the confirmed 24/7 contact claim, original site services or public phone; license details remain subject to independent validation before production. Home/About/Contact unchanged.
 - Full rendered QA still not established by source inspection.
+
+## 2026-10-28 — SERVICE REVIEWS: progressive enhancement accessibility correction
+- Review rail movement now starts **only after** JavaScript initializes the pause control (`data-motion-ready=true`); with JS disabled it stays statically scrollable. Accessible keyboard focus/hover pauses motion, button offers pause/resume, and reduced-motion remains static and horizontally scrollable. No unpausable autoplay is introduced in a no-JS context.
+- Scope exclusively shared `assets/css/service-editorial.css` + `assets/js/service-editorial.js` (service pages only); no copy or Home changes. Source validation only; cross-device observed QA still pending.
