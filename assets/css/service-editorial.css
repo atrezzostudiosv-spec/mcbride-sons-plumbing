@@ -58,3 +58,44 @@
 @media(max-width:1023px){.at-editorial-wrap{width:calc(100% - 52px)}.at-education-head{grid-template-columns:1fr;gap:24px}.at-education-layout{gap:38px;grid-template-columns:minmax(0,1fr) minmax(235px,.75fr)}.at-review-item{min-height:260px}}
 @media(max-width:767px){.at-editorial-wrap{width:calc(100% - 36px)}.at-education-layout{grid-template-columns:1fr;gap:0}.at-education-aside{margin-top:30px}.at-education-row{grid-template-columns:40px 1fr;padding:28px 0}.at-review-pause{align-self:flex-start}.at-reviews-heading{align-items:flex-start;flex-direction:column;gap:20px}.at-review-item{flex-basis:min(330px,calc(100vw - 52px));padding:27px;min-height:270px}.at-photo-cta{min-height:620px}.at-photo-cta-shade{background:linear-gradient(180deg,rgba(8,17,14,.75) 0%,rgba(8,17,14,.70) 42%,rgba(8,17,14,.92) 100%)}.at-photo-cta-image{object-position:62% center}.at-review-source{flex-direction:column;align-items:start}}
 @media(prefers-reduced-motion:reduce){.at-review-track{animation:none!important;will-change:auto}.at-review-viewport,.at-reviews[data-motion-ready="true"] .at-review-viewport{overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:thin}.at-review-item{scroll-snap-align:start}.at-photo-cta-image{transform:none}}
+
+/* 2026-10-28 — unified Google proof & cinematic review experience, Home + Services.
+   Numeric rating is inherited from the approved Home, and must be re-verified for production. */
+.at-reviews-heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(235px,290px);align-items:end;column-gap:clamp(32px,6vw,105px);margin-bottom:18px}
+.at-review-intro{min-width:0}
+.at-review-intro h2{max-width:660px}
+.at-review-intro p{max-width:570px}
+.at-rating-panel{display:flex;flex-direction:column;align-items:flex-start;padding:12px 0 12px clamp(25px,3vw,52px);border-left:1px solid #d7e0d8;min-width:0}
+.at-rating-label{display:flex;align-items:center;gap:13px;color:#557365;font-size:11px;font-weight:800;letter-spacing:.13em}
+.at-google-mark{font-family:Arial,sans-serif;font-size:25px;letter-spacing:0;font-weight:700;background:conic-gradient(#4285f4 0deg 95deg,#34a853 95deg 185deg,#fbbc05 185deg 260deg,#ea4335 260deg 310deg,#4285f4 310deg);background-clip:text;-webkit-background-clip:text;color:transparent}
+.at-rating-number{font-weight:800;font-size:clamp(60px,6vw,82px);letter-spacing:-.075em;line-height:1.12;color:#202727;font-variant-numeric:tabular-nums;margin-top:13px}
+.at-rating-number small{font-size:.37em;letter-spacing:-.04em;color:#71857a;margin-left:2px}
+.at-rating-stars{font-size:20px;letter-spacing:.1em;color:#9d7b36;line-height:1.5}
+.at-rating-count{font-size:13px;color:#64776a;margin-top:5px}
+.at-rating-caveat{font-size:10px;color:#7e8c83;margin-top:5px;line-height:1.5}
+.at-reviews-controls{display:flex;justify-content:flex-end;align-items:center;width:min(1250px,calc(100% - 80px));margin:0 auto 22px;min-height:46px}
+.at-review-source{align-items:center}
+.at-review-footnote{display:flex;flex-direction:column;gap:11px;min-width:0}
+.at-review-source-links{display:flex;gap:18px;flex-wrap:wrap}
+.at-review-source .at-google-reviews-link{display:inline-flex;align-items:center;justify-content:center;gap:15px;min-height:52px;flex:none;padding:15px 20px;background:#26734f;color:#fff;border-radius:4px;font-weight:800;font-size:13px;text-decoration:none;white-space:nowrap;transition:background .2s ease}
+.at-review-source .at-google-reviews-link:hover{background:#318b60;color:#fff}
+.at-review-source .at-google-reviews-link:focus-visible{outline:3px solid #26734f;outline-offset:4px}
+.at-home-photo-cta .at-photo-cta-image{object-position:var(--at-cta-focal,65% center)}
+@media(max-width:1023px){
+ .at-reviews-heading{grid-template-columns:minmax(0,1fr) minmax(190px,240px);gap:32px}
+ .at-reviews-controls{width:calc(100% - 52px)}
+ .at-rating-panel{padding-left:25px}
+ .at-review-intro h2{font-size:clamp(38px,5vw,56px)}
+}
+@media(max-width:767px){
+ .at-reviews-heading{grid-template-columns:1fr;gap:30px}
+ .at-review-intro h2{font-size:clamp(36px,8.8vw,54px)}
+ .at-rating-panel{border-left:0;border-top:1px solid #d7e0d8;padding:22px 0 0;display:grid;grid-template-columns:1fr 1fr;column-gap:15px;align-items:end}
+ .at-rating-label{grid-column:1/-1}
+ .at-rating-number{grid-row:2/5}
+ .at-rating-stars,.at-rating-count,.at-rating-caveat{grid-column:2;min-width:0}
+ .at-rating-stars{align-self:end}
+ .at-reviews-controls{width:calc(100% - 36px);justify-content:flex-start;margin-bottom:24px}
+ .at-review-source .at-google-reviews-link{width:100%;white-space:normal}
+ .at-home-photo-cta .at-photo-cta-image{object-position:70% center}
+}
