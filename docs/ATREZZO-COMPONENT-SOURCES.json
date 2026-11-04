@@ -1,0 +1,17 @@
+[
+  {
+    "file": "assets/atrezzo/service-showcase.css",
+    "source": "SECTIONS/ATREZZO_SERVICE_SHOWCASE_01/assets/css/atrezzo-service-showcase.css",
+    "sha256": "bfa3d0f659daa4dea22fe49ff64fea6d85fd03a62baa77db0b57805f59899899"
+  },
+  {
+    "file": "assets/atrezzo/service-showcase.js",
+    "source": "SECTIONS/ATREZZO_SERVICE_SHOWCASE_01/assets/js/atrezzo-service-showcase.js",
+    "sha256": "c6a89720997e2cff24315c41e4561182f97d198f43fc35be889e34ed26b57fb7"
+  },
+  {
+    "file": "assets/atrezzo/cards-01.css",
+    "source": "CARDS/Atrezzo_Cards_01_COMPLETO/assets/css/cards-01.css",
+    "sha256": "ad4d230f4e623cb4c3724c354c0d234f4328e070bd488f3bb595f7addde3283b"
+  }
+]

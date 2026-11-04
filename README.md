@@ -1,3 +1,7 @@
+## Service content update — 2026-11-04
+
+The six service detail pages and the informative block of Services now use original local Atrezzo components: Guided Service Atlas, Open Process Cards and (on detail pages) Visual Feature Mosaic. See `docs/ATREZZO-SERVICE-CONTENT.md` for provenance, adaptations and verification. Edit `content/service-content.json` and run `python3 scripts/build-service-content.py` to rebuild these sections. The SEO/footer generator remains independent.
+
 ## Current update — 2026-11-04
 
 - Ten pages share one static footer, generated from `templates/footer.html`, with six working service links and consistent business contact details.

@@ -1,0 +1,231 @@
+{
+  "bathroom-remodeling": {
+    "slug": "bathroom-remodeling",
+    "route": "services/bathroom-remodeling/index.html",
+    "title": "Plumbing for Bathroom Remodeling.",
+    "education_title": "Planning the plumbing side of a bathroom update",
+    "education_intro": "Bathroom remodeling can involve fixtures, connections and plumbing-layout decisions. McBride & Sons Plumbing lists plumbing support for bathroom remodeling; this is not a claim that the company provides complete design, cabinetry, flooring or general contracting.",
+    "chapters": [
+      {
+        "title": "Start with fixture locations",
+        "text": "Knowing which plumbing fixtures may remain in place and which may move helps frame the conversation. A change in layout can affect supply and drainage requirements."
+      },
+      {
+        "title": "Coordinate plumbing before finishes",
+        "text": "Planning the plumbing portion early can help identify questions about access, existing connections and fixture compatibility before finished surfaces are installed. Exact project scope needs confirmation."
+      }
+    ],
+    "questions": "Which plumbing fixtures are changing? Are their locations staying the same? Is the bathroom already under renovation?",
+    "caution": "Discuss the plumbing scope separately from any non-plumbing remodeling work.",
+    "baseline_sha256": "6622ebd7498744a81b4c2f2e6fe5a3d43678f490506a0be55151a34118fc2447",
+    "overview_title": "Plumbing Support for Bathroom Changes",
+    "conversation_title": "Discuss Your Project’s Plumbing Needs",
+    "overview_text": "McBride & Sons Plumbing offers plumbing support for bathroom remodeling projects, including fixture upgrades, layout changes and plumbing-system improvements.",
+    "conversation_text": "Tell us about your planned fixture upgrades, layout changes, or plumbing-system improvements, and discuss the plumbing work involved.",
+    "related": [
+      {
+        "href": "../leak-repair/index.html",
+        "name": "Leak Repair ↗"
+      },
+      {
+        "href": "../water-heaters/index.html",
+        "name": "Water Heater Services ↗"
+      }
+    ]
+  },
+  "drain-cleaning": {
+    "slug": "drain-cleaning",
+    "route": "services/drain-cleaning/index.html",
+    "title": "Drain Cleaning That Gets Things Flowing.",
+    "education_title": "Understanding a blocked drain",
+    "education_intro": "A slow sink or recurring backup is worth describing carefully. Drain cleaning is one of McBride & Sons Plumbing’s listed services; the information below explains common plumbing concerns, not a diagnosis or a promise about any particular method.",
+    "chapters": [
+      {
+        "title": "Look beyond one slow fixture",
+        "text": "Hair, soap residue, grease and other debris can restrict a drain. A recurring blockage or several slow fixtures can suggest a problem beyond a single sink or tub."
+      },
+      {
+        "title": "When a blockage needs attention",
+        "text": "Standing water, repeated backups or wastewater coming up through another fixture are reasons to contact a plumbing professional. Avoid repeatedly adding chemical cleaners, and tell the plumber if any products have already been used."
+      }
+    ],
+    "questions": "Which fixtures are affected? When did the trouble start? Is the water draining slowly, not draining at all, or backing up elsewhere?",
+    "caution": "If wastewater is overflowing, avoid using affected fixtures while arranging professional assistance.",
+    "baseline_sha256": "63e15d0c288534d0b58775bb3bf4f26670b7533ee064e9b0db5dea65d159adff",
+    "overview_title": "Addressing Drain Blockages",
+    "conversation_title": "Talk With a Plumbing Professional",
+    "overview_text": "Clogged drains can interfere with daily routines. McBride & Sons Plumbing lists drain cleaning among its core services and describes safe, effective methods to restore flow and help prevent future blockages.",
+    "conversation_text": "Describe the drainage issue you are experiencing when you call. Our team can discuss your concern and the next step for service.",
+    "related": [
+      {
+        "href": "../hydro-jetting/index.html",
+        "name": "Hydro-Jetting ↗"
+      },
+      {
+        "href": "../drain-sewer-repair/index.html",
+        "name": "Drain & Sewer Repair ↗"
+      }
+    ]
+  },
+  "drain-sewer-repair": {
+    "slug": "drain-sewer-repair",
+    "route": "services/drain-sewer-repair/index.html",
+    "title": "Drain & Sewer Repair.",
+    "education_title": "When drainage problems go beyond a clog",
+    "education_intro": "Drain and sewer lines can develop restrictions or damage over time. McBride & Sons Plumbing lists drain and sewer repair among its services for blocked, damaged or aging lines. The information below is general guidance, not a diagnosis.",
+    "chapters": [
+      {
+        "title": "Patterns help explain the problem",
+        "text": "Backups affecting several fixtures, recurring blockages or changes in drainage throughout the home may signal an issue involving a shared line rather than a single drain."
+      },
+      {
+        "title": "Repair begins with understanding the line",
+        "text": "The age and condition of a line, the affected area and the nature of any damage influence what may be needed. No particular inspection equipment, excavation method or repair technique is assumed here."
+      }
+    ],
+    "questions": "Is more than one fixture affected? Has the problem happened before? Are there signs outdoors or unusual odors near drains?",
+    "caution": "If sewage is entering living areas, avoid contact with wastewater and seek professional assistance.",
+    "baseline_sha256": "51dfee2c781274416edd0a0ce0d4dda132b7b27a302a787958038ad63e54e88f",
+    "overview_title": "Focused on Proper Function",
+    "conversation_title": "Discuss Your Concern",
+    "overview_text": "McBride & Sons Plumbing lists solutions for damaged, blocked or aging drain and sewer lines, with a focus on restoring proper function through appropriate repair work.",
+    "conversation_text": "Call to describe your drain or sewer issue and ask about service.",
+    "related": [
+      {
+        "href": "../drain-cleaning/index.html",
+        "name": "Drain Cleaning ↗"
+      },
+      {
+        "href": "../hydro-jetting/index.html",
+        "name": "Hydro-Jetting ↗"
+      }
+    ]
+  },
+  "hydro-jetting": {
+    "slug": "hydro-jetting",
+    "route": "services/hydro-jetting/index.html",
+    "title": "Hydro-Jetting for Stubborn Buildup.",
+    "education_title": "What to know about hydro-jetting",
+    "education_intro": "Hydro-jetting uses a concentrated flow of water to address buildup inside some drainage lines. McBride & Sons Plumbing explicitly lists this service for stubborn grease, debris and pipe buildup.",
+    "chapters": [
+      {
+        "title": "How it differs from basic clearing",
+        "text": "A basic blockage may be limited to one obstruction. Hydro-jetting is generally discussed when accumulated residue along a pipe needs attention rather than only a single isolated clog."
+      },
+      {
+        "title": "The pipe condition matters",
+        "text": "High-pressure cleaning is not automatically suitable for every drain. Pipe material, condition and the cause of the blockage should be evaluated before a cleaning method is chosen."
+      }
+    ],
+    "questions": "Has the line blocked repeatedly? Which drains are involved? Have you previously had any cleaning or pipe repairs?",
+    "caution": "Ask what assessment is appropriate for the line before assuming hydro-jetting is the right option.",
+    "baseline_sha256": "2f0f4a68bf3f100bc2954ba331eeb25e4af0371fc18c5dd585dac3bdcd0e40f7",
+    "overview_title": "A Focused Approach to Pipe Cleaning",
+    "conversation_title": "Discuss Your Plumbing Needs",
+    "overview_text": "McBride & Sons Plumbing lists hydro-jetting technology among its services. The technique is used to remove stubborn buildup, grease and debris inside pipes and support proper flow.",
+    "conversation_text": "Contact our team about your pipe-cleaning concern and ask whether hydro-jetting is appropriate for your situation.",
+    "related": [
+      {
+        "href": "../drain-cleaning/index.html",
+        "name": "Drain Cleaning ↗"
+      },
+      {
+        "href": "../drain-sewer-repair/index.html",
+        "name": "Drain & Sewer Repair ↗"
+      }
+    ]
+  },
+  "services": {
+    "slug": "services",
+    "route": "services/index.html",
+    "title": "Plumbing Services for Your Home.",
+    "education_title": "Finding the right plumbing conversation",
+    "education_intro": "Every plumbing concern begins with understanding the symptoms or the planned change. These general tips can help you describe the issue when contacting McBride & Sons Plumbing about one of its six listed services.",
+    "chapters": [
+      {
+        "title": "For repairs and drainage problems",
+        "text": "Note which fixture or area is involved, whether the problem is ongoing or intermittent, and if more than one location is affected."
+      },
+      {
+        "title": "For planned plumbing improvements",
+        "text": "Be ready to describe the fixture, the condition of existing connections and any layout changes under consideration. The company can clarify which work falls within its published services."
+      }
+    ],
+    "questions": "Identify the relevant service, describe what is happening, and share how to contact you. For urgent concerns, use the business phone number.",
+    "caution": "The company advertises 24/7 availability. Specific response times and appointment availability have not been confirmed.",
+    "baseline_sha256": "a0c90e1662f6cac2cf42ad97b0682e1c294933612187a085019b668427d6eb1a",
+    "overview_title": "Six services. One family commitment.",
+    "overview_text": "From common plumbing problems to planned improvements, explore McBride & Sons Plumbing’s six service categories and start a conversation about your home.",
+    "conversation_title": "Start with what you have noticed",
+    "conversation_text": "Describe the concern, choose the closest service category, and call the team to discuss the next step.",
+    "related": []
+  },
+  "leak-repair": {
+    "slug": "leak-repair",
+    "route": "services/leak-repair/index.html",
+    "title": "Leak Repair With Care for Your Home.",
+    "education_title": "Understanding the signs of a leak",
+    "education_intro": "Some leaks are visible at a fixture; others first appear as moisture, staining or unexplained water use. McBride & Sons Plumbing lists leak repair as a core service. This guide helps organize what to report before a professional assessment.",
+    "chapters": [
+      {
+        "title": "Small signs can be useful clues",
+        "text": "Damp cabinets, persistent dripping, water marks or an unexpected rise in water usage can indicate a leak. The location of visible moisture does not always identify its source."
+      },
+      {
+        "title": "Responding to active water loss",
+        "text": "If water is flowing uncontrollably, the priority is reducing exposure to the water where it is safe to do so. Know the location of the water shutoff, keep clear of electrical hazards, and seek professional assistance."
+      }
+    ],
+    "questions": "Where is the water showing up? Is the leak constant or intermittent? Is it near a fixture, pipe, wall or ceiling?",
+    "caution": "Do not touch wet electrical equipment or enter an area where water may have reached live wiring.",
+    "baseline_sha256": "b14bedac4828b93cfee19e4f84ceba461449be0a56b8f8732da10af281f8732b",
+    "overview_title": "Identify the Issue. Address the Leak.",
+    "conversation_title": "Start With a Conversation",
+    "overview_text": "Leaks can waste water and create concerns for your home. Our published services include diagnosing and repairing hidden pipe leaks and visible fixture issues.",
+    "conversation_text": "Tell McBride & Sons Plumbing what you have noticed, and speak with the team about your leak repair needs.",
+    "related": [
+      {
+        "href": "../drain-cleaning/index.html",
+        "name": "Drain Cleaning ↗"
+      },
+      {
+        "href": "../water-heaters/index.html",
+        "name": "Water Heater Services ↗"
+      }
+    ]
+  },
+  "water-heaters": {
+    "slug": "water-heaters",
+    "route": "services/water-heaters/index.html",
+    "title": "Water Heater Services.",
+    "education_title": "When to ask about your water heater",
+    "education_intro": "Water heaters are an essential part of everyday plumbing. McBride & Sons Plumbing lists water heater services, but the source does not specify individual heater types or a complete menu of procedures. Confirm the available work directly when contacting the company.",
+    "chapters": [
+      {
+        "title": "Changes worth noticing",
+        "text": "Water temperature that fluctuates, unusually limited hot water, unfamiliar noises or visible moisture around a water heater are useful details to report."
+      },
+      {
+        "title": "Safety comes before troubleshooting",
+        "text": "Leaking water, overheating concerns or an unusual odor warrant caution. Do not open equipment or attempt electrical or gas repairs yourself; follow manufacturer safety instructions and contact an appropriate professional."
+      }
+    ],
+    "questions": "Is the concern temperature, water quantity, noise or leakage? What type of unit is present, if known? When did the change begin?",
+    "caution": "Ask the company to confirm the specific water heater service needed before assuming any particular repair or installation is offered.",
+    "baseline_sha256": "900ceab3b1e8b0ee57ae3df6d99c4e08f3d27d1442d6cdff32e879e3e5245f0a",
+    "overview_title": "Let’s Talk About Your Water Heater",
+    "conversation_title": "Connect With the Team",
+    "overview_text": "Water heater services are part of the company's published plumbing offering. Describe your concern to our team so you can discuss the service available for your situation.",
+    "conversation_text": "Call our team and describe what you have noticed with your water heater. We can discuss your concern and the next step for service.",
+    "related": [
+      {
+        "href": "../leak-repair/index.html",
+        "name": "Leak Repair ↗"
+      },
+      {
+        "href": "../bathroom-remodeling/index.html",
+        "name": "Bathroom Remodeling Plumbing ↗"
+      }
+    ]
+  }
+}
