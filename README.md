@@ -1,3 +1,18 @@
+## Current update — 2026-11-04
+
+- Ten pages share one static footer, generated from `templates/footer.html`, with six working service links and consistent business contact details.
+- About Us has a new responsive editorial layout using the three original family portraits; no invented biographies or licensing/insurance claims.
+- All pages have unique search titles/descriptions, canonical URLs, Open Graph and Twitter large-card metadata, and JSON-LD for the business/page/service/breadcrumbs where applicable.
+- SVG/ICO/PNG favicons, Apple icon and manifest are local; the shared JPEG social card is 1200×630. See `assets/images/social/README.md` for asset provenance and prompt.
+- Canonicals and the sitemap use the current GitHub Pages demo origin. All pages remain `noindex, nofollow`; form recipients and demo notices are preserved.
+- Regenerate shared markup and SEO with `python3 scripts/update-site.py`; a future deployment origin can be supplied with `--base-url https://approved-domain.example/`. This command deliberately does not enable indexing or change demo/form notices. Complete those separate release decisions before an official launch.
+- Validate with `python3 scripts/validate-site.py`. Favicon raster variants can be reproduced with `python3 scripts/make-icons.py`.
+- Verified locally: 10 SEO sets and matching footers; 651 local references; 40 initial responsive width checks at 375/768/1024/1440 with no overflow; About and footer screenshots reviewed. Production and third-party form delivery are separate gates.
+
+### Earlier implementation notes (historical)
+
+The sections below retain asset/licensing and design history. Statements about missing dropdowns, the original About page, or older layouts are superseded by the current update and the append-only project log.
+
 # McBride & Sons Plumbing — Atrezzo Studios staging
 **Updated:** 2026-10-26  
 **Role:** public Atrezzo design demonstration; NOT the official client website.

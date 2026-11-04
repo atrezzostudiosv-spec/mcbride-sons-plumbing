@@ -1,0 +1,6 @@
+# Design demo: each HTML page retains its noindex directive.
+# Crawling is allowed so link previews can read Open Graph metadata.
+User-agent: *
+Allow: /
+
+Sitemap: https://atrezzostudiosv-spec.github.io/mcbride-sons-plumbing/sitemap.xml
