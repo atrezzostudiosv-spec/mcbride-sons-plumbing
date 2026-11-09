@@ -467,3 +467,11 @@ Updated: 2026-10-24
 - The Home's own existing look was used as reference; no service copy, hero, photo, SEO, form, reviews, popup, footer or CTA content touched. Removed old banner/callbar markup on internals rather than retaining different hidden variants.
 - VERIFIED IN SOURCE: one matching announcement and matching mobile callbar per page; original one H1/forms and noindex retained; shared stylesheet and builder source synchronized. **NOT YET VERIFIED**: actual rendering on 375/768/1024/1440, physical iOS/Safari, and latest Github Pages deployment workflow.
 - State: **EN VALIDACIÓN** until deployment and visual/click QA, then close.
+
+
+## 2026-11-09 — Auditoría preaprobación del cliente (solo documentación)
+- Análisis de las 10 páginas en commit `f99a378e52e1feadc3a782f6783c5357132ea549`; despliegue GitHub Pages run 42595236133 SUCCESS. Informe: `docs/AUDITORIA_PREAPROBACION_CLIENTE_2026-11-09.md`.
+- Verificado por comparación HTML exacta: mismo anuncio y callbar del Home en 10/10; mismos footers de `templates/footer.html` en 10/10. Menú, enlaces y CTA compartidos; 759 referencias internas revisadas sin rutas o anclas rotas.
+- Pendiente visual: el 9-nov se modificó el chrome global y no se volvió a certificar screenshot/scroll a 375, 768, 1024 y 1440; regla Home escritorio con auto-hide del header difiere del sticky constante en internas.
+- Prospecto/demo: 9 formularios siguen apuntando al correo de prueba Atrezzo, `noindex` y disclaimers; ratings con imágenes promocionales de cinco estrellas no equivalen a calificaciones actuales verificadas (HomeAdvisor 4.6/5, 327). No publicación oficial.
+- **Fase activa: EN VALIDACIÓN — PREVIEW PARA APROBACIÓN CLIENTE**, no aprobación de producción. Siguiente paso: única ronda de QA visual actual, limitada a header/callbar/footer y CTA; después presentar como demo, no como sitio terminado.
