@@ -19,7 +19,7 @@
     mobileTrigger.setAttribute('aria-expanded', String(open));
   };
 
-  trigger.addEventListener('click', () => setDesktop(!desktopOpen()));
+  trigger.addEventListener('click', () => setDesktop(true));
   group.addEventListener('pointerenter', e => {
     if (e.pointerType === 'mouse' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) setDesktop(true);
   });
