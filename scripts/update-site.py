@@ -69,7 +69,7 @@ def rebuild_about():
 {main}
 {shared_footer("about-us/index.html")}
 {shared_mobile_callbar()}
-<script src="../assets/js/main.js?v=20261109-svg-close-v2" defer></script><script src="../assets/js/site-nav.js?v=20261028-menu-v1" defer></script>
+<script src="../assets/js/main.js?v=20261109-svg-close-v2" defer></script><script src="../assets/js/site-nav.js?v=20261109-services-disclosure-v2" defer></script>
 </body></html>
 ''')
 
