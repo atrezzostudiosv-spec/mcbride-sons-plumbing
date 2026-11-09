@@ -484,3 +484,13 @@ Updated: 2026-10-24
 - Short-height <=540px and reduced-motion phone layouts use a non-sticky, naturally stacked fallback to prevent trapped scroll or unreadable overlay. Keyboard focus outlined inside full-bleed frame.
 - **Source verified:** 6 original services, unchanged links/imagery/copy, exactly one hero/H1/form, demo noindex, CSS rules balanced, media scope <=640, site-chrome/header/footer preserved. **Pending:** visually test the published 375/390/640/768/1024/1440 px layouts, focal crops and slide readability under browser scroll, confirm latest GitHub Pages workflow.
 - Phase: IMPLEMENTED IN CODE / DEPLOY VERIFY PENDING / MOBILE VISUAL QA PENDING.
+
+
+## 2026-11-09 — Six Atlas chapter-02 photos differentiated (PARTIAL PHOTO QA)
+- User authorized addressing image repetition while reviewing other client-presentation tasks.
+- In six detail pages, changed **chapter 02 only**, both mobile inline image and desktop sticky stage image. Chapter 01 keeps the existing original local service scene and original Hero/CTA untouched.
+- Pexels illustrative images by source photo ID: Drain Cleaning 12142829 (drain pipes), Leak Repair 15206136 (leak), Hydro-Jetting 17882785 (water flowing from pipe, NOT purported high-pressure-jet equipment), Water Heaters 6436774 (interior with heater reflected), Drain & Sewer Repair 37627673 (drainage trench), Bathroom Remodeling 27624015 (fixtures/interior). These are illustrative stock, never McBride employees/jobs or established specialist equipment. New source images use remote images.pexels.com CDN 1600px URLs, NOT local self-hosted WebP yet; exact CDN response and visual suitability remain unverified.
+- Updated scripts/build-service-content.py with SECOND_PHOTOS mapping so future regeneration preserves the six distinct photo references. Did not modify service-content JSON copy, old original images, design library, home, CTA, forms, social images, or footer.
+- GitHub source audit: 6/6 page chapter-02 inline images changed, 6/6 corresponding sticky stage images changed, 3 stage image nodes retained each, one H1 and noindex retained in all six.
+- STILL REPEATED: shared customer-consultation stock image in Atlas chapter 03 across service pages; Hero and CTA may repeat chapter 01 image. These were not replaced in this step. A full 'no repeats anywhere' claim would be false.
+- STILL UNVERIFIED: Pexels CDN actual delivery and license verification at release, responsive framing and stage transition in live browser at 375/768/1024/1440, performance impact. Keep phase IN VALIDATION; staging noindex/demos remain. Prefer locally optimized WebP after image/rights review.
