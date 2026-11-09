@@ -7,7 +7,7 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = json.loads((ROOT / "content/service-content.json").read_text())
-VERSION = "20261104-atrezzo-v1"
+VERSION = "20261109-legibility-v2"
 PHOTOS = {
     "drain-cleaning": ("mcbride-sons-plumbing-drain-cleaning-service-technician.webp", 1852, 849, "66% center"),
     "leak-repair": ("mcbride-sons-plumbing-leak-repair-exterior-pipe-service.webp", 1852, 849, "66% center"),
