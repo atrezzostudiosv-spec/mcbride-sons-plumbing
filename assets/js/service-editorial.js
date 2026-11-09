@@ -17,7 +17,7 @@ if(reviewViewport && typeof IntersectionObserver==="function"){
   },{threshold:0.05,rootMargin:"0px 0px 40px 0px"});
   watcher.observe(reviewViewport);
 }else activate();
-const update=()=>{const paused=section.dataset.paused==="true";btn.setAttribute("aria-pressed",String(paused));btn.innerHTML=paused?'<span aria-hidden="true">▶</span> Resume motion':'<span aria-hidden="true">Ⅱ</span> Pause motion';btn.disabled=Boolean(reduced?.matches);btn.setAttribute("aria-label",reduced?.matches?"Automatic review movement disabled by reduced-motion preference":paused?"Resume automatic review movement":"Pause automatic review movement");};
+const update=()=>{const paused=section.dataset.paused==="true";btn.setAttribute("aria-pressed",String(paused));btn.innerHTML=paused?'<svg class="mc-ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5l11 7-11 7V5z"/></svg> Resume motion':'<svg class="mc-ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5v14m6-14v14"/></svg> Pause motion';btn.disabled=Boolean(reduced?.matches);btn.setAttribute("aria-label",reduced?.matches?"Automatic review movement disabled by reduced-motion preference":paused?"Resume automatic review movement":"Pause automatic review movement");};
 btn.addEventListener("click",()=>{section.dataset.paused=section.dataset.paused==="true"?"false":"true";update();});
 reduced?.addEventListener?.("change",update);update();
 })();

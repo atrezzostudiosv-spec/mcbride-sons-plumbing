@@ -440,3 +440,9 @@ Updated: 2026-10-24
 - **VERIFICADO EN FUENTE:** siete HTML mantienen un H1, un form, Atlas y Before You Call; CSS conserva reglas responsive/reduced-motion y sintaxis de llaves equilibrada. No se toca Home, About, Contact, datos de servicio, fotografías, SEO, reseñas ni CTA.
 - **NO COMPROBADO EN ESTA INTERVENCIÓN:** screenshots publicados tras ajuste de tipografía, rendimiento, móviles físicos, correos FormSubmit. La prueba inicial del 4-nov documenta 35 vistas/controles y scroll de componentes, pero no certifica la nueva escala tipográfica.
 - **ESTADO DE FASE:** EN VALIDACIÓN visual. Siguiente acción: ficha piloto Drain Cleaning y selección de **una** fotografía contextual específica; después extender diferenciación a otras cinco sin crear contenido comercial no acreditado.
+
+
+## 2026-11-09 — All-device SVG icon replacement
+- Audited 10 HTML pages (Home, About, Contact, Services index and six service detail pages), two source templates and the review-control JS. Replaced decorative text arrows, down/right icons, glyph-based five-star rows and pause/play symbols with consistent inline SVG vectors. Copyright stays visually intact via HTML `&copy;`. The user-approved five-star photographic/promotional images are unchanged.
+- Added lightweight `assets/css/interface-icons.css` to all 10 pages. All existing text link labels, phone/form targets, color system, layouts and aria labels retained. SVG icons use `aria-hidden=true`.
+- Shared templates updated. Changes to page generators and validation still required in immediate follow-up commit so new builds do not reintroduce Unicode glyph icons. Browser/Pages checks pending.
