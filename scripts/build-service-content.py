@@ -7,7 +7,7 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = json.loads((ROOT / "content/service-content.json").read_text())
-VERSION = "20261109-legibility-v2"
+VERSION = "20261109-atlas-photo-v1"
 PHOTOS = {
     "drain-cleaning": ("mcbride-sons-plumbing-drain-cleaning-service-technician.webp", 1852, 849, "66% center"),
     "leak-repair": ("mcbride-sons-plumbing-leak-repair-exterior-pipe-service.webp", 1852, 849, "66% center"),
@@ -16,6 +16,25 @@ PHOTOS = {
     "drain-sewer-repair": ("mcbride-sons-plumbing-drain-sewer-repair-trench-service.webp", 1864, 844, "70% center"),
     "bathroom-remodeling": ("mcbride-sons-plumbing-bathroom-remodeling-fixture-installation.webp", 1853, 849, "66% center"),
 }
+# Licensed illustrative Pexels photographs for Atlas chapter 02 only.
+# They do not depict McBride work or employees. Keep original local hero/01 imagery.
+# Remote-image delivery and mobile focal crops require deployed-browser QA.
+SECOND_PHOTOS = {
+    "drain-cleaning": ("12142829", "50% center"),      # PVC drain pipework
+    "leak-repair": ("15206136", "50% center"),         # visibly leaking pipe
+    "hydro-jetting": ("17882785", "55% center"),       # water flowing from pipe; illustrative, not claimed jetting tool
+    "water-heaters": ("6436774", "60% center"),       # bathroom interior, water heater reflected
+    "drain-sewer-repair": ("37627673", "50% center"),  # drainage pipe in trench
+    "bathroom-remodeling": ("27624015", "50% center"),# finished bathroom fixtures, not McBride work
+}
+
+def chapter_two_photo(slug, root, fallback):
+    entry = SECOND_PHOTOS.get(slug)
+    if not entry:
+        return fallback
+    photo_id, focal = entry
+    return (f"https://images.pexels.com/photos/{photo_id}/pexels-photo-{photo_id}.jpeg?auto=compress&cs=tinysrgb&w=1600", 1600, 1067, focal)
+
 PREP = {
     "drain-cleaning": [("Affected fixtures", "Tell us whether the concern involves one drain or several fixtures."), ("When it began", "Mention when you first noticed the problem and whether it has happened before."), ("Drainage pattern", "Describe the flow or backup as clearly as you can, including anything that changes when other fixtures are used.")],
     "leak-repair": [("Visible location", "Describe the area where you can see water, moisture or staining."), ("Timing of the leak", "Let the team know whether water is present continuously or appears only at certain times."), ("Nearby fixtures", "Mention the closest fixture or pipe without assuming that it is the source of the leak.")],
@@ -39,7 +58,7 @@ def build(data):
     primary = PHOTOS["drain-cleaning" if slug == "services" else slug]
     photos = [
         (root + "assets/images/services/" + primary[0], *primary[1:]),
-        (root + "assets/images/services/" + primary[0], primary[1], primary[2], "38% center"),
+        chapter_two_photo(slug, root, (root + "assets/images/services/" + primary[0], primary[1], primary[2], "38% center")),
         (root + "assets/images/approach/mcbride-sons-plumbing-honest-communication-customer-consultation.webp", 1875, 839, "65% center"),
     ]
     chapters = [{"title": data["overview_title"], "text": data["overview_text"]}, *data["chapters"]]
