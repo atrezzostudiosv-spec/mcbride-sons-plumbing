@@ -1,73 +1,59 @@
-// McBride shared Services navigation — works on every static page.
-// Services label links to overview; adjacent caret opens six service pages.
-// Mobile submenu has its own disclosure; no keyboard/scroll trapping.
+// ATREZZO — McBride Services navigation. The full Services label is a disclosure.
 (() => {
-  const header=document.querySelector('.at-site-nav');
+  const header = document.querySelector('.at-site-nav');
   if (!header) return;
-  const group=header.querySelector('[data-services-menu]');
-  const toggle=group?.querySelector('.at-services-toggle');
-  const panel=group?.querySelector('.at-services-panel');
-  const mobileToggle=header.querySelector('.at-mobile-services-toggle');
-  const mobileList=header.querySelector('.at-mobile-services-list');
-  if(!group || !toggle || !panel || !mobileToggle || !mobileList) return;
-  const closeDesktop=()=>{
-    group.classList.remove('is-open');
-    toggle.setAttribute('aria-expanded','false');
+  const group = header.querySelector('[data-services-menu]');
+  const trigger = group?.querySelector('.at-services-parent');
+  const panel = group?.querySelector('.at-services-panel');
+  const mobileTrigger = header.querySelector('.at-mobile-services-toggle');
+  const mobilePanel = header.querySelector('.at-mobile-services-list');
+  if (!group || !trigger || !panel || !mobileTrigger || !mobilePanel) return;
+
+  const desktopOpen = () => trigger.getAttribute('aria-expanded') === 'true';
+  const setDesktop = (open) => {
+    group.classList.toggle('is-open', open);
+    trigger.setAttribute('aria-expanded', String(open));
   };
-  const showDesktop=()=>{
-    if(group.classList.contains('is-dismissed'))return;
-    group.classList.add('is-open');
-    toggle.setAttribute('aria-expanded','true');
+  const setMobile = (open) => {
+    mobilePanel.hidden = !open;
+    mobileTrigger.setAttribute('aria-expanded', String(open));
   };
-  group.addEventListener('pointerenter',showDesktop);
-  group.addEventListener('pointerleave',()=>{
-    group.classList.remove('is-dismissed');
-    if(!group.contains(document.activeElement))closeDesktop();
+
+  trigger.addEventListener('click', () => setDesktop(!desktopOpen()));
+  group.addEventListener('pointerenter', e => {
+    if (e.pointerType === 'mouse' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) setDesktop(true);
   });
-  group.addEventListener('focusin',showDesktop);
-  group.addEventListener('focusout',event=>{
-    if(!group.contains(event.relatedTarget)){
-      group.classList.remove('is-dismissed');
-      closeDesktop();
+  group.addEventListener('pointerleave', e => {
+    if (e.pointerType === 'mouse' && !group.contains(document.activeElement)) setDesktop(false);
+  });
+  group.addEventListener('focusout', event => {
+    if (!group.contains(event.relatedTarget)) setDesktop(false);
+  });
+  group.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      event.stopPropagation();
+      setDesktop(false);
+      trigger.focus();
     }
   });
-  toggle.addEventListener('click',()=>{
-    const open=toggle.getAttribute('aria-expanded')!=='true' || group.classList.contains('is-dismissed');
-    group.classList.remove('is-dismissed');
-    group.classList.toggle('is-open',open);
-    toggle.setAttribute('aria-expanded',String(open));
+  document.addEventListener('pointerdown', event => {
+    if (!group.contains(event.target)) setDesktop(false);
   });
-  group.addEventListener('keydown',e=>{
-    if(e.key==='Escape'){
-      group.classList.add('is-dismissed');
-      closeDesktop();
-      toggle.focus();
+  panel.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setDesktop(false)));
+
+  mobileTrigger.addEventListener('click', () => setMobile(mobilePanel.hidden));
+  header.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !mobilePanel.hidden) {
+      setMobile(false);
+      mobileTrigger.focus();
     }
   });
-  document.addEventListener('pointerdown',e=>{
-    if(!group.contains(e.target))closeDesktop();
+  mobilePanel.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMobile(false)));
+  header.querySelector('[data-mobile-toggle]')?.addEventListener('click', () => setMobile(false));
+
+  const desktopViewport = window.matchMedia('(min-width: 901px)');
+  desktopViewport.addEventListener?.('change', () => {
+    setDesktop(false);
+    setMobile(false);
   });
-  panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeDesktop));
-  mobileToggle.addEventListener('click',()=>{
-    const opening=mobileToggle.getAttribute('aria-expanded')!=='true';
-    mobileToggle.setAttribute('aria-expanded',String(opening));
-    mobileToggle.setAttribute('aria-label',opening?'Collapse services submenu':'Expand services submenu');
-    mobileToggle.textContent=opening?'−':'+';
-    mobileList.hidden=!opening;
-  });
-  header.addEventListener('keydown',e=>{
-    if(e.key==='Escape' && !mobileList.hidden){
-      mobileToggle.setAttribute('aria-expanded','false');
-      mobileToggle.setAttribute('aria-label','Expand services submenu');
-      mobileToggle.textContent='+';
-      mobileList.hidden=true;
-      mobileToggle.focus();
-    }
-  });
-  mobileList.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
-    mobileList.hidden=true;
-    mobileToggle.setAttribute('aria-expanded','false');
-    mobileToggle.setAttribute('aria-label','Expand services submenu');
-    mobileToggle.textContent='+';
-  }));
 })();
