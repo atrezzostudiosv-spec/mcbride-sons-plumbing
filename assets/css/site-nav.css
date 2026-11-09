@@ -23,7 +23,7 @@
   opacity:0;visibility:hidden;pointer-events:none;
   transform:translate3d(0,8px,0);transition:opacity .24s ease,transform .24s ease,visibility .24s;
 }
-.at-site-nav .at-services-menu:is(:hover,:focus-within,.is-open)>.at-services-panel{
+.at-site-nav .at-services-menu.is-open>.at-services-panel{
   opacity:1;visibility:visible;pointer-events:auto;transform:none;
 }
 .at-site-nav .at-services-menu.is-dismissed>.at-services-panel{
