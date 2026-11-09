@@ -22,8 +22,8 @@ PHOTOS = {
 SECOND_PHOTOS = {
     "drain-cleaning": ("12142829", "50% center"),      # PVC drain pipework
     "leak-repair": ("15206136", "50% center"),         # visibly leaking pipe
-    "hydro-jetting": ("17882785", "55% center"),       # water flowing from pipe; illustrative, not claimed jetting tool
-    "water-heaters": ("6436774", "60% center"),       # bathroom interior, water heater reflected
+    "hydro-jetting": ("17882785", "50% center"),       # water flowing from pipe; illustrative, not claimed jetting tool
+    "water-heaters": ("6436774", "50% center"),       # bathroom interior, water heater reflected
     "drain-sewer-repair": ("37627673", "50% center"),  # drainage pipe in trench
     "bathroom-remodeling": ("27624015", "50% center"),# finished bathroom fixtures, not McBride work
 }
