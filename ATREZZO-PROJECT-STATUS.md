@@ -494,3 +494,12 @@ Updated: 2026-10-24
 - GitHub source audit: 6/6 page chapter-02 inline images changed, 6/6 corresponding sticky stage images changed, 3 stage image nodes retained each, one H1 and noindex retained in all six.
 - STILL REPEATED: shared customer-consultation stock image in Atlas chapter 03 across service pages; Hero and CTA may repeat chapter 01 image. These were not replaced in this step. A full 'no repeats anywhere' claim would be false.
 - STILL UNVERIFIED: Pexels CDN actual delivery and license verification at release, responsive framing and stage transition in live browser at 375/768/1024/1440, performance impact. Keep phase IN VALIDATION; staging noindex/demos remain. Prefer locally optimized WebP after image/rights review.
+
+
+## 2026-11-09 — Services menu now expands from full label on all 10 pages
+- User requested changing Services top-nav action from immediate page redirect to disclosure of six standalone service links, on desktop/tablet/mobile.
+- Replaced desktop parent link + separate caret with one accessible `button.at-services-parent` whose complete label opens the shared panel. Preserved six service links and an explicit View All Services link inside the panel.
+- Replaced mobile Services link + "+" control with one full-width accessible SVG-chevron button that toggles the submenu. Added View All Services to mobile list. No emoji/text-glyph controls added.
+- Shared JS `assets/js/site-nav.js` now controls pointer hover, click, focus exit, outside click, Escape, and responsive close. Original `assets/js/main.js` still controls main hamburger. Shared CSS adds native button styles and responsive layout. Both assets version-bumped across ten pages; About rebuild script updated to retain the JS version.
+- STATIC VERIFIED: all ten pages contain one desktop and one mobile Services button, seven panel links each (six services + overview), fresh CSS/JS URL, one H1, noindex. Business information, content, photo, form and SEO unchanged.
+- NOT VERIFIED: actual public Pages deploy, rendered hover/click/touch/keyboard behavior at 375/768/1024/1440 and physical Safari. Status: IMPLEMENTED IN CODE / LIVE QA PENDING. Current staging remains non-official.
