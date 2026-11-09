@@ -89,6 +89,17 @@ manifest = json.loads((ROOT / "site.webmanifest").read_text())
 for icon in manifest["icons"]:
     if not (ROOT / icon["src"]).exists():
         errors.append(f"Missing manifest icon {icon['src']}")
+
+# Keep emoji and text-based pictograms out of deployed HTML and maintained assets.
+# User-visible controls must use decorative inline SVG icons instead.
+EMOJI_OR_GLYPH = re.compile(r"[\\u2190-\\u21ff\\u2600-\\u27bf\\U0001f000-\\U0001faff\\u200d\\ufe0f]")
+for file in [*(ROOT / p for p in generator.PAGES),
+             *ROOT.glob("assets/js/*.js"), *ROOT.glob("assets/css/*.css"),
+             *ROOT.glob("templates/*.html"), *ROOT.glob("scripts/*.py"),
+             *ROOT.glob("content/*.json")]:
+    if EMOJI_OR_GLYPH.search(file.read_text()):
+        errors.append(f"{file.relative_to(ROOT)}: emoji or decorative text glyph detected; use SVG instead")
+
 if errors:
     raise SystemExit("\n".join(errors))
 print(f"PASS: 10 unique SEO sets, social cards, schema, shared footers and {references} local references. Sitemap, manifest and demo protections valid.")

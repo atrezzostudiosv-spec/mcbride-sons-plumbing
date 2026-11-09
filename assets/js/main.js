@@ -476,7 +476,7 @@
 })();
 
 // ATREZZO FAMILY LEGACY 2.0 — progressive photo sequence.
-// Wide screens: Jasper → Michael Sr. → Michael II reveal in one staggered
+// Wide screens: Jasper, then Michael Sr., then Michael II reveal in one staggered
 // gallery entrance. Mobile: reveal each portrait as it enters the viewport.
 // If IntersectionObserver or motion permission is absent, photos stay visible.
 (() => {

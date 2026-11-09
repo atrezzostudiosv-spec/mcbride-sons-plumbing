@@ -54,11 +54,11 @@ def rebuild_about():
 <head>{head}</head>
 <body class="mc-about-page">
 <a class="mc-about-skip" href="#main">Skip to content</a>
-<div class="mc-about-ribbon"><div><span>24/7 emergency plumbing availability</span><a href="tel:+18179013328">Call (817) 901-3328 ↗</a></div></div>
+<div class="mc-about-ribbon"><div><span>24/7 emergency plumbing availability</span><a href="tel:+18179013328">Call (817) 901-3328 <svg class="mc-ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div></div>
 {header}
 {main}
 {shared_footer("about-us/index.html")}
-<div class="mc-about-mobile-call"><span><small>24/7 EMERGENCY LINE</small>(817) 901-3328</span><a href="tel:+18179013328">Call Now ↗</a></div>
+<div class="mc-about-mobile-call"><span><small>24/7 EMERGENCY LINE</small>(817) 901-3328</span><a href="tel:+18179013328">Call Now <svg class="mc-ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
 <script src="../assets/js/main.js" defer></script><script src="../assets/js/site-nav.js?v=20261028-menu-v1" defer></script>
 </body></html>
 ''')

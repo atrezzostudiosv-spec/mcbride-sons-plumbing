@@ -446,3 +446,10 @@ Updated: 2026-10-24
 - Audited 10 HTML pages (Home, About, Contact, Services index and six service detail pages), two source templates and the review-control JS. Replaced decorative text arrows, down/right icons, glyph-based five-star rows and pause/play symbols with consistent inline SVG vectors. Copyright stays visually intact via HTML `&copy;`. The user-approved five-star photographic/promotional images are unchanged.
 - Added lightweight `assets/css/interface-icons.css` to all 10 pages. All existing text link labels, phone/form targets, color system, layouts and aria labels retained. SVG icons use `aria-hidden=true`.
 - Shared templates updated. Changes to page generators and validation still required in immediate follow-up commit so new builds do not reintroduce Unicode glyph icons. Browser/Pages checks pending.
+
+
+### 2026-11-09 — Future regeneration guard for SVG-only interface
+- Updated `scripts/build-service-content.py` to emit inline vector icons for section CTAs, disclosures and mosaic arrows. Removed direction glyph suffixes from source `content/service-content.json` related-service labels; links/names/underlying commercial facts unchanged.
+- Updated About generator `scripts/update-site.py` and cleaned the informational arrows in `assets/js/main.js` comments.
+- Extended `scripts/validate-site.py` with a Unicode pictogram/emoji ban covering all ten deployed HTML pages and maintained JS/CSS, templates, JSON and Python source; avoids future reappearance across desktop/mobile/tablet. This validator is source-level, not a visual device test.
+- Nothing about five-star images was altered: the original platform promotional graphics stay as approved.
