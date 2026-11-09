@@ -37,6 +37,14 @@ def shared_footer(route):
     return (ROOT / "templates/footer.html").read_text().replace("{{root}}", prefix).strip()
 
 
+def shared_announcement():
+    return (ROOT / "templates/site-announcement.html").read_text().strip()
+
+
+def shared_mobile_callbar():
+    return (ROOT / "templates/mobile-callbar.html").read_text().strip()
+
+
 def rebuild_about():
     page = ROOT / "about-us/index.html"
     old = page.read_text()
@@ -47,6 +55,8 @@ def rebuild_about():
     head = head.replace("<!-- Tailwind CSS -->", "").replace("<!-- FontAwesome for Authentic Icons -->", "")
     if "about.css" not in head:
         head += f'\n<link rel="stylesheet" href="../assets/css/about.css?v={VERSION}">\n'
+    if "site-chrome.css" not in head:
+        head += '\n<link rel="stylesheet" href="../assets/css/site-chrome.css?v=20261109-home-chrome-v1">\n'
     header = re.search(r"<header\b.*?</header>", old, re.S).group(0)
     main = (ROOT / "templates/about-main.html").read_text().strip()
     page.write_text(f'''<!doctype html>
@@ -54,11 +64,11 @@ def rebuild_about():
 <head>{head}</head>
 <body class="mc-about-page">
 <a class="mc-about-skip" href="#main">Skip to content</a>
-<div class="mc-about-ribbon"><div><span>24/7 emergency plumbing availability</span><a href="tel:+18179013328">Call (817) 901-3328 <svg class="mc-ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div></div>
+{shared_announcement()}
 {header}
 {main}
 {shared_footer("about-us/index.html")}
-<div class="mc-about-mobile-call"><span><small>24/7 EMERGENCY LINE</small>(817) 901-3328</span><a href="tel:+18179013328">Call Now <svg class="mc-ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+{shared_mobile_callbar()}
 <script src="../assets/js/main.js?v=20261109-svg-close-v2" defer></script><script src="../assets/js/site-nav.js?v=20261028-menu-v1" defer></script>
 </body></html>
 ''')

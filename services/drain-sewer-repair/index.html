@@ -76,26 +76,11 @@
 <link rel="stylesheet" href="../../assets/css/service-content-atrezzo.css?v=20261109-legibility-v2">
 <script src="../../assets/atrezzo/service-showcase.js?v=20261109-legibility-v2" defer></script>
 <link rel="stylesheet" href="../../assets/css/interface-icons.css?v=20261109-vector-ui-1">
+<link rel="stylesheet" href="../../assets/css/site-chrome.css?v=20261109-home-chrome-v1">
 </head>
 <body class="flex flex-col min-h-screen ">
 <!-- TOP ANNOUNCEMENT BAR -->
-<div class="at-internal-announcement bg-brand-dark text-white text-xs md:text-sm py-2.5 px-4">
-<div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-left">
-<div class="flex items-center gap-3">
-<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold text-xs tracking-wide uppercase">
-<span class="w-2 h-2 rounded-full bg-emerald-400"></span> 24/7 Emergency Service
-                </span>
-<span class="text-gray-200">24/7 Emergency Plumbing in Denton &amp; the DFW Area</span>
-</div>
-<div class="flex items-center gap-6 text-xs text-emerald-100/80">
-<span class="hidden md:inline-block"><i class="fa-solid fa-shield-halved text-emerald-400 mr-1.5"></i> Family-Owned Plumbing</span>
-<a class="font-bold text-white hover:text-emerald-300 transition-colors flex items-center gap-1.5" href="tel:+18179013328">
-<i class="fa-solid fa-phone text-emerald-400"></i> (817) 901-3328
-                </a>
-</div>
-</div>
-</div>
-<!-- MAIN NAVIGATION -->
+<div class="site-announcement" role="note"><div class="wrap announcement-inner"><span><span class="announcement-dot" aria-hidden="true"></span> 24/7 emergency plumbing availability</span><a href="tel:+18179013328" aria-label="Call McBride and Sons at 817 901 3328">Call (817) 901-3328 <span aria-hidden="true"><svg class="mc-ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a></div></div>
 <header class="site-header at-site-nav at-nav-internal" id="site-header"><div class="wrap nav-inner"><a class="brand" href="../../index.html" aria-label="McBride &amp; Sons Plumbing — Home"><img src="../../assets/images/mcbride-logo.webp" width="1396" height="673" alt="McBride Plumbing"></a><nav class="desktop-nav" aria-label="Main navigation"><a href="../../index.html">Home</a><div class="at-services-menu" data-services-menu data-active-section="services"><a class="at-services-parent" href="../../services/index.html">Services</a><button class="at-services-toggle" type="button" aria-label="Open services submenu" aria-expanded="false" aria-controls="at-services-panel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="at-services-panel" id="at-services-panel"><span class="at-panel-label">Explore our plumbing services</span><a class="at-all-services" href="../../services/index.html">View All Services <svg class="mc-ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="../../services/drain-cleaning/index.html">Drain Cleaning</a><a href="../../services/leak-repair/index.html">Leak Repair</a><a href="../../services/hydro-jetting/index.html">Hydro-Jetting</a><a href="../../services/water-heaters/index.html">Water Heater Services</a><a href="../../services/drain-sewer-repair/index.html" aria-current="page">Drain &amp; Sewer Repair</a><a href="../../services/bathroom-remodeling/index.html">Bathroom Remodeling Plumbing</a></div></div><a href="../../about-us/index.html">About Us</a><a href="../../contact-us/index.html">Contact</a></nav><a class="nav-call" href="tel:+18179013328"><span>Call Now</span><span class="nav-call-number">(817) 901-3328</span></a><button class="mobile-menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open navigation" data-mobile-toggle="true"><span class="menu-lines" aria-hidden="true"></span></button></div><nav id="mobile-menu" class="mobile-nav hidden" aria-label="Mobile navigation"><a href="../../index.html">Home</a><div class="at-mobile-services"><div class="at-mobile-services-head"><a href="../../services/index.html">Services</a><button class="at-mobile-services-toggle" type="button" aria-label="Expand services submenu" aria-expanded="false" aria-controls="at-mobile-services-list">+</button></div><div class="at-mobile-services-list" id="at-mobile-services-list" hidden><a href="../../services/drain-cleaning/index.html">Drain Cleaning</a><a href="../../services/leak-repair/index.html">Leak Repair</a><a href="../../services/hydro-jetting/index.html">Hydro-Jetting</a><a href="../../services/water-heaters/index.html">Water Heater Services</a><a href="../../services/drain-sewer-repair/index.html" aria-current="page">Drain &amp; Sewer Repair</a><a href="../../services/bathroom-remodeling/index.html">Bathroom Remodeling Plumbing</a></div></div><a href="../../about-us/index.html">About Us</a><a href="../../contact-us/index.html">Contact</a><a class="mobile-nav-call" href="tel:+18179013328">Call (817) 901-3328 <svg class="mc-ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a></nav></header>
 <!-- MAIN PAGE CONTAINER -->
 <main class="flex-grow" id="main-content">
@@ -193,19 +178,6 @@
     <p class="mc-footer-demo" data-atrezzo-demo-notice>Atrezzo Studios design demonstration · Not the official McBride &amp; Sons Plumbing website. Demo form submissions go to Atrezzo, not to the business.</p>
   </div>
 </footer>
-<!-- PERSISTENT MOBILE CALL BAR (Fixed at Bottom for Safe Touch Conversion) -->
-<div class="fixed bottom-0 left-0 right-0 bg-brand-dark/95 backdrop-blur-md border-t border-white/10 p-3 z-50 md:hidden">
-<div class="flex items-center justify-between gap-3 max-w-md mx-auto">
-<div class="flex flex-col">
-<span class="text-[10px] text-emerald-400 uppercase font-extrabold tracking-wider">24/7 Emergency</span>
-<span class="text-xs font-extrabold text-white">(817) 901-3328</span>
-</div>
-<a class="bg-emerald-500 hover:bg-emerald-400 text-brand-dark px-5 py-2.5 rounded-xl font-extrabold text-xs flex items-center gap-2 shadow-lg" href="tel:+18179013328">
-<i class="fa-solid fa-phone"></i> Call Now
-            </a>
-</div>
-</div>
-<!-- UI TOAST / NOTIFICATION CONTAINER -->
-<!-- INTERACTIVE MULTI-PAGE NAVIGATION LOGIC -->
+<div class="mobile-callbar"><div><span>24/7 EMERGENCY LINE</span><strong>(817) 901-3328</strong></div><a href="tel:+18179013328"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3.09 5.18 2 2 0 0 1 5.08 3h3a2 2 0 0 1 2 1.72l.46 2.81a2 2 0 0 1-.57 1.72l-1.3 1.3a16 16 0 0 0 4.78 4.78l1.3-1.3a2 2 0 0 1 1.72-.57l2.81.46A2 2 0 0 1 22 16.92z"/></svg> CALL NOW</a></div>
 <script defer="defer" src="../../assets/js/main.js?v=20261109-svg-close-v2"></script><script defer src="../../assets/js/site-nav.js?v=20261028-menu-v1"></script><script defer src="../../assets/js/service-editorial.js?v=20261109-vector-ui-1"></script><script defer src="../../assets/js/service-form-dialog.js?v=20261109-svg-close-v2"></script></body>
 </html>

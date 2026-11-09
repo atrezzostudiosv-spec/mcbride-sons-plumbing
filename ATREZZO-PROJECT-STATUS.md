@@ -458,3 +458,12 @@ Updated: 2026-10-24
 ### 2026-11-09 — Remove font-based close controls
 - Replaced the remaining text multiplication-sign close-button controls (both Home callback modal and all Services request dialogs) with accessible SVG X icons (same system). The actual Close aria-label remains. Versioned `main.js` on all ten pages and `service-form-dialog.js` on seven services to avoid stale cached glyphs. Generator reference to `main.js` also updated.
 - No form behavior, field, endpoint, modal semantics or layout changed. Static integrity checks performed; visual opening/closing still pending cross-device browser verification.
+
+
+## 2026-11-09 — Uniform top announcement and fixed mobile Call Now (Home as master)
+- User video at 10:28 AM exposed 3 inconsistent top bars and 3 distinct mobile callbars (Home white CTA vs internal green-on-dark and About dark). Requested the **same HOME aesthetic** on every page at every corresponding breakpoint. This is a localized reopen of shared header/footer chrome, not a general redesign.
+- Implemented identical HTML from the approved Home for announcement and mobile callbar across all 10 pages. Sources now live at `templates/site-announcement.html` and `templates/mobile-callbar.html`; updated `scripts/update-site.py` About builder and `scripts/validate-site.py` to require consistency.
+- New shared stylesheet `assets/css/site-chrome.css`, version `20261109-home-chrome-v1`, loaded after page-specific CSS on all routes: **>=641px** top green ribbon with left emergency notice and telephone link at right (as Home); **<=640px** same centered single short announcement, no repeated text or phone; **<=640px** fixed WHITE lower bar with green-dark CALL NOW button and phone number/24-7 label; hidden on wider screens. Viewport padding and safe-area inset considered. SVG phone icon stays, no emoji.
+- The Home's own existing look was used as reference; no service copy, hero, photo, SEO, form, reviews, popup, footer or CTA content touched. Removed old banner/callbar markup on internals rather than retaining different hidden variants.
+- VERIFIED IN SOURCE: one matching announcement and matching mobile callbar per page; original one H1/forms and noindex retained; shared stylesheet and builder source synchronized. **NOT YET VERIFIED**: actual rendering on 375/768/1024/1440, physical iOS/Safari, and latest Github Pages deployment workflow.
+- State: **EN VALIDACIÓN** until deployment and visual/click QA, then close.

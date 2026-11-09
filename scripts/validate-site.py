@@ -54,6 +54,11 @@ for route in generator.PAGES:
     check(footer == generator.shared_footer(route), "footer differs from shared template")
     footer_tags = Tags(footer).tags
     check(sum(tag == "a" and "/services/" in attrs.get("href", "") for tag, attrs in footer_tags) >= 6, "footer service links missing")
+    check(generator.shared_announcement() in source, "ribbon differs from shared Home component")
+    check(generator.shared_mobile_callbar() in source, "mobile callbar differs from shared Home component")
+    check("assets/css/site-chrome.css?v=20261109-home-chrome-v1" in source, "missing shared chrome CSS")
+    check(source.count('class="site-announcement"') == 1, "duplicate or missing announcement")
+    check(source.count('class="mobile-callbar"') == 1, "duplicate or missing callbar")
     check("Licensed &amp; Insured" not in source, "unverified insurance claim")
     check(any(tag == "link" and attrs.get("rel") == "apple-touch-icon" for tag, attrs in tags), "missing Apple icon")
     for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>', source, re.S):
