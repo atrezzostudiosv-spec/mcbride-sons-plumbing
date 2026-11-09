@@ -453,3 +453,8 @@ Updated: 2026-10-24
 - Updated About generator `scripts/update-site.py` and cleaned the informational arrows in `assets/js/main.js` comments.
 - Extended `scripts/validate-site.py` with a Unicode pictogram/emoji ban covering all ten deployed HTML pages and maintained JS/CSS, templates, JSON and Python source; avoids future reappearance across desktop/mobile/tablet. This validator is source-level, not a visual device test.
 - Nothing about five-star images was altered: the original platform promotional graphics stay as approved.
+
+
+### 2026-11-09 — Remove font-based close controls
+- Replaced the remaining text multiplication-sign close-button controls (both Home callback modal and all Services request dialogs) with accessible SVG X icons (same system). The actual Close aria-label remains. Versioned `main.js` on all ten pages and `service-form-dialog.js` on seven services to avoid stale cached glyphs. Generator reference to `main.js` also updated.
+- No form behavior, field, endpoint, modal semantics or layout changed. Static integrity checks performed; visual opening/closing still pending cross-device browser verification.

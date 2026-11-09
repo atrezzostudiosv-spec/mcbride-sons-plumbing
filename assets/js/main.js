@@ -170,7 +170,7 @@
   closeButton.type = 'button';
   closeButton.className = 'hero-dialog-close';
   closeButton.setAttribute('aria-label', 'Close callback form');
-  closeButton.textContent = '×';
+  closeButton.innerHTML = '<svg class="mc-ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 6 6 18M6 6l12 12"/></svg>';
   toolbar.append(title, closeButton);
 
   const mount = document.createElement('div');
